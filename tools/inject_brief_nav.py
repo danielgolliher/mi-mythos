@@ -10,6 +10,7 @@ import sys, re
 EXAMPLES = [
     ('electronic-rent-payments', 'Electronic rent payments'),
     ('teacher-cba-student-outcomes', 'Teacher contracts &amp; student outcomes'),
+    ('ny-chatbot-liability', 'NY chatbot liability'),
 ]
 
 CSS = """  /* === BRIEF NAVIGATION STRIP === */
