@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electronic Rent Payments — NYC Local Law 64 of 2023 (Int. 0704-A-2022)</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #555;
+    --rule: #d8d4cc;
+    --bg: #fbfaf6;
+    --accent: #6b3410;
+    --quote-bg: #f3efe5;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Iowan Old Style", "Charter", Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 28px 80px; }
+  header.report {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 18px;
+    margin-bottom: 28px;
+  }
+  .kicker {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 32px;
+    line-height: 1.18;
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  .deck {
+    font-size: 18px;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0;
+  }
+  .meta {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+  h2 {
+    font-size: 22px;
+    margin: 44px 0 12px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 6px;
+  }
+  h3 {
+    font-size: 17px;
+    margin: 28px 0 8px;
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+  }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 16px 0; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--accent);
+    margin: 16px 0;
+    padding: 14px 18px;
+    font-size: 16px;
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+  .cite {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    display: block;
+    margin-top: 6px;
+  }
+  code, .mono {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 14px;
+    background: #efeae0;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 18px 0;
+  }
+  .stat {
+    border: 1px solid var(--rule);
+    padding: 14px 16px;
+    background: #fff;
+  }
+  .stat .num {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+  .stat .lbl {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  table.timeline {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+    font-size: 15px;
+  }
+  table.timeline td {
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  table.timeline td.date {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    white-space: nowrap;
+    color: var(--accent);
+    width: 130px;
+  }
+  .gap {
+    background: #fff7e0;
+    border: 1px solid #e6c97a;
+    padding: 12px 14px;
+    margin: 14px 0;
+    font-size: 15px;
+  }
+  .gap strong { color: #7a5a00; }
+  .confirmed {
+    background: #e8f1e0;
+    border-left: 3px solid #4a7d2a;
+    padding: 12px 14px;
+    margin: 14px 0;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .confirmed strong { color: #2d4d18; }
+  .exchange {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    padding: 18px 22px;
+    margin: 18px 0;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .exchange .speaker {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    margin-top: 12px;
+  }
+  .exchange .speaker:first-child { margin-top: 0; }
+  .exchange .turn {
+    margin: 2px 0 0 0;
+  }
+  .exchange .source-line {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--rule);
+  }
+  .pull {
+    font-family: "Iowan Old Style", "Charter", Georgia, serif;
+    font-size: 22px;
+    line-height: 1.35;
+    font-style: italic;
+    color: var(--accent);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 18px 8px;
+    margin: 22px 0;
+    text-align: center;
+  }
+  .pull cite {
+    display: block;
+    font-style: normal;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+  details.transcript {
+    border: 1px solid var(--rule);
+    background: #fff;
+    padding: 14px 18px;
+    margin: 14px 0;
+    border-radius: 3px;
+  }
+  details.transcript summary {
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    padding: 4px 0;
+  }
+  details.transcript[open] summary {
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 8px;
+  }
+  details.transcript blockquote {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  /* Person tooltips and footnote refs */
+  a.person {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent);
+    cursor: help;
+    position: relative;
+  }
+  a.person:hover, a.person:focus {
+    color: var(--accent);
+    background: rgba(107, 52, 16, 0.06);
+  }
+  a.person .tip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f1f1f;
+    color: #f6f1e3;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 290px;
+    border-radius: 4px;
+    z-index: 100;
+    line-height: 1.45;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+    text-align: left;
+    white-space: normal;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.12s ease, visibility 0.12s ease;
+  }
+  a.person:hover .tip,
+  a.person:focus .tip {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  a.person .tip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -7px;
+    border: 7px solid transparent;
+    border-top-color: #1f1f1f;
+  }
+  a.person .tip strong {
+    color: #fff;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  a.person .tip a {
+    color: #ffd07a;
+    text-decoration: underline;
+  }
+  a.person .tip a:hover { color: #ffe2a8; }
+  a.person .tip em {
+    color: #c9c2af;
+    font-style: italic;
+  }
+  /* Speaker labels in exchange blocks: tooltip appears below, not above */
+  .exchange a.person .tip,
+  .speaker a.person .tip {
+    bottom: auto;
+    top: calc(100% + 8px);
+  }
+  .exchange a.person .tip::after,
+  .speaker a.person .tip::after {
+    top: auto;
+    bottom: 100%;
+    border-top-color: transparent;
+    border-bottom-color: #1f1f1f;
+  }
+  /* Footnotes section */
+  .footnotes {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 2px solid var(--ink);
+    font-size: 14px;
+  }
+  .footnotes h2 { margin-top: 6px; border-bottom: none; }
+  .footnotes ol {
+    list-style: decimal;
+    padding-left: 28px;
+  }
+  .footnotes li {
+    margin-bottom: 14px;
+    scroll-margin-top: 24px;
+    line-height: 1.5;
+  }
+  .footnotes li:target {
+    background: #fff5cc;
+    padding: 6px 8px;
+    margin-left: -8px;
+    border-radius: 3px;
+  }
+  .footnotes .role {
+    color: var(--muted);
+    font-style: italic;
+  }
+  .footnotes .more {
+    margin-left: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+  }
+  @media (max-width: 540px) {
+    a.person .tip { width: 230px; font-size: 12px; }
+  }
+  /* Floating TOC sidebar */
+  nav.toc {
+    position: fixed;
+    top: 56px;
+    left: 24px;
+    width: 210px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12.5px;
+    line-height: 1.4;
+    z-index: 50;
+    padding: 16px 16px 14px;
+    background: rgba(251, 250, 246, 0.92);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  nav.toc .toc-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+  nav.toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    counter-reset: toc;
+  }
+  nav.toc li {
+    margin: 0;
+    padding: 0;
+    counter-increment: toc;
+  }
+  nav.toc a {
+    display: block;
+    padding: 4px 6px 4px 20px;
+    color: var(--muted);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -2px;
+    position: relative;
+    transition: color 0.12s, border-color 0.12s, background 0.12s;
+  }
+  nav.toc a::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: var(--rule);
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+  }
+  nav.toc a:hover {
+    color: var(--accent);
+    background: rgba(107, 52, 16, 0.05);
+  }
+  nav.toc a.active {
+    color: var(--ink);
+    font-weight: 600;
+    border-left-color: var(--accent);
+  }
+  nav.toc a.active::before {
+    color: var(--accent);
+  }
+  nav.toc .toc-top {
+    display: block;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  nav.toc .toc-top:hover {
+    text-decoration: underline;
+  }
+  /* Hide TOC on narrow screens; show floating back-to-top button instead */
+  .toc-fab {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: var(--accent);
+    color: #fff;
+    text-align: center;
+    line-height: 44px;
+    text-decoration: none;
+    font-size: 20px;
+    z-index: 60;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .toc-fab.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  @media (max-width: 1180px) {
+    nav.toc { display: none; }
+    .toc-fab { display: block; }
+  }
+  /* Smooth scroll + offset for in-page anchor jumps */
+  html { scroll-behavior: smooth; }
+  h2[id], h3[id], li[id] { scroll-margin-top: 18px; }
+  #top-anchor { display: block; height: 1px; }
+  .sources {
+    font-size: 14px;
+    background: #f3efe5;
+    padding: 18px 22px;
+    margin-top: 30px;
+    border-top: 3px solid var(--ink);
+  }
+  .sources ul { padding-left: 18px; }
+  .sources a { color: var(--accent); }
+  .sources li { margin-bottom: 4px; }
+  footer.report {
+    margin-top: 50px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--muted);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  /* Print button in header */
+  .print-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 14px;
+  }
+  .print-btn {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent);
+    padding: 7px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .print-btn:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+  .print-btn:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media print {
+    body { background: #fff; color: #000; font-size: 11pt; line-height: 1.45; }
+    .wrap { padding: 0; max-width: 100%; }
+    .gap, blockquote, .stat, .exchange { background: #fff; }
+    /* Hide chrome that doesn't belong on paper */
+    nav.toc, .toc-fab, .print-row { display: none !important; }
+    /* Hide tooltip arrows / hover indicators */
+    a.person { border-bottom: none; color: inherit; }
+    a.person .tip { display: none !important; }
+    /* Expand all transcript details for print */
+    details.transcript { border: 1px solid #ccc; }
+    details.transcript[open] summary,
+    details.transcript summary { display: block; cursor: default; }
+    details.transcript > *:not(summary) { display: block !important; }
+    details.transcript > summary::after { content: ""; }
+    /* Avoid awkward breaks */
+    h1, h2, h3 { page-break-after: avoid; }
+    blockquote, .exchange, table.timeline, .stat-grid { page-break-inside: avoid; }
+    /* Print color hint */
+    @page { margin: 0.75in; }
+    a { color: #000; text-decoration: none; }
+    a[href^="http"]::after {
+      content: " <" attr(href) ">";
+      font-size: 8pt;
+      color: #555;
+      word-break: break-all;
+    }
+    /* Don't pollute every link inside transcripts/footnotes with full URLs */
+    nav.toc a::after, .footnotes a::after, a.person::after,
+    .toc-top::after, blockquote a::after { content: "" !important; }
+  }
+</style>
+</head>
+<body>
+<a id="top-anchor"></a>
+<nav class="toc" aria-label="Table of contents">
+  <p class="toc-label">Contents</p>
+  <ol>
+    <li><a href="#sec-what">What it does</a></li>
+    <li><a href="#sec-mattered">Why it mattered</a></li>
+    <li><a href="#sec-fiscal">The fiscal logic</a></li>
+    <li><a href="#sec-current">The CurRENT subtext</a></li>
+    <li><a href="#sec-council-path">How it moved through Council</a></li>
+    <li><a href="#sec-narrowed">How the bill was narrowed</a></li>
+    <li><a href="#sec-companions">The companion bills</a></li>
+    <li><a href="#sec-transcripts">Hearing transcripts</a></li>
+    <li><a href="#sec-pattern">Adams vs. Council</a></li>
+    <li><a href="#sec-state-level">Where the state fits in</a></li>
+    <li><a href="#sec-law">Administrative &amp; case law</a></li>
+    <li><a href="#sec-interesting">Why this is interesting</a></li>
+    <li><a href="#sec-state">Where things stand now</a></li>
+    <li><a href="#footnotes">People mentioned</a></li>
+  </ol>
+  <a class="toc-top" href="#top-anchor">&uarr; Back to top</a>
+</nav>
+<a class="toc-fab" href="#top-anchor" aria-label="Back to top" title="Back to top">&uarr;</a>
+<div class="wrap">
+
+<div class="print-row">
+  <button class="print-btn" onclick="window.print()" type="button" aria-label="Print this brief">Print this brief</button>
+</div>
+
+<header class="report">
+  <div class="kicker">Maximum New York · Legislative Brief</div>
+  <h1>Electronic rent payments for NYC housing vouchers</h1>
+  <p class="deck">How a one-section local law forced HRA to retire the paper check &mdash; and codified a project HRA was already building.</p>
+  <div class="meta">
+    Bill: Int. No. 0704-A of 2022 &middot; Local Law: <strong>LL 64 of 2023</strong> &middot; NYC Admin. Code &sect; 21-145.3<br>
+    Prime sponsor: <a class="person" href="#fn-abreu" data-fn="abreu">Council Member Shaun Abreu</a> (with the <a class="person" href="#fn-pa-williams" data-fn="pa-williams">Public Advocate, Mr.&nbsp;Williams</a>)<br>
+    Compiled May 4, 2026
+  </div>
+</header>
+
+<h2 id="sec-what">What it does</h2>
+
+<p>Local Law 64 of 2023 adds a single new section to the NYC Administrative Code &mdash; <code>&sect; 21-145.3</code> &mdash; with one operative sentence:</p>
+
+<blockquote>
+  <p>The department shall provide landlords the option to accept rental assistance payments via an electronic transfer into a bank account.</p>
+  <span class="cite">&mdash; NYC Admin. Code &sect; 21-145.3(b), as enacted by LL 64/2023</span>
+</blockquote>
+
+<p>"The department" is the Department of Social Services / Human Resources Administration (DSS/HRA). The covered universe is "<em>recurring</em> payments made by the department to landlords on behalf of tenants pursuant to programs administered by the department" &mdash; in plain English, ongoing CityFHEPS subsidy payments and similar HRA-administered vouchers.</p>
+
+<p>One carve-out: state-funded shelter allowance payments under <code>18 NYCRR &sect; 352.3</code> (the cash-assistance shelter allowance) are excluded.</p>
+
+<p>The law creates an <em>option</em> for landlords. HRA must <em>offer</em> EFT; it does not compel landlords to accept it.</p>
+
+<h2 id="sec-mattered">Why it mattered: zero electronic, by HRA's own admission</h2>
+
+<p>The motivating fact for LL 64 came out of <a class="person" href="#fn-berry" data-fn="berry">First Deputy Commissioner Jill Berry</a>'s own mouth at the 12/15/22 oversight hearing &mdash; in a back-and-forth with the bill's prime sponsor, <a class="person" href="#fn-abreu" data-fn="abreu">Council Member Shaun Abreu</a>, after Berry's prepared testimony had argued the legislation was unnecessary because HRA was already building a portal called CurRENT.</p>
+
+<div class="exchange">
+  <span class="speaker"><a class="person" href="#fn-abreu" data-fn="abreu">Council Member Abreu</a></span>
+  <p class="turn">I will start off by asking, what percentage of rental assistance voucher payments made to landlords are made electronically?</p>
+  <span class="speaker"><a class="person" href="#fn-berry" data-fn="berry">Jill Berry</a>, DSS First Deputy Commissioner</span>
+  <p class="turn">Currently all NYCHA assistance payments are made electronically.</p>
+  <span class="speaker">Abreu</span>
+  <p class="turn">Okay and what about for non-NYCHA?</p>
+  <span class="speaker">Berry</span>
+  <p class="turn">Uhm, we have some home TBRA payments that are also made electronically.</p>
+  <span class="speaker">Abreu</span>
+  <p class="turn">What percent?</p>
+  <span class="speaker">Berry</span>
+  <p class="turn">We have to get back to you on that.</p>
+  <span class="speaker">Abreu</span>
+  <p class="turn">Alright, this is literally a hearing on timeliness of payments and whose getting payments electronically or not and you're saying that there's potentially no need for this legislation. What percentage are made by paper checks?</p>
+  <span class="speaker">Berry</span>
+  <p class="turn"><strong>All the payments to private landlords are currently made by paper check.</strong></p>
+  <span class="speaker">Abreu</span>
+  <p class="turn">So, that means that there is zero electronic payments to private landlords is the adverse answer to that?</p>
+  <span class="speaker">Berry</span>
+  <p class="turn"><strong>Correct.</strong></p>
+  <span class="source-line">12/15/22 General Welfare Committee oversight hearing &mdash; verbatim transcript, lines ~2914&ndash;3076 of <code>hearing_704_dec22_FULL.txt</code>.</span>
+</div>
+
+<p>The exchange continues. Berry pivots to the CurRENT pilot &mdash; the agency project DSS had just told the committee made the bill unnecessary &mdash; and Abreu pins down its scale:</p>
+
+<div class="exchange">
+  <span class="speaker">Berry</span>
+  <p class="turn">So, we're currently working on our landlord management system current. We have a pilot running right now with a I guess it's not zero because we have <strong>nine landlords</strong> right now that are in our pilot. A very small number that we're working through developing our system.</p>
+  <span class="speaker">Abreu</span>
+  <p class="turn">How many landlords does HRA currently make payments to in the city?</p>
+  <span class="speaker">Berry</span>
+  <p class="turn">I'll have to get back to you on that.</p>
+  <span class="speaker">Abreu</span>
+  <p class="turn">Is it fair to say it's less than one percent? Is it fair to say that nine landlords of the ones that you're working with would be less than one percent of the landlords&mdash;</p>
+  <span class="speaker">Berry</span>
+  <p class="turn">It's a very small number.</p>
+  <span class="speaker"><a class="person" href="#fn-fitzpatrick" data-fn="fitzpatrick">Lisa Fitzpatrick</a>, HRA Administrator</span>
+  <p class="turn">We've been working on the pilot. The current system has actually been in development for a number of years. Building it from the ground up and the pilot was started just in 2022 with landlords. The goal is not to just have just a small number of landlords participate but to understand the kinks and the problems with the process and how it's programmed before rolling out to a larger scale.</p>
+  <span class="speaker">Abreu</span>
+  <p class="turn">And I find that the fact that it's scaled up to nine landlords only, speaks to a very dire need for this legislation. It speaks to a dire need to make sure that families aren't in housing court because HRA has submitted a late payment or did not provide the means for someone to submit this payment electronically.</p>
+  <span class="source-line">Same hearing, lines ~3082&ndash;3186.</span>
+</div>
+
+<p class="pull">"All the payments to private landlords are currently made by paper check." &mdash; "So, that means that there is zero electronic payments to private landlords is the adverse answer to that?" &mdash; "Correct."<cite><a class="person" href="#fn-berry" data-fn="berry">Jill Berry</a> / <a class="person" href="#fn-abreu" data-fn="abreu">Council Member Abreu</a>, 12/15/22</cite></p>
+
+<h3>Why a paper check is not just a paper check</h3>
+
+<p>The country's largest family-shelter operator, Win (formerly Women In Need), described the on-the-ground workflow in written testimony at the same hearing:</p>
+
+<blockquote>
+  <p>Per the current protocol, HRA checks can either be mailed to the landlord or picked up by the family's shelter provider at the City's downtown Manhattan office. Although DSS has indicated that it should take about seven days for checks to be delivered to landlords, it often takes much longer. Since waiting for HRA to mail checks can take weeks and jeopardize a family's new apartment, shelter providers instead often opt to go out of their way to secure the payments in person. Once the provider picks up the checks, they must hand deliver them to landlords.</p>
+  <span class="cite">&mdash; Win, written testimony, 12/15/2022</span>
+</blockquote>
+
+<p>What Win is describing: a shelter caseworker rides downtown, queues at HRA's office, picks up a stack of paper checks, and then delivers them by hand to landlords across the five boroughs &mdash; because the alternative (the mail) was too slow to keep families from losing apartments they had already been approved for.</p>
+
+<p>And from a voucher holder, <a class="person" href="#fn-ethel-brown" data-fn="ethel-brown">Ethel Brown</a> of Neighbors Together &mdash; testifying about her own family in real time:</p>
+
+<blockquote>
+  <p>I have firsthand experience with HRA not paying my rent on time. My family and I just moved to an apartment with City FHEPS voucher in late August of this year. After more than seven years&hellip; this month, my landlord asked if the voucher money would come to him on time and we told him yes because that's what we expected. Now our yes became a no because HRA did not send the funds in time for our December rent payment.&hellip; This is hurting our credibility with our landlord. It created a mistrust of us and the voucher program and for us it's just another experience of the voucher not working the way it should.</p>
+  <span class="cite">&mdash; <a class="person" href="#fn-ethel-brown" data-fn="ethel-brown">Ethel Brown</a>, CityFHEPS voucher holder, 12/15/2022</span>
+</blockquote>
+
+<h2 id="sec-fiscal">The fiscal logic</h2>
+
+<div class="stat-grid">
+  <div class="stat">
+    <span class="num">$188</span>
+    <span class="lbl">Daily cost &mdash; family in NYC shelter</span>
+  </div>
+  <div class="stat">
+    <span class="num">$72</span>
+    <span class="lbl">Daily cost &mdash; CityFHEPS voucher</span>
+  </div>
+  <div class="stat">
+    <span class="num">$814</span>
+    <span class="lbl">Cost per week of paperwork delay (per family)</span>
+  </div>
+  <div class="stat">
+    <span class="num">$42,328</span>
+    <span class="lbl">Annualized, per family</span>
+  </div>
+</div>
+
+<p class="cite">Source: Win written testimony to the Committee on General Welfare, 12/15/2022.</p>
+
+<p>The official Fiscal Impact Statement on Int. 704-A reports <strong>zero</strong> revenue impact and <strong>zero</strong> expenditure impact: "DSS will utilize existing resources already allocated in the Capital Plan to fulfill the requirements of this legislation." Full impact anticipated FY2025.</p>
+
+<h2 id="sec-current">The CurRENT subtext</h2>
+
+<p>The most revealing feature of LL 64 is the ten weeks it took DSS to walk back from "may preclude the need for this legislation." First Deputy Commissioner Berry's prepared testimony on 12/15/22 framed the bill as redundant with HRA's own modernization project:</p>
+
+<blockquote>
+  <p>We are also eager for the continued rollout of our new landlord management system current, which is under development and will include a landlord portal that will allow all New York City landlords to opt into electronic funds transfer and to see a record of payments processed&hellip; we believe that our ongoing efforts to streamline rental payments for landlords, including full implementation of current, will achieve the goals that we all share <strong>and may preclude the need for this legislation</strong>.</p>
+  <span class="cite">&mdash; <a class="person" href="#fn-berry" data-fn="berry">Jill Berry</a>, DSS, prepared testimony, 12/15/2022</span>
+</blockquote>
+
+<p>Five weeks later, at the 1/18/23 General Welfare hearing on broader CityFHEPS reform, HRA's own Chief of Homelessness Prevention &mdash; pressed by <a class="person" href="#fn-ayala" data-fn="ayala">Chair Ayala</a> on the same modernization &mdash; described it in plainly future tense:</p>
+
+<div class="exchange">
+  <span class="speaker"><a class="person" href="#fn-ayala" data-fn="ayala">Chairperson Ayala</a></span>
+  <p class="turn">And how soon do you anticipate the system to be&hellip;?</p>
+  <span class="speaker"><a class="person" href="#fn-jordan" data-fn="jordan">Bruce Jordan</a>, HRA Chief of Homelessness Prevention</span>
+  <p class="turn">We're&mdash;we're currently experimenting with it at certain stages and in certain type of cases and certain type of functions, and we're doing improvements, you know, every so&mdash;few months as we learn things, and we're hoping to have it really fully operational by either the end of this year or the beginning of 2024.</p>
+  <span class="speaker">Ayala</span>
+  <p class="turn">Yeah. I think that that's going to be a game changer. <strong>You guys, you have the most outdated payment processing system, I think city wide.</strong></p>
+  <span class="source-line">1/18/23 General Welfare hearing on Int 0894 (CityFHEPS reform), <code>hearing_894_jan23_FULL.txt</code> lines ~5099&ndash;5159.</span>
+</div>
+
+<p>That is the frame for what LL 64 actually accomplished: it converted an executive-branch initiative whose timeline kept slipping into a permanent administrative-code obligation, at zero new cost. CurRENT can be deprioritized; <code>&sect; 21-145.3(b)</code> cannot.</p>
+
+<h2 id="sec-council-path">How it moved through Council</h2>
+
+<table class="timeline">
+  <tr><td class="date">9/29/2022</td><td>Introduced by <a class="person" href="#fn-abreu" data-fn="abreu">CM Abreu</a> and 35 co-sponsors plus the Public Advocate; referred to the Committee on General Welfare.</td></tr>
+  <tr><td class="date">12/15/2022</td><td>Joint General Welfare oversight hearing on three bills (Int. 641, 703, 704). Laid over.</td></tr>
+  <tr><td class="date">4/27/2023</td><td>Bill amended in committee (Proposed Int. 704-A) and approved 7&ndash;0; same day, full Council passes 47&ndash;0 on the consent calendar.</td></tr>
+  <tr><td class="date">5/30/2023</td><td><a class="person" href="#fn-adams" data-fn="adams">Mayor Adams</a> <em>returned the bill unsigned</em>. Under City Charter &sect; 37, the bill became law without the Mayor's signature.</td></tr>
+  <tr><td class="date">5/30/2024</td><td>Statutory effective date &mdash; one year after becoming law. HRA's EFT-option requirement is operative.</td></tr>
+</table>
+
+<h3>The "neither approved nor disapproved" detail</h3>
+
+<p>LL 64 was one of <strong>eight bills</strong> <a class="person" href="#fn-adams" data-fn="adams">Mayor Adams</a> returned unsigned on May 30, 2023 (LL 62&ndash;69 of 2023). All eight became law by Charter default rather than by mayoral signature. Per the Corporation Counsel certification on the law itself:</p>
+
+<blockquote>
+  <p>I hereby certify that the form of the enclosed local law (Local Law No. 64 of 2023, Council Int. No. 704-A of 2022) to be filed with the Secretary of State contains the correct text of the local law passed by the New York City Council, presented to the Mayor and neither approved nor disapproved within thirty days thereafter.</p>
+  <span class="cite">&mdash; <a class="person" href="#fn-louis" data-fn="louis">Stephen Louis</a>, Acting Corporation Counsel</span>
+</blockquote>
+
+<h2 id="sec-narrowed">How the bill was narrowed</h2>
+
+<p>Two changes between the original Int. 704 and the enacted Int. 704-A are worth noting:</p>
+
+<ul>
+  <li><strong>Effective date stretched from 90 days to one year.</strong> The original bill set a 90-day clock; the amended version pushed it to 12 months &mdash; an explicit accommodation of HRA's CurRENT rollout schedule.</li>
+  <li><strong>Definition narrowed to "recurring" payments only,</strong> with an explicit carve-out for state-funded shelter allowance under <code>18 NYCRR &sect; 352.3</code>.</li>
+</ul>
+
+<p>The second carve-out is more interesting than it looks. <code>18 NYCRR &sect; 352.3</code> is the New York <em>State</em> regulation governing rent allowances paid out of the state-funded portion of cash-assistance shelter allowance &mdash; the older rental-assistance backbone administered jointly by NYC's HRA and New York State's Office of Temporary and Disability Assistance (OTDA). By design, that money flows through state statute and state rule, not city statute. A NYC local law cannot dictate how OTDA delivers its share of a payment. So the Council took the half of HRA's landlord payment universe that is entirely city-discretionary &mdash; CityFHEPS, the city-only voucher &mdash; and left the state-funded shelter allowance to Albany.</p>
+
+<p>That carve-out is the canary that this is not, fundamentally, a single-jurisdiction problem. The state side of the same rent payment is also paid by mail.</p>
+
+<h2 id="sec-companions">The companion bills</h2>
+
+<p>LL 64 was the EFT prong of a three-bill package heard together on 12/15/22:</p>
+
+<table class="timeline">
+  <tr><td class="date">Int. 0641-2022</td><td><strong><a class="person" href="#fn-n-williams" data-fn="n-williams">N. Williams</a> &mdash; HRA center efficiency.</strong> Would have required expediters and queue management at DSS-HRA centers. <em>Filed at end of session 12/31/23 &mdash; died.</em></td></tr>
+  <tr><td class="date">Int. 0703-2022</td><td><strong>Abreu &mdash; Quarterly timeliness reports.</strong> Required HRA to publish quarterly reports on the timeliness of city-funded rental payments to landlords. Committee 8&ndash;0 on 10/5/23; full Council 47&ndash;0 same day; <em>returned unsigned by Mayor 11/6/23</em>; became <strong>LL 145 of 2023</strong>.</td></tr>
+  <tr><td class="date">Int. 0704-2022</td><td><strong>Abreu &mdash; EFT option (this bill).</strong> Became <strong>LL 64 of 2023</strong>.</td></tr>
+</table>
+
+<p>The pattern is suggestive: Adams returned both bills he received from this package unsigned. Both became law anyway.</p>
+
+<h2 id="sec-transcripts">Hearing transcripts: what was said</h2>
+
+<p>Three Council hearings carry the load on this story. The 12/15/22 oversight hearing where Int 704 was first heard. The 4/27/23 markup where the bill was voted out of committee. And the 1/18/23 General Welfare hearing on the broader CityFHEPS-reform package (Int 894), where DSS witnesses had to describe the same modernization initiative again under cross-examination &mdash; in front of the same chair, five weeks later.</p>
+
+<p>What follows is verbatim from the transcripts. Click any of the headers to expand.</p>
+
+<details class="transcript" open>
+<summary>12/15/22 General Welfare oversight hearing &mdash; Abreu's opening statement</summary>
+<blockquote>
+<p>Intro. 703 would require quarterly reports on whether rental assistance payments are being sent on time. Unfortunately, we have seen and heard instances where late payments cause hardships for tenants and prospective tenants and in the worse cases keep families in shelter longer than needed&hellip;</p>
+<p>Intro. 704 will further ease these efforts by allowing for electronic payments to landlords. <strong>It's 2022 and we don't have electronic payments allowed.</strong> Currently, landlords are paid by check&hellip; By allowing electronic disbursement of these funds, we are furthering our efforts to ensure timely payment, ensuring landlords that despite what they may think, voucher recipients are a good tenant as any other.</p>
+<p>I have been in housing court as a tenant lawyer and I can't tell you the number of cases of nonpayment proceedings I've received. People are in housing court because of the failure of providing timely payments by government&hellip; <strong>the idea that we should preclude this legislation is laughable.</strong></p>
+<span class="cite">&mdash; <a class="person" href="#fn-abreu" data-fn="abreu">Council Member Shaun Abreu</a>, opening statement, 12/15/22 (lines ~306&ndash;384)</span>
+</blockquote>
+</details>
+
+<details class="transcript">
+<summary>12/15/22 &mdash; <a class="person" href="#fn-ayala" data-fn="ayala">Chair Ayala</a> on the constituent whose daughter was murdered</summary>
+<blockquote>
+<p>I have a constituent whose daughter was murdered, who is a City FHEPS recipient and now has to worry every month because she keeps getting notices from her landlord that her rent is not paid. That's an undue burden right, right. That's unnecessary. If we were not only processing those payments on time but at least acknowledging and letting people know right.</p>
+<span class="cite">&mdash; <a class="person" href="#fn-ayala" data-fn="ayala">Chairperson Diana Ayala</a>, 12/15/22 (lines ~3866&ndash;3884)</span>
+</blockquote>
+</details>
+
+<details class="transcript">
+<summary>12/15/22 &mdash; Restler on the underlying staffing problem</summary>
+<blockquote>
+<p>In 38 years, never have we seen such austerity from HRA. By failing to fund HRA, we are hurting the most vulnerable New Yorkers. By failing to staff HRA adequately, low- and moderate-income New Yorkers can't access the critical, vital essential benefits they need to live&hellip; this commitment insistence on austerity by this Administration is a disgrace, plain and simple.</p>
+<p><em>(Later, on the data DSS could not provide:)</em></p>
+<p><strong>RESTLER:</strong> How many cases are delayed over 30 days?<br>
+<strong>BERRY:</strong> We're going to have to get back to you with the number.<br>
+<strong>RESTLER:</strong> So, don't know how many cases are delayed over 30 days, 60 days, fully federally funded operation, we just don't &mdash; fully funded benefit but we don't have the details.</p>
+<span class="cite">&mdash; <a class="person" href="#fn-restler" data-fn="restler">Council Member Lincoln Restler</a>, 12/15/22 (lines ~3508&ndash;3606)</span>
+</blockquote>
+</details>
+
+<details class="transcript">
+<summary>12/15/22 &mdash; <a class="person" href="#fn-diaz" data-fn="diaz">Juan Diaz</a> (CCC) on landlords who actually want EFT</summary>
+<blockquote>
+<p>Based on my own experience as a former supervisor of a homeless prevention program, landlords often complain about receiving rental assistance payments late, both in shelter and in the community. There's constant confusion over check distribution when housing subsidies are approved. <strong>This process can be significantly improved by implementing a direct deposit system, like the one proposed by <a class="person" href="#fn-abreu" data-fn="abreu">Council Member Abreu</a></strong>&hellip; many landlords often came to Homebase complaining about payment and landlords are also open to this direct payment, so we urge the CD to you know move ahead and pass this Intro and because far too many checks go missing and it puts pressure not only on tenants but also on case workers.</p>
+<span class="cite">&mdash; <a class="person" href="#fn-diaz" data-fn="diaz">Juan Diaz</a>, Citizens' Committee for Children, 12/15/22 (lines ~6064&ndash;6108)</span>
+</blockquote>
+</details>
+
+<details class="transcript">
+<summary>12/15/22 &mdash; <a class="person" href="#fn-kelleher" data-fn="kelleher">Kathleen Kelleher</a> (Legal Aid) on what HRA didn't bring to the hearing</summary>
+<blockquote>
+<p>So, what we heard in their testimony is that they admitted that they do not have the resources to address the problem. So, what I'm puzzled by is that this was a hearing about delays. HRA had notice of the hearing about delays. They issued a repaired statement that included no statistics and the only statistics that they gave today were those that are published in the Mayor's Management Report. <strong>They came today with no statistics other than what is available, which is horrible.</strong> What they plainly said is that they're violating the law&hellip; HRA should produce statistics on what the delays are for City FHEPS and FHEPS.</p>
+<span class="cite">&mdash; <a class="person" href="#fn-kelleher" data-fn="kelleher">Kathleen Kelleher</a>, Legal Aid Society, 12/15/22 (lines ~4728&ndash;4818)</span>
+</blockquote>
+</details>
+
+<details class="transcript">
+<summary>12/15/22 &mdash; <a class="person" href="#fn-balestri" data-fn="balestri">Marco Balestri</a> (NDS Harlem) on a six-to-twelve-month application timeline</summary>
+<blockquote>
+<p>Homebase is the exclusive processor of the City FHEPS voucher. Unlike HRA centers, homebase providers are not subject to the same type of public oversight and regulation and they're severely understaffed and lack necessary resources&hellip; <strong>These applications in our experience can take anywhere between six months to one year. This is time our clients simply do not have a pending eviction case.</strong></p>
+<span class="cite">&mdash; <a class="person" href="#fn-balestri" data-fn="balestri">Marco Balestri</a>, Neighborhood Defender Service of Harlem, 12/15/22 (lines ~4948&ndash;4978)</span>
+</blockquote>
+</details>
+
+<details class="transcript">
+<summary>12/15/22 &mdash; <a class="person" href="#fn-ethel-brown" data-fn="ethel-brown">Ethel Brown</a>'s amendment proposal: tenant control over payment</summary>
+<blockquote>
+<p>One important suggestion to improve Intro. 704, would be that tenants vouchers be the way to approve payment or not approve payment as a way to hold landlords accountable for bad conditions. For example, if there was no heat or hot water, the tenant would be able to tell HRA to hold it until the conditions are fixed and then once they're fixed, the tenant could approve payment and the check would be released into the landlords bank account.</p>
+<span class="cite">&mdash; <a class="person" href="#fn-ethel-brown" data-fn="ethel-brown">Ethel Brown</a>, voucher holder &amp; Neighbors Together leader, 12/15/22 (lines ~7330&ndash;7342)</span>
+</blockquote>
+<p style="font-size:14px;font-style:italic;color:#555;margin-top:10px">A notable proposal that did not make it into the enacted law. LL 64 leaves payment control entirely with HRA; tenants have no statutory lever over the EFT switch.</p>
+</details>
+
+<details class="transcript">
+<summary>12/15/22 &mdash; <a class="person" href="#fn-sara-wilson" data-fn="sara-wilson">Sara Wilson</a> on the broker problem nobody mentions</summary>
+<blockquote>
+<p>When we're reaching out to make sure the landlords get paid, we have to put an emphasis on the brokers. We have brokers that are acting as case managers, fighting for these clients and then at the end, not getting paid. <strong>When the key is exchanged, there should be some sort of an electronic action&hellip;</strong> Electronic action that gets the landlord and the broker paid because brokers are having to turn away clients. It should not have to be fundamentally that everyone takes a loss to work with homeless and unhoused persons.</p>
+<span class="cite">&mdash; <a class="person" href="#fn-sara-wilson" data-fn="sara-wilson">Sara Wilson</a>, formerly homeless, 12/15/22 (lines ~7158&ndash;7186)</span>
+</blockquote>
+</details>
+
+<details class="transcript">
+<summary>1/18/23 General Welfare hearing &mdash; Ayala connects payment delays to source-of-income discrimination</summary>
+<blockquote>
+<p>In the removal of the Advantage Program, what ended up happening with, you know, a significant number of landlords that were not paid, and that obviously did not leave a really good taste in their mouths. And I, you know, completely understand that. <strong>And so it eroded that trust, right?, between the city and the landlord to a degree that we're now seeing landlords, you know, very clearly let you know, telling folks that they're not accepting the vouchers program, which we know is a source-of-income discrimination.</strong></p>
+<span class="cite">&mdash; <a class="person" href="#fn-ayala" data-fn="ayala">Chairperson Ayala</a>, 1/18/23 (lines ~5026&ndash;5046)</span>
+</blockquote>
+<p style="font-size:14px;font-style:italic;color:#555;margin-top:10px">This is the bridge between Int 704's payment-rail focus and the broader source-of-income discrimination story. Ayala's argument: landlord refusal to accept vouchers isn't only bigotry. Some of it is rational risk-management against an agency that has, in living memory, stopped paying.</p>
+</details>
+
+<details class="transcript">
+<summary>1/18/23 &mdash; <a class="person" href="#fn-eric-lee" data-fn="eric-lee">Eric Lee</a> (HSU) on the 2-to-6-week check-issuance backlog</summary>
+<blockquote>
+<p>DHS and HRA need to be funded and empowered to immediately fill vacancies and bolster headcount to quickly process city peps and rental assistance applications, public benefits applications, conduct phone interviews, process paperwork, and issue rent checks. Households are becoming homeless, [or] kept in shelter longer than necessary simply because there's not enough agency workers to conduct interviews and process paperwork&hellip; HRA should hire additional staff to eliminate the backlog and immediately start issuing electronic receipts for all documents submitted to HRA as they're submitted&hellip;</p>
+<p><strong>Homebase and shelter providers are reporting delays with HRA issuing rent checks for CityFHEPS&hellip; Providers are seeing check issuances taking anywhere from two to six weeks, which slows move-outs and prevents housing court cases and Homebase cases from being resolved in a timely manner.</strong></p>
+<span class="cite">&mdash; <a class="person" href="#fn-eric-lee" data-fn="eric-lee">Eric Lee</a>, Homeless Services United, 1/18/23 (lines ~9130&ndash;9226)</span>
+</blockquote>
+</details>
+
+<details class="transcript">
+<summary>10/5/23 markup of Int 0703-A (timeliness reports) &mdash; Stevens chairing</summary>
+<blockquote>
+<p>Today, our committee will be voting on Intro 703A sponsored by <a class="person" href="#fn-abreu" data-fn="abreu">Council Member Abreu</a>. This bill requires Department of Social Services to submit a post and quarterly report on the timeliness of CityFEPS rental assistance &mdash; oh &mdash; delays and &mdash; delays in payments can be reasons why a homeless New Yorker loses out on entering permanent housing and linger in shelter system. <strong>Administrative hurdles like this are unacceptable</strong>, and especially during a time of crisis when we need to focus on moving people out of shelter.</p>
+<span class="cite">&mdash; <a class="person" href="#fn-stevens" data-fn="stevens">Council Member Althea Stevens</a> (chairing for Ayala), 10/5/23 markup (lines ~61&ndash;93)</span>
+</blockquote>
+<p style="font-size:14px;font-style:italic;color:#555;margin-top:10px">The markup ran seven minutes (10:57&ndash;11:04 a.m.). Eight ayes, zero nays. Abreu was not in attendance and did not speak; nobody on the record connected the bill back to LL 64, which had been law for four months at that point.</p>
+</details>
+
+<h2 id="sec-pattern">The pattern: Adams vs. Council on rental assistance</h2>
+
+<p>LL 64 reads as one bill in isolation. Read across the four-year arc of CityFHEPS legislation, it is the second of four Council interventions over <a class="person" href="#fn-adams" data-fn="adams">Mayor Adams</a>'s stated objection. The escalation in Adams's response is itself the story:</p>
+
+<table class="timeline">
+  <tr><td class="date">LL 102/2023</td><td><strong>Int 894-A &mdash; CityFHEPS reform package</strong> (90-day rule, work requirement, eligibility expansion). Council 42&ndash;8 on 5/25/23 &middot; <em>Vetoed by Mayor 6/23/23</em> &middot; <strong>Council overrode 7/13/23</strong>.</td></tr>
+  <tr><td class="date">LL 64/2023</td><td><strong>Int 704-A &mdash; EFT option (this bill).</strong> Council 47&ndash;0 on 4/27/23 &middot; <em>Returned unsigned by Mayor 5/30/23</em> &middot; Became law by Charter &sect; 37 default.</td></tr>
+  <tr><td class="date">LL 145/2023</td><td><strong>Int 703-A &mdash; quarterly timeliness reports.</strong> Council 47&ndash;0 on 10/5/23 &middot; <em>Returned unsigned by Mayor 11/6/23</em> &middot; Became law by Charter &sect; 37 default.</td></tr>
+  <tr><td class="date">LL 176/2025</td><td><strong>Int 1372-2025 &mdash; cap on household rent contribution for voucher recipients.</strong> Council 41&ndash;7 on 10/9/25 &middot; <em>Vetoed by Mayor 11/7/25</em> &middot; <strong>Council overrode 12/4/25</strong>.</td></tr>
+</table>
+
+<p>The pattern: every CityFHEPS-related bill that reached <a class="person" href="#fn-adams" data-fn="adams">Mayor Adams</a> was either returned unsigned or vetoed. None were signed. Two of the four were vetoed outright; both were overridden on the merits. The two operational bills that target HRA's plumbing &mdash; LL 64 (this one) and LL 145 (the timeliness reports) &mdash; got the milder "return unsigned" treatment, which lets the bill become law without putting the Mayor's name on it. The two bills that expand the program (LL 102) or constrain its cost-sharing (LL 176) drew full vetoes.</p>
+
+<p>That this bill got the lighter response is itself a tell. EFT for landlords doesn't redistribute money or expand who qualifies. It just changes how the city pays. Even an administration that opposed every other rental-assistance reform of the period could not bring itself to veto the one bill whose effect was to convert paper checks into bank deposits.</p>
+
+<h2 id="sec-state-level">Where the state fits in</h2>
+
+<p>The City Council is not the only legislative body looking at this problem. New York State has its own oversight, its own parallel programs, and its own version of the same fight &mdash; on a four-year delay, with a different cast.</p>
+
+<h3>The Comptroller's parallel oversight</h3>
+
+<p>NYS State Comptroller <a class="person" href="#fn-dinapoli" data-fn="dinapoli">Thomas P. DiNapoli</a> has audited HRA's CityFHEPS administration twice in the relevant period. Both audits read like state-government echoes of the same operational complaints aired on the Council floor in December 2022 &mdash; only with state-auditor specificity attached.</p>
+
+<p><strong>October 31, 2024 audit</strong> &mdash; <em>Administration of the CityFHEPS Program for Department of Homeless Services Shelter Residents</em> (covering July 2019 through December 2023). Among the on-the-record findings:</p>
+
+<ul>
+  <li>DSS could only produce payment documentation for <strong>12 of 52 cases</strong> auditors requested.</li>
+  <li>In <strong>7 cases</strong>, DSS "failed to make timely rental assistance payments to landlords."</li>
+  <li>In one case, DSS continued issuing rental-assistance payments for <strong>two months after</strong> the tenant had vacated the unit and returned to shelter.</li>
+  <li>HRA paid <strong>$1.7 million</strong> to landlords who were ineligible for the unit-hold incentive between January 2019 and March 2024.</li>
+  <li>Across 52 approved CityFHEPS households, the average shelter-to-permanent-housing wait was <strong>nearly 10 months</strong>; one household waited <strong>more than three years</strong> before being approved.</li>
+  <li>The audit notes that "DSS has not taken any steps to investigate why delays are occurring."</li>
+  <li>DSS "disagreed with several of the recommendations."</li>
+</ul>
+
+<p><strong>January 9, 2026 follow-up audit</strong> &mdash; <em>Administration of the CityFHEPS Program for Department of Social Services Homebase Clients</em> (covering January 2022 through May 2024; reviewed 75 of approximately 8,000 cases and $671 million in contracts to seven nonprofit Homebase providers). Among the findings:</p>
+
+<ul>
+  <li>Households placed "in apartments with serious housing-code violations, including mold, infestations and missing window guards."</li>
+  <li>"Nearly half of the case files reviewed were missing required proof of income or eligibility."</li>
+  <li>Landlords appearing on the NYC Public Advocate's Worst Landlord Watchlist <em>"continued to receive rent payments."</em></li>
+  <li>DSS approved rents above market rates by an average of <strong>$525 per month</strong> without documentation of the required rent-reasonableness assessment.</li>
+  <li>DSS responded that it has updated its case-management systems and plans to launch new monitoring teams "by mid-2026."</li>
+</ul>
+
+<p class="cite">Sources: NYS Office of the State Comptroller press releases, October 31, 2024 and January 9, 2026.</p>
+
+<p>Two notes that connect the audits back to the LL 64 / LL 145 story. First: when LL 145 (the quarterly timeliness reports) and LL 64 (the EFT option) were enacted, the Adams administration's argument was that they imposed an unnecessary reporting and operational burden on top of what HRA was already doing. The Comptroller's findings &mdash; that documentation existed for less than a quarter of audited cases, that delays went uninvestigated, that ineligible payments ran into the millions &mdash; suggest the prior baseline was not as well-managed as the agency's "may preclude the need for this legislation" framing implied. Second: the audits are the kind of independent verification the Council legislated for, just produced at the state level instead of through DSS's own quarterly reports.</p>
+
+<h3>The Feb 18, 2025 joint Senate hearing</h3>
+
+<p>Six weeks after the NYC General Welfare Committee's January 2025 oversight session that produced the "1,500 landlords on EFT" number, three NYS Senate standing committees held a joint public hearing in Albany on the same set of issues:</p>
+
+<blockquote>
+  <p><strong>Joint Public Hearing: To assess rental assistance programs and examine the need for expanded residential rental assistance to prevent evictions, homelessness, housing instability and excessive rent burdens.</strong></p>
+  <span class="cite">February 18, 2025 &mdash; joint hearing of three NYS Senate standing committees: Social Services (chaired by <a class="person" href="#fn-persaud" data-fn="persaud">Senator Roxanne J. Persaud</a>), Housing, Construction &amp; Community Development (chaired by <a class="person" href="#fn-kavanagh" data-fn="kavanagh">Senator Brian Kavanagh</a>), and Aging (chaired by Senator Cordell Cleare).</span>
+</blockquote>
+
+<p>The hearing's framing bills were <strong>S.72</strong> (the Housing Access Voucher Program), <strong>S.4446</strong> (Shelter Arrears Eviction Forestallment), and the SCRIE/DRIE elderly &amp; disability rent-increase exemption programs. Testimony came from AARP New York, the Legal Aid Society (Ellen Davidson testified), New Destiny Housing, NYSAFAH, and others.</p>
+
+<p>This is the state-level analog to the NYC General Welfare hearings: the same operational complaints, the same advocacy organizations (Legal Aid in particular shows up at both), the same year. The relevant difference is that the state hearing focused on <em>expanding</em> the rental-assistance toolkit (HAVP, SAEF), whereas the NYC hearings spent late 2022 and 2023 fighting over the <em>plumbing</em> of an existing toolkit (CityFHEPS payment timing, EFT, Cash Assistance backlogs).</p>
+
+<h3>Two state programs that show how this plays out elsewhere</h3>
+
+<p><strong>FHEPS (state version, 2021).</strong> Distinct from CityFHEPS, the state-level Family Homelessness and Eviction Prevention Supplement was raised to 100% of fair market rent in 2021 legislation championed by <a class="person" href="#fn-kavanagh" data-fn="kavanagh">Senator Kavanagh</a> and <a class="person" href="#fn-rosenthal" data-fn="rosenthal">Assemblymember Linda B. Rosenthal</a>. The state's modernization push for FHEPS payment mechanics has tracked NYC's a year or two behind &mdash; OTDA has a recipient-side direct-deposit form (4148B-DD) but landlord-side EFT for state-funded shelter allowance is not as far along as HRA's CurRENT rollout.</p>
+
+<p><strong>ERAP (Emergency Rental Assistance Program).</strong> The pandemic-era state program, administered by OTDA, distributed roughly <strong>$4 billion</strong> in rental and utility assistance to landlords on behalf of tenants between 2021 and the program's wind-down. New applications closed January 20, 2023; the OTDA portal stayed open until November 17, 2025. ERAP became a working laboratory for the same payment-mechanics question LL 64 addressed: how a state benefit reaches a landlord, how long it takes, what to do when payments are returned or unclaimed.</p>
+
+<h3>HAVP &mdash; the state's version of the same fight, on a delay</h3>
+
+<p>The Council's <a class="person" href="#fn-abreu" data-fn="abreu">Council Member Abreu</a> bill on operational plumbing (LL 64) had a state-level eligibility analog: the <strong>Housing Access Voucher Program (HAVP)</strong>, sponsored by <a class="person" href="#fn-kavanagh" data-fn="kavanagh">Senator Kavanagh</a> in the Senate (S.72) and <a class="person" href="#fn-rosenthal" data-fn="rosenthal">Assemblymember Rosenthal</a> in the Assembly. HAVP is a state-administered voucher for households who are homeless or at imminent risk; participants pay no more than 30% of income toward rent.</p>
+
+<p>The state pattern looks much like the NYC pattern, with the same actors playing the same roles a step late:</p>
+
+<ul>
+  <li>Advocates and legislators sought <strong>$250 million</strong> for HAVP in the FY 2025&ndash;26 state budget.</li>
+  <li>Governor Hochul's enacted budget allocated <strong>$50 million</strong> &mdash; one-fifth of the ask.</li>
+  <li>The program is structured as a <strong>four-year pilot</strong>, March 1, 2026 through May 1, 2030, jointly administered by NYS Homes and Community Renewal (HCR), NYCHA, and NYC's Department of Housing Preservation and Development (HPD).</li>
+  <li><a class="person" href="#fn-kavanagh" data-fn="kavanagh">Senator Kavanagh</a> announced on February 3, 2026 that he would not seek re-election; the bill survives him as a four-year experiment.</li>
+</ul>
+
+<p>The HAVP launch date &mdash; <strong>March 1, 2026</strong> &mdash; is just two months before this report was compiled. It is too early to evaluate whether the state-level voucher will repeat the operational pathologies the city took years to surface.</p>
+
+<h2 id="sec-law">Administrative and case law</h2>
+
+<p>The legislative story is half the picture. Underneath it sits a layered architecture of administrative rule-making and active litigation &mdash; the part of the policy machine that actually defines what HRA does next Monday morning.</p>
+
+<h3>City administrative law: 68 RCNY Title 68</h3>
+
+<p>The CityFHEPS rules live in <strong>Chapter 10 of Title 68 of the Rules of the City of New York</strong> (<code>68 RCNY ch. 10</code>). HRA promulgates these rules under authority delegated by City Charter &sect;&sect; 603 and 1043 and New York Social Services Law &sect;&sect; 34, 56, 61, 62, 77, and 131-a &mdash; meaning the city's rule-making authority for CityFHEPS rests on a foundation of <em>state</em> social-services law. HRA cannot simply rewrite CityFHEPS by city rule; the state statute is the floor.</p>
+
+<p>The relevant rule sections include 68 RCNY &sect;&sect; 10-05 (maximum monthly rents), 10-09 (adjustments to payment amounts and program termination), and 10-15 (additional provisions). HRA has issued multiple emergency rule amendments since 2021 &mdash; most consequentially the January 2023 amendment that raised CityFHEPS maximum rents to the Section 8 standard adopted by NYCHA, and the November 2025 rule formally discontinuing the unit-hold incentive (the same incentive the Comptroller flagged as the source of $1.7 million in incorrect payments).</p>
+
+<p>For purposes of LL 64, HRA has not separately promulgated 68 RCNY rules implementing the EFT-option requirement of <code>NYC Admin. Code &sect; 21-145.3(b)</code>. The statute is sufficiently self-executing that the agency has implemented it through the CurRENT landlord portal rather than through rulemaking &mdash; consistent with the bill's design as a ratification of a project HRA was already running.</p>
+
+<h3>State administrative law: 18 NYCRR Part 352</h3>
+
+<p>The state regulation that LL 64 explicitly carves out &mdash; <code>18 NYCRR &sect; 352.3</code> &mdash; sits in a much older regulatory framework. <strong>Title 18, Part 352</strong> of the New York Codes, Rules and Regulations governs the cash-assistance shelter allowance: maximum allowances, restricted payments, additional shelter supplements, and the rules for direct payments to landlords on behalf of public-assistance recipients. The Empire Justice Center has formally commented on Part 352 to OTDA, urging modernization of the shelter-allowance schedule that has not been substantially updated for the cash-assistance population in decades.</p>
+
+<p>Practically, this means the state-funded portion of any shelter-allowance landlord payment is governed by OTDA directives (the <em>ADM</em> series) and Part 352 &mdash; not by NYC rules. The carve-out in LL 64 is not a drafting nicety; it is a recognition of overlapping jurisdiction. New York's social-services statute layers the city's social-services district inside a state supervisory framework, and the same physical landlord can be receiving two different streams of money under two different rule books.</p>
+
+<h3>Case law: <em>Vincent v. Adams</em> and the LL 102 expansion fight</h3>
+
+<p>The active litigation in this space is <strong><em>Vincent v. Adams</em></strong> (NY Sup. Ct., NY Cnty.) &mdash; the suit by Legal Aid, advocates, and individual plaintiff Marie Vincent seeking to compel the city to implement <a class="person" href="#fn-adams" data-fn="adams">Adams</a>'s vetoed-and-overridden <strong>LL 102 of 2023</strong> (the 90-day-rule and eligibility expansion). The case has gone three rounds:</p>
+
+<table class="timeline">
+  <tr><td class="date">August 1, 2024</td><td><strong>Trial court ruling for the city.</strong> NY Supreme Court found the City Council had <em>exceeded its authority</em> in expanding CityFHEPS &mdash; the same legal theory the Adams Law Department had argued in vetoing the bills.</td></tr>
+  <tr><td class="date">Summer 2025</td><td><strong>Appellate Division, First Department reversed.</strong> A five-judge panel held that the City Council <em>did</em> have legal authority to expand the program and directed the Adams administration to implement the reforms. The Adams Law Department announced it was reviewing further legal options.</td></tr>
+  <tr><td class="date">March 24, 2026</td><td><strong>Mamdani appeal to the Court of Appeals.</strong> Two months into his administration, <a class="person" href="#fn-mamdani" data-fn="mamdani">Mayor Mamdani</a>'s Law Department picked up the same argument <a class="person" href="#fn-adams" data-fn="adams">Adams</a>'s lawyers had made &mdash; that "the City Council is not authorized to expand the program" &mdash; and appealed to New York's highest court.</td></tr>
+</table>
+
+<p>The appeal is pending as of this report's compilation date. If Mamdani prevails, LL 102 is unenforceable and the Council's authority to legislate the eligibility side of CityFHEPS is constrained for the foreseeable future. If he loses, the expansion could add roughly <strong>47,000 households</strong> to the program (per a 2024 IBO estimate) and push annual program cost above <strong>$4 billion by 2030</strong>.</p>
+
+<p>None of <em>Vincent</em>'s arguments touch <strong>LL 64</strong>, <strong>LL 145</strong>, or <strong>LL 176</strong>. The litigation is squarely about whether the Council can expand <em>eligibility</em> &mdash; not whether it can regulate operational mechanics like payment method or reporting. That asymmetry is the legal-architecture reason the operational bills survive untested while the eligibility bill remains in limbo: the operational laws sit on uncontroversial home-rule terrain, while eligibility expansion implicates state-supervised social-services-law authority. LL 64's drafters appear to have understood this when they narrowed the bill to recurring city payments and carved out the state-funded shelter allowance.</p>
+
+<h3>Source-of-income discrimination: a parallel enforcement track</h3>
+
+<p>One legal-architecture footnote that several witnesses pointed to: source-of-income discrimination by landlords (refusing to rent to voucher holders) is enforced by the <strong>NYC Commission on Human Rights</strong> under <code>NYC Admin. Code &sect; 8-107(5)(a)</code>, which has prohibited such discrimination citywide since a 2008 amendment, expanded again in 2021. <a class="person" href="#fn-abreu" data-fn="abreu">Council Member Abreu</a>'s pitch for LL 64 explicitly framed faster, more reliable EFT payments as a tool against source-of-income discrimination &mdash; on the theory that landlord refusal is partly rational risk-management against an agency they don't trust to pay on time. Whether EFT actually moves the discrimination needle is not yet measurable, but it is an example of how operational reform (LL 64) can be designed to support a separate enforcement statute (Admin Code &sect; 8-107) without amending it.</p>
+
+<h2 id="sec-interesting">Why this is interesting</h2>
+
+<ol>
+  <li><strong>It is a "ratifying" statute.</strong> NYC was already building CurRENT before the law was enacted. The Council's role here was not to <em>force</em> a project but to <em>lock it in</em> &mdash; to convert an executive-branch initiative into a permanent administrative-code obligation, at zero new cost.</li>
+  <li><strong>It targets a payment-rail problem, not a benefit-design problem.</strong> Most CityFHEPS reform debate is about who qualifies (the 90-day rule, undocumented eligibility, voucher value). LL 64 is about <em>plumbing</em>: the bill assumes the program design is fine and attacks the operational drag that turns a 7-day mail target into multi-week delays.</li>
+  <li><strong>The fiscal case is in the testimony, not in the FIS.</strong> The Council Finance Division's official FIS scored this at $0/$0. The actual fiscal case &mdash; the difference between $188/day in shelter and $72/day on a voucher &mdash; lives in Win's testimony. If even a small fraction of voucher families avoid an extra week in shelter because EFT cleared faster than a mailed check, the savings dwarf any plausible implementation cost.</li>
+  <li><strong>The Mayor never signed any rental-assistance bill of this period.</strong> Across four bills (LL 102, LL 64, LL 145, LL 176) Adams returned two unsigned and vetoed two; the two vetoes were overridden. Even on this bill &mdash; a $0/$0 fiscal score, a unanimous 47&ndash;0 Council vote, codifying a project HRA was already running &mdash; he would not put his name on it.</li>
+</ol>
+
+<h2 id="sec-state">Where things stand now</h2>
+
+<p>Three years after that "zero electronic payments" exchange in Council Chambers, the picture is more complicated than the bill's sponsors imagined &mdash; partly because the agency moved (slowly), partly because the political environment around CityFHEPS has shifted under it, and partly because the operational problem the bill was meant to fix turned out to be only one slice of a larger one.</p>
+
+<h3>The EFT rollout: from 9 landlords to 1,500</h3>
+
+<p>The single most useful update is empirical. From the 1,500-foot view, LL 64 worked.</p>
+
+<table class="timeline">
+  <tr><td class="date">Dec 15, 2022</td><td><strong>9 landlords</strong> in the CurRENT EFT pilot, by Berry's own admission at the oversight hearing. Approximately zero EFT to private landlords agency-wide.</td></tr>
+  <tr><td class="date">Nov 23, 2024</td><td><strong>115 landlords</strong> fully on EFT, plus another <strong>800 landlords</strong> receiving EFT for at least one tenant (i.e., partially enrolled). DSS reporting figure.</td></tr>
+  <tr><td class="date">Jan 27, 2025</td><td><strong>~1,500 landlords</strong> on EFT for CityFHEPS payments, per DSS testimony at the General Welfare oversight hearing. <strong>91% of CityFHEPS packages</strong> are now submitted through the new "Current" landlord-management system &mdash; "up from single digits a year ago."</td></tr>
+</table>
+
+<p class="cite">Source: DSS oversight testimony, NYC Council Committee on General Welfare, 1/27/2025 (citymeetings.nyc).</p>
+
+<p>That is a 167&times; increase in two years. Landlord enrollment in electronic payments was named a "calendar year 2025 priority" by the agency. The strategy DSS described &mdash; start with bigger landlords, then push out to the long tail &mdash; explains why the count jumped from 9 to 800-plus in the second year of the rollout: a few large portfolio owners cover thousands of voucher tenants apiece. The CityFHEPS package-submission flow (the upstream end of the workflow Win and <a class="person" href="#fn-balestri" data-fn="balestri">Marco Balestri</a> described as backed up six-to-twelve months) is now overwhelmingly digital.</p>
+
+<h3>The first-payment loophole</h3>
+
+<p>One detail worth flagging: HRA's current public guidance still tells landlords that <strong>"your first housing payment will be a paper check, delivered by the tenant's housing specialist."</strong> Only subsequent recurring payments can flow through EFT once the landlord opts in. This is consistent with the statute &mdash; LL 64's definition is limited to "<em>recurring</em> payments," not initial move-in or arrears payments &mdash; but it does mean the most operationally fragile moment in the workflow (the first check, when a family is moving from shelter into an apartment) is still on the old rails.</p>
+
+<h3>LL 145 quarterly reports: HRA is publishing them</h3>
+
+<p>The companion law &mdash; which the same Mayor also returned unsigned &mdash; required HRA to publish quarterly reports on the timeliness of CityFHEPS payments, beginning March 1, 2024. HRA has complied. Reports are posted at <a href="https://www.nyc.gov/site/hra/news/legal-notices-rules.page" target="_blank" rel="noopener">nyc.gov/site/hra/news/legal-notices-rules</a> and now span 2023 Q4 through (at least) 2025 Q2.</p>
+
+<p>For broader context on how strained HRA's processing pipeline still is: <strong>HRA processed just 29% of Cash Assistance applications on time in 2023</strong> &mdash; and a Cash Assistance application is the <em>prerequisite</em> for a CityFHEPS voucher. The plumbing problem LL 64 fixed sat downstream of a much bigger plumbing problem upstream.</p>
+
+<h3>The bigger CityFHEPS fight has moved past payment plumbing</h3>
+
+<p>While LL 64 was being implemented quietly inside HRA, the broader CityFHEPS political fight escalated. By spring 2026, three things are true:</p>
+
+<ul>
+  <li><strong>The program is roughly $1.8 billion a year and serves ~68,000 households.</strong> (CityFHEPS spending was $25 million in FY2019.) The Citizens Budget Commission has called this <em>"CityFHEPS Hits $1 Billion: NYC Cannot Voucher Its Way Out of the Housing Crisis."</em> Per-household spending has risen ~25% (~$16,000 to over $20,000 per year), tracking the program's increased rent ceilings.</li>
+  <li><strong>LL 102/2023 (the eligibility expansion) is in litigation.</strong> An appellate court ruled the City must implement the expansion. As of <strong>March 24, 2026</strong>, <a class="person" href="#fn-mamdani" data-fn="mamdani">Mayor Zohran Mamdani</a> &mdash; who succeeded <a class="person" href="#fn-adams" data-fn="adams">Eric Adams</a> in January 2026 and who as a candidate had promised to drop the City's legal challenge on day one &mdash; instead appealed to the New York Court of Appeals, arguing that "the City Council is not authorized to expand the program." <a class="person" href="#fn-mamdani" data-fn="mamdani">Mamdani</a> has cited the city's projected $5.4 billion budget gap as the reason for the reversal.</li>
+  <li><strong>LL 64, LL 145, and LL 176 are settled law and not contested.</strong> The two payment-plumbing laws (LL 64 EFT, LL 145 reporting) are operative; LL 176 (the rent-contribution cap, vetoed by Adams in November 2025 and overridden a month later) survived the transition. The fight is over LL 102's expansion of who qualifies, not over the operational reforms.</li>
+</ul>
+
+<p>So the Adams-era posture &mdash; oppose every CityFHEPS bill but never veto the operational ones &mdash; has carried into a new administration that talks about CityFHEPS very differently in office than it did on the campaign trail. The pattern in this report is no longer just an Adams pattern; it is an executive pattern.</p>
+
+<h3>What we still don't know</h3>
+
+<ul>
+  <li><strong>Time-to-landlord, before vs. after.</strong> Win's testimony described HRA's mailed-check target as "about seven days, often longer." <a class="person" href="#fn-abreu" data-fn="abreu">Council Member Abreu</a>'s pitch was that EFT would compress that timeline. There is no public dataset I have seen that pairs pre-LL64 mail times against post-LL64 EFT times for the same workflow.</li>
+  <li><strong>What share of HRA's <em>total</em> private-landlord payments are now EFT vs. paper.</strong> 1,500 landlords is a denominator-free number without knowing how many landlords HRA pays in any given month. (At the 12/15/22 hearing, Berry could not answer this when Abreu asked it.)</li>
+  <li><strong>Whether the LL 145 timeliness reports show measurable improvement.</strong> The reports are public; their substance is not summarized here. Pulling them and trending the on-time-payment percentage across 2023 Q4 → 2025 Q2 is the obvious next analytical step.</li>
+  <li><strong>Whether HRA changed its first-payment workflow.</strong> The first-month-rent paper check is still the official public guidance as of January 2026. Nothing in LL 64 forbids HRA from doing first payments by EFT for already-enrolled landlords; whether the agency does this in practice for repeat landlords is unclear.</li>
+</ul>
+
+<section class="footnotes" id="footnotes">
+  <h2>People mentioned in this report</h2>
+  <p style="font-size:14px;color:var(--muted);margin-top:-4px">Hover any underlined name in the body of the report to see a short tooltip; click to jump to the full entry below. Roles reflect the time of the events described unless noted otherwise.</p>
+  <ol>
+    <li id="fn-abreu"><strong>Shaun Abreu</strong> &mdash; <span class="role">NYC Council Member, District 7 (Manhattan: Upper West Side, Morningside Heights, West Harlem, Hamilton Heights, Washington Heights). Former tenant attorney; named Council Majority Leader in January 2026.</span> Prime sponsor of Int 0704 / LL 64. <a class="more" href="https://council.nyc.gov/shaun-abreu/" target="_blank" rel="noopener">council.nyc.gov &rarr;</a></li>
+    <li id="fn-ayala"><strong>Diana Ayala</strong> &mdash; <span class="role">NYC Council Member, District 8 (East Harlem, Mott Haven, Highbridge, Concourse, Longwood, Port Morris); Deputy Speaker through 2025; chaired the Committee on General Welfare during the 12/15/22 oversight hearing and 4/27/23 markup.</span> <a class="more" href="https://council.nyc.gov/diana-ayala/" target="_blank" rel="noopener">council.nyc.gov &rarr;</a></li>
+    <li id="fn-restler"><strong>Lincoln Restler</strong> &mdash; <span class="role">NYC Council Member, District 33 (Brooklyn: Greenpoint, Williamsburg, Brooklyn Heights, DUMBO, Boerum Hill); previously Deputy Chief of Staff to Mayor de&nbsp;Blasio.</span> <a class="more" href="https://www.lincolnrestler.nyc/" target="_blank" rel="noopener">lincolnrestler.nyc &rarr;</a></li>
+    <li id="fn-stevens"><strong>Althea Stevens</strong> &mdash; <span class="role">NYC Council Member, District 16 (South Bronx: parts of Concourse, Morrisania, Highbridge, Morris Heights, Tremont).</span> Chaired the brief 10/5/23 markup of Int 703-A in Ayala's place. <a class="more" href="https://council.nyc.gov/district-16/" target="_blank" rel="noopener">council.nyc.gov &rarr;</a></li>
+    <li id="fn-n-williams"><strong>Nantasha M. Williams</strong> &mdash; <span class="role">NYC Council Member, District 27 (Southeast Queens: Jamaica, St. Albans, Cambria Heights, Hollis, Queens Village, Springfield Gardens); appointed Deputy Speaker January 2026; chairs Civil and Human Rights.</span> Prime sponsor of Int 0641-2022 (HRA center efficiency, died at end of session). <a class="more" href="https://council.nyc.gov/nantasha-williams/" target="_blank" rel="noopener">council.nyc.gov &rarr;</a></li>
+    <li id="fn-pa-williams"><strong>Jumaane Williams</strong> &mdash; <span class="role">NYC Public Advocate (since 2019); previously NYC Council Member for District 45 (Brooklyn).</span> Co-sponsor on Int 0704; spoke at the 4/27/23 markup in support of his own companion bill (Int 190-A on a homeless statement of rights, which became LL 62/2023 the same day Adams returned LL 64 unsigned). <a class="more" href="https://advocate.nyc.gov/" target="_blank" rel="noopener">advocate.nyc.gov &rarr;</a></li>
+    <li id="fn-adams"><strong>Eric Adams</strong> &mdash; <span class="role">110th Mayor of NYC (2022&ndash;2025); former NYS State Senator (2007&ndash;2013) and Brooklyn Borough President (2014&ndash;2021); 22-year NYPD veteran, retiring at captain.</span> Returned LL 64 unsigned 5/30/23, along with seven other bills (LL 62&ndash;69 of 2023). <a class="more" href="https://en.wikipedia.org/wiki/Eric_Adams" target="_blank" rel="noopener">Wikipedia &rarr;</a></li>
+    <li id="fn-berry"><strong>Jill Berry</strong> &mdash; <span class="role">First Deputy Commissioner, NYC Department of Social Services (DSS).</span> Lead Administration witness at the 12/15/22 General Welfare oversight hearing; gave the on-the-record concession that "all the payments to private landlords are currently made by paper check" and that the CurRENT EFT pilot had nine landlords enrolled. <a class="more" href="https://www.linkedin.com/in/jill-berry-a193b522" target="_blank" rel="noopener">LinkedIn &rarr;</a></li>
+    <li id="fn-fitzpatrick"><strong>Lisa Fitzpatrick</strong> &mdash; <span class="role">HRA Administrator, February 2022&ndash;October 2023; nearly 40 years at HRA, rising from eligibility specialist to Chief Program Officer; helped run emergency services after 9/11 and Hurricane Sandy. Retired October 2023.</span> Co-witness with Berry at 12/15/22 hearing; framed CurRENT as a multi-year build. <a class="more" href="https://www.nyc.gov/office-of-the-mayor/news/059-22/mayor-adams-appointments-will-strengthen-new-york-city-s-social-safety-net" target="_blank" rel="noopener">Appointment announcement (NYC.gov) &rarr;</a></li>
+    <li id="fn-jordan"><strong>Bruce Jordan</strong> &mdash; <span class="role">Chief Homelessness Prevention Officer, NYC Human Resources Administration (HRA); oversees HRA's Homelessness Prevention Administration, which administers CityFHEPS and other rental-assistance programs.</span> Described the EFT/CurRENT timeline at the 1/18/23 General Welfare hearing as "currently experimenting" and targeting "the end of this year or the beginning of 2024." <a class="more" href="https://www.nyc.gov/assets/hra/downloads/pdf/news/testimonies/2020/HRA-Testimony-Rental-Assistance-SOI-Hearing-09.15.20.pdf" target="_blank" rel="noopener">2020 testimony (PDF) &rarr;</a></li>
+    <li id="fn-louis"><strong>Stephen Louis</strong> &mdash; <span class="role">Acting Corporation Counsel of NYC at the time of LL 64's certification (May 2023). Chief of the Legal Counsel Division of the NYC Law Department for 26 years (1997&ndash;2023), advising five mayors and ten Corporation Counsels. Retired November 2023; now Distinguished Fellow and Counsel to the Center for New York City Law at NY Law School.</span> <a class="more" href="https://www.nyls.edu/faculty/stephen-louis/" target="_blank" rel="noopener">NY Law School profile &rarr;</a></li>
+    <li id="fn-diaz"><strong>Juan Diaz</strong> &mdash; <span class="role">Policy and Advocacy Associate, Citizens' Committee for Children of New York (CCC); previously a supervisor at a Homebase homelessness-prevention program. A formerly undocumented immigrant; advocates on immigration and child poverty.</span> Testified in support of Int 0704 at the 12/15/22 hearing, arguing landlords actually want EFT. <a class="more" href="https://cccnewyork.org/" target="_blank" rel="noopener">cccnewyork.org &rarr;</a></li>
+    <li id="fn-kelleher"><strong>Kathleen Kelleher</strong> &mdash; <span class="role">Staff Attorney, Civil Law Reform Unit, The Legal Aid Society. Admitted to the New York bar in 1994; 30+ years of public-benefits advocacy, particularly on SNAP/food-stamp processing.</span> Used the 12/15/22 hearing to point out that HRA arrived without statistics on its own processing delays. <a class="more" href="https://legalaidnyc.org/" target="_blank" rel="noopener">legalaidnyc.org &rarr;</a></li>
+    <li id="fn-balestri"><strong>Marco Balestri</strong> &mdash; <span class="role">Legal Advocate, Housing Defense Practice, Neighborhood Defender Service of Harlem. Defends Housing Court eviction cases and advocates for the expansion of NYC's Right to Counsel program.</span> Testified that CityFHEPS applications routinely take six months to a year to process. <a class="more" href="https://neighborhooddefender.org/" target="_blank" rel="noopener">neighborhooddefender.org &rarr;</a></li>
+    <li id="fn-ethel-brown"><strong>Ethel Brown</strong> &mdash; <span class="role">CityFHEPS voucher holder and member-leader at Neighbors Together, a community advocacy and soup-kitchen organization in Ocean Hill, Brownsville, and Bedford-Stuyvesant.</span> Testified about her own family's December 2022 missed-rent incident with HRA in real time, and proposed an amendment (not adopted) giving tenants control over EFT release as a habitability lever. <a class="more" href="https://neighborstogether.org/" target="_blank" rel="noopener">neighborstogether.org &rarr;</a></li>
+    <li id="fn-sara-wilson"><strong>Sara Wilson</strong> &mdash; <span class="role">Witness at the 12/15/22 hearing who described herself as "formerly homeless, disabled and dual diagnosed."</span> Raised the broker-payment issue overlooked by Int 0704 as drafted &mdash; that brokers acting as case managers in voucher placements often go unpaid.</li>
+    <li id="fn-eric-lee"><strong>Eric Lee</strong> &mdash; <span class="role">Director of Policy and Planning, Homeless Services United (HSU) at the time of the 1/18/23 hearing &mdash; HSU is the membership group of NYC nonprofit shelter and homeless-services providers. Now Director of Public Policy at Volunteers of America-Greater New York.</span> Reported HRA check-issuance backlogs of 2 to 6 weeks. <a class="more" href="https://hsunited.org/" target="_blank" rel="noopener">hsunited.org &rarr;</a></li>
+    <li id="fn-mamdani"><strong>Zohran Mamdani</strong> &mdash; <span class="role">112th Mayor of NYC, sworn in January 1, 2026; first Muslim and first Asian American Mayor of New York City. Former NYS Assembly Member for the 36th district (Astoria, Queens), 2021&ndash;2025.</span> As candidate, promised to drop the City's appeal of the LL 102 expansion ruling on day one; in February 2026 reversed and instead appealed to the New York Court of Appeals. <a class="more" href="https://www.nyc.gov/mayors-office" target="_blank" rel="noopener">nyc.gov/mayors-office &rarr;</a></li>
+    <li id="fn-dinapoli"><strong>Thomas P. DiNapoli</strong> &mdash; <span class="role">54th and current New York State Comptroller (since 2007), elected by voters four times. Long-tenured Democrat from Long Island; previously served 20 years in the NYS Assembly (1986&ndash;2007) representing AD 16 in Nassau County.</span> Released CityFHEPS audits in October 2024 and January 2026 finding payment-documentation gaps, $1.7M in ineligible unit-hold-incentive payments, ~10-month average shelter-to-housing waits, and rents approved $525/month above market. <a class="more" href="https://www.osc.ny.gov/about/comptroller-biography" target="_blank" rel="noopener">osc.ny.gov &rarr;</a></li>
+    <li id="fn-kavanagh"><strong>Brian Kavanagh</strong> &mdash; <span class="role">New York State Senator, District 27 (Lower Manhattan: Battery Park City to 14th Street; LES, Tribeca, Chinatown, SoHo, NoHo, Greenwich Village). Chair of the Senate Standing Committee on Housing, Construction &amp; Community Development since 2019. Prime sponsor of HAVP (S.72) and the 2021 FHEPS expansion.</span> Announced February 3, 2026 he would not seek re-election. <a class="more" href="https://www.nysenate.gov/senators/brian-kavanagh" target="_blank" rel="noopener">nysenate.gov &rarr;</a></li>
+    <li id="fn-rosenthal"><strong>Linda B. Rosenthal</strong> &mdash; <span class="role">New York State Assembly Member, AD 67 (Manhattan: Upper West Side and Hell's Kitchen). Assembly co-sponsor of the Housing Access Voucher Program (HAVP) and the 2021 state FHEPS expansion to 100% of fair market rent. Chair of the Assembly Social Services committee.</span> <a class="more" href="https://nyassembly.gov/mem/Linda-B-Rosenthal" target="_blank" rel="noopener">nyassembly.gov &rarr;</a></li>
+    <li id="fn-persaud"><strong>Roxanne J. Persaud</strong> &mdash; <span class="role">New York State Senator (Brooklyn). Chair of the Senate Standing Committee on Social Services. Co-led the February 18, 2025 joint Senate hearing on rental-assistance programs alongside Senators Kavanagh (Housing) and Cleare (Aging).</span> <a class="more" href="https://www.nysenate.gov/senators/roxanne-j-persaud" target="_blank" rel="noopener">nysenate.gov &rarr;</a></li>
+  </ol>
+</section>
+
+<div class="sources">
+  <h3 style="margin-top:0">Sources</h3>
+  <p><strong>Bill text and fiscal impact</strong> (full text saved to <code>~/projects/electronic-rent-payments/sources/</code>):</p>
+  <ul>
+    <li><code>ll64_2023.txt</code> &mdash; Local Law 64 of 2023, full text</li>
+    <li><code>int_704A_final.txt</code> &mdash; final enacted bill (Int. 704-A)</li>
+    <li><code>int_704_original.txt</code>, <code>int_704A_proposed.txt</code>, <code>int_704_summary.txt</code>, <code>int_704A_summary.txt</code> &mdash; bill versions and staff summaries</li>
+    <li><code>int_704_fis.txt</code> &mdash; Fiscal Impact Statement (4/4/23)</li>
+    <li><code>cr_704_dec22.txt</code>, <code>cr_704_apr23.txt</code> &mdash; committee reports (oversight hearing &amp; markup)</li>
+  </ul>
+  <p><strong>Hearing transcripts</strong> (saved verbatim from official Council PDFs):</p>
+  <ul>
+    <li><code>hearing_704_dec22_FULL.txt</code> &mdash; 12/15/22 General Welfare oversight (full transcript with the Abreu/Berry Q&amp;A)</li>
+    <li><code>hearing_703_oct23_FULL.txt</code> &mdash; 10/5/23 markup of Int 0703-A (LL 145)</li>
+    <li><code>hearing_894_jan23_FULL.txt</code> &mdash; 1/18/23 hearing on Int 0894 (CityFHEPS reform / LL 102)</li>
+    <li><code>testimony_704_dec22.txt</code> &mdash; written testimony submitted at the 12/15/22 hearing (DSS, Win, CCC)</li>
+    <li><code>transcript_highlights.md</code> &mdash; curated verbatim quotes across all three hearings</li>
+  </ul>
+  <p><strong>Primary sources at NYC Legistar:</strong></p>
+  <ul>
+    <li><a href="https://legistar.council.nyc.gov/LegislationDetail.aspx?ID=5832489&GUID=B9CDDFA9-F580-4F03-B6A1-44697DA4DE32">Int 0704-2022 / LL 64-2023 &mdash; matter detail</a></li>
+    <li><a href="https://nyc.legistar1.com/nyc/attachments/b84acb77-5b20-4831-be5a-73f2212102c6.pdf">Local Law 64 of 2023 (PDF)</a></li>
+    <li><a href="https://nyc.legistar1.com/nyc/attachments/4c571ece-88b7-489c-87d6-b286249cdaf9.docx">Int. No. 704-A FINAL (DOCX)</a></li>
+    <li><a href="https://nyc.legistar1.com/nyc/attachments/933628de-97f5-4653-a737-d42420190703.docx">Fiscal Impact Statement (DOCX)</a></li>
+    <li><a href="https://nyc.legistar1.com/nyc/attachments/e2c13ba7-bd5b-4ecb-964d-fc2ff49984bb.pdf">12/15/22 Hearing Transcript &mdash; full PDF</a></li>
+    <li><a href="https://nyc.legistar1.com/nyc/attachments/4d104380-9d27-4a59-ac35-7af575511006.pdf">12/15/22 Hearing Testimony (PDF)</a></li>
+    <li><a href="https://nyc.legistar1.com/nyc/attachments/7f032848-f796-4937-babb-af3d93f70cb4.docx">Committee Report 4/27/23 (DOCX)</a></li>
+    <li><a href="https://nyc.legistar1.com/nyc/attachments/66993796-95d8-45a4-98ec-f78219c68029.pdf">Letter from Council to Mayor on returned-unsigned bills</a></li>
+  </ul>
+  <p><strong>Companions and the broader Adams-vs-Council pattern:</strong></p>
+  <ul>
+    <li><a href="https://legistar.council.nyc.gov/gateway.aspx?m=l&id=69356">Int 0703-2022 &rarr; LL 145/2023 (timeliness reports, returned unsigned)</a></li>
+    <li><a href="https://legistar.council.nyc.gov/gateway.aspx?m=l&id=68829">Int 0641-2022 (HRA center efficiency &mdash; died)</a></li>
+    <li><a href="https://legistar.council.nyc.gov/gateway.aspx?m=l&id=70721">Int 0894-2023 &rarr; LL 102/2023 (CityFHEPS reform, vetoed and overridden)</a></li>
+    <li><a href="https://legistar.council.nyc.gov/gateway.aspx?m=l&id=76313">Int 1372-2025 &rarr; LL 176/2025 (rent contribution cap, vetoed and overridden)</a></li>
+  </ul>
+</div>
+
+<footer class="report">
+  Compiled by Daniel Golliher (Maximum New York). All quotations are verbatim from official Council source documents. Where a claim could not be verified from the saved transcript, the report flags the gap rather than reconstruct from memory.
+</footer>
+
+</div>
+<script>
+const PEOPLE = {
+  "abreu": {n:"Shaun Abreu", r:"NYC Council Member, District 7 (Manhattan); prime sponsor of LL 64. Now Council Majority Leader.", u:"https://council.nyc.gov/shaun-abreu/"},
+  "ayala": {n:"Diana Ayala", r:"NYC Council Member, District 8 (East Harlem/Bronx); Deputy Speaker through 2025; chaired General Welfare for these hearings.", u:"https://council.nyc.gov/diana-ayala/"},
+  "restler": {n:"Lincoln Restler", r:"NYC Council Member, District 33 (Brooklyn — Greenpoint to Brooklyn Heights). Former Deputy Chief of Staff to Mayor de Blasio.", u:"https://www.lincolnrestler.nyc/"},
+  "stevens": {n:"Althea Stevens", r:"NYC Council Member, District 16 (South Bronx). Chaired the 10/5/23 markup in Ayala's place.", u:"https://council.nyc.gov/district-16/"},
+  "n-williams": {n:"Nantasha M. Williams", r:"NYC Council Member, District 27 (Southeast Queens). Deputy Speaker as of January 2026. Prime sponsor of Int 0641-2022.", u:"https://council.nyc.gov/nantasha-williams/"},
+  "pa-williams": {n:"Jumaane Williams", r:"NYC Public Advocate (since 2019). Co-sponsor on Int 0704; sponsor of LL 62/2023 (homeless statement of rights).", u:"https://advocate.nyc.gov/"},
+  "adams": {n:"Eric Adams", r:"110th Mayor of NYC (2022–2025). Returned LL 64 unsigned 5/30/23 along with seven other bills.", u:"https://en.wikipedia.org/wiki/Eric_Adams"},
+  "berry": {n:"Jill Berry", r:"First Deputy Commissioner, NYC Department of Social Services. Lead Administration witness at the 12/15/22 oversight hearing.", u:"https://www.linkedin.com/in/jill-berry-a193b522"},
+  "fitzpatrick": {n:"Lisa Fitzpatrick", r:"HRA Administrator Feb 2022–Oct 2023. Nearly 40-year career at HRA. Retired 2023.", u:"https://www.nyc.gov/office-of-the-mayor/news/059-22/mayor-adams-appointments-will-strengthen-new-york-city-s-social-safety-net"},
+  "jordan": {n:"Bruce Jordan", r:"Chief Homelessness Prevention Officer, NYC HRA. Oversees the unit that runs CityFHEPS payments.", u:"https://www.nyc.gov/assets/hra/downloads/pdf/news/testimonies/2020/HRA-Testimony-Rental-Assistance-SOI-Hearing-09.15.20.pdf"},
+  "louis": {n:"Stephen Louis", r:"Acting Corporation Counsel who certified LL 64. 26-year veteran of the NYC Law Department; retired Nov 2023.", u:"https://www.nyls.edu/faculty/stephen-louis/"},
+  "diaz": {n:"Juan Diaz", r:"Policy & Advocacy Associate, Citizens' Committee for Children. Former Homebase supervisor.", u:"https://cccnewyork.org/"},
+  "kelleher": {n:"Kathleen Kelleher", r:"Staff Attorney, Civil Law Reform Unit, Legal Aid Society. 30+ years of public-benefits advocacy.", u:"https://legalaidnyc.org/"},
+  "balestri": {n:"Marco Balestri", r:"Legal Advocate, Housing Defense Practice, Neighborhood Defender Service of Harlem.", u:"https://neighborhooddefender.org/"},
+  "ethel-brown": {n:"Ethel Brown", r:"CityFHEPS voucher holder; member-leader at Neighbors Together (Brooklyn).", u:"https://neighborstogether.org/"},
+  "sara-wilson": {n:"Sara Wilson", r:"Witness at the 12/15/22 hearing; described herself as formerly homeless, disabled, dual diagnosed."},
+  "eric-lee": {n:"Eric Lee", r:"Then Director of Policy and Planning, Homeless Services United (HSU). Now at Volunteers of America-Greater NY.", u:"https://hsunited.org/"},
+  "mamdani": {n:"Zohran Mamdani", r:"112th Mayor of NYC, sworn in January 1, 2026. Former NYS Assembly Member for the 36th district (Astoria, Queens), 2021–2025.", u:"https://www.nyc.gov/mayors-office"},
+  "dinapoli": {n:"Thomas P. DiNapoli", r:"54th and current NYS Comptroller (since 2007). Audited HRA's CityFHEPS administration twice in 2024–2026.", u:"https://www.osc.ny.gov/about/comptroller-biography"},
+  "kavanagh": {n:"Brian Kavanagh", r:"NYS Senator, District 27 (Lower Manhattan). Chair of the Senate Housing, Construction & Community Development Committee since 2019. Prime sponsor of HAVP. Announced 2/3/26 he will not seek re-election.", u:"https://www.nysenate.gov/senators/brian-kavanagh"},
+  "rosenthal": {n:"Linda B. Rosenthal", r:"NYS Assembly Member, AD 67 (Upper West Side). Assembly co-sponsor of the Housing Access Voucher Program and the 2021 FHEPS expansion.", u:"https://nyassembly.gov/mem/Linda-B-Rosenthal"},
+  "persaud": {n:"Roxanne J. Persaud", r:"NYS Senator (Brooklyn). Chair of the Senate Standing Committee on Social Services; co-led the 2/18/25 joint hearing on rental assistance.", u:"https://www.nysenate.gov/senators/roxanne-j-persaud"}
+};
+document.addEventListener("DOMContentLoaded", function() {
+  // Hydrate person tooltips
+  document.querySelectorAll("a.person[data-fn]").forEach(function(el) {
+    var p = PEOPLE[el.dataset.fn];
+    if (!p) return;
+    var tip = document.createElement("span");
+    tip.className = "tip";
+    var html = "<strong>" + p.n + "</strong>" + p.r;
+    if (p.u) html += ' <em>·</em> <a href="' + p.u + '" target="_blank" rel="noopener">profile &rarr;</a>';
+    tip.innerHTML = html;
+    el.appendChild(tip);
+  });
+
+  // TOC active-section highlighting
+  var tocLinks = document.querySelectorAll("nav.toc a[href^='#sec-'], nav.toc a[href='#footnotes']");
+  var sections = [];
+  tocLinks.forEach(function(a) {
+    var id = a.getAttribute("href").slice(1);
+    var el = document.getElementById(id);
+    if (el) sections.push({ id: id, el: el, link: a });
+  });
+  function setActive(id) {
+    tocLinks.forEach(function(a) {
+      if (a.getAttribute("href") === "#" + id) a.classList.add("active");
+      else a.classList.remove("active");
+    });
+  }
+  if ("IntersectionObserver" in window && sections.length) {
+    var observer = new IntersectionObserver(function(entries) {
+      // Use the entry whose top is closest to (but at or above) the trigger line
+      var visible = entries.filter(function(e) { return e.isIntersecting; });
+      if (visible.length) {
+        // Pick the topmost visible one
+        visible.sort(function(a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+        setActive(visible[0].target.id);
+      }
+    }, { rootMargin: "-20% 0px -70% 0px", threshold: 0 });
+    sections.forEach(function(s) { observer.observe(s.el); });
+  }
+
+  // Floating back-to-top button: show after some scroll
+  var fab = document.querySelector(".toc-fab");
+  if (fab) {
+    var onScroll = function() {
+      if (window.scrollY > 400) fab.classList.add("show");
+      else fab.classList.remove("show");
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+});
+</script>
+</body>
+</html>

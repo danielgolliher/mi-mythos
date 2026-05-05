@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MI Mythos &mdash; Source-grounded policy briefs for New York City and New York State</title>
+<meta name="description" content="Generate serious, source-grounded policy briefs on any New York City or New York State issue. Pulls from primary legislation, agency rule-making, comptroller audits, and case law.">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #555;
+    --rule: #d8d4cc;
+    --bg: #fbfaf6;
+    --bg-deep: #f3efe5;
+    --accent: #6b3410;
+    --accent-light: #8c4f25;
+    --code-bg: #1f1f1f;
+    --code-fg: #f6f1e3;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    font-family: "Iowan Old Style", "Charter", Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 28px 80px;
+  }
+  header.hero {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 26px;
+    margin-bottom: 36px;
+  }
+  .kicker {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  h1 {
+    font-size: 56px;
+    line-height: 1.04;
+    margin: 0 0 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .deck {
+    font-size: 19px;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0;
+    max-width: 580px;
+  }
+  .lede {
+    font-size: 17px;
+    margin: 22px 0 30px;
+    color: var(--ink);
+  }
+  form.prompter {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 22px 24px 18px;
+    margin-bottom: 28px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  form.prompter label {
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  textarea#topic {
+    width: 100%;
+    min-height: 120px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 14px 16px;
+    font-family: "Iowan Old Style", "Charter", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink);
+    background: var(--bg);
+    resize: vertical;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  textarea#topic:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(107, 52, 16, 0.12);
+  }
+  textarea#topic::placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+  .btn-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .submit-btn {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 11px 22px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .submit-btn:hover { background: var(--accent-light); }
+  .submit-btn:focus { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .submit-btn:disabled {
+    background: #aaa;
+    border-color: #aaa;
+    cursor: not-allowed;
+  }
+  .hint {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  /* Output panel */
+  section.output {
+    display: none;
+    margin-bottom: 36px;
+    animation: slideIn 0.3s ease-out;
+  }
+  section.output.show { display: block; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .out-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .out-head h2 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
+  }
+  .out-head .tag {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  pre.prompt {
+    background: var(--code-bg);
+    color: var(--code-fg);
+    padding: 22px 24px;
+    border-radius: 4px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0 0 14px 0;
+  }
+  pre.prompt::-webkit-scrollbar { height: 8px; }
+  pre.prompt::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+  .actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .actions button, .actions a.btn {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent);
+    padding: 8px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.15s, color 0.15s;
+  }
+  .actions button:hover, .actions a.btn:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+  .actions button.primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .actions button.primary:hover { background: var(--accent-light); }
+  .actions button.copied {
+    background: #2d6e2a;
+    border-color: #2d6e2a;
+    color: #fff;
+  }
+  /* How it works */
+  section.howto {
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+  }
+  section.howto h2 {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+  ol.steps {
+    padding-left: 22px;
+    margin-bottom: 20px;
+  }
+  ol.steps li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  ol.steps code {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+    background: var(--bg-deep);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  .examples-row {
+    display: flex;
+    gap: 10px;
+    margin: 18px 0 12px;
+    flex-wrap: wrap;
+  }
+  .ex-chip {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12.5px;
+    color: var(--accent);
+    background: var(--bg-deep);
+    border: 1px solid var(--rule);
+    padding: 6px 12px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .ex-chip:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  /* Footer */
+  footer.colophon {
+    margin-top: 60px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  footer.colophon a { color: var(--accent); text-decoration: none; }
+  footer.colophon a:hover { text-decoration: underline; }
+  footer.colophon .row { margin-bottom: 8px; }
+  /* Mobile */
+  @media (max-width: 540px) {
+    .wrap { padding: 40px 20px 56px; }
+    h1 { font-size: 40px; }
+    .deck { font-size: 17px; }
+    body { font-size: 16px; }
+    pre.prompt { font-size: 12px; padding: 16px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">A Maximum New York project</div>
+  <h1>MI Mythos</h1>
+  <p class="deck">Source-grounded policy briefs on New York City and New York State, on demand.</p>
+</header>
+
+<p class="lede">
+  New York governance runs on three layers: legislation, agency rule-making, and case law. Most coverage skips two of them. <strong>MI Mythos</strong> generates a research-grade prompt that pulls from all three &mdash; primary bill text, hearing transcripts, comptroller audits, NYCRR/RCNY rules, and active litigation &mdash; and renders the result as a printable, footnote-linked HTML brief.
+</p>
+
+<form class="prompter" id="prompter" onsubmit="return generate(event)">
+  <label for="topic">Your policy question</label>
+  <textarea id="topic" placeholder="e.g. NYC's electronic rent payments law (LL 64/2023). Or: How did NYS expand the FHEPS rental assistance program in 2021? Or: The Council's CityFHEPS expansion fight with the Mayor."></textarea>
+  <div class="examples-row">
+    <span class="ex-chip" onclick="setExample('Local Law 64 of 2023 — electronic rent payments for housing-voucher landlords')">LL 64/2023 (EFT)</span>
+    <span class="ex-chip" onclick="setExample('Int 0894-2023 — CityFHEPS reform package, 90-day shelter rule, Mayor Adams veto and Council override')">CityFHEPS 90-day rule</span>
+    <span class="ex-chip" onclick="setExample('S.72 — New York State Housing Access Voucher Program (HAVP), Senator Kavanagh')">HAVP / S.72</span>
+    <span class="ex-chip" onclick="setExample('Vincent v. Adams — the litigation over LL 102 of 2023 and CityFHEPS expansion')">Vincent v. Adams</span>
+  </div>
+  <div class="btn-row">
+    <button type="submit" class="submit-btn" id="submitBtn">Generate brief prompt</button>
+    <span class="hint">Outputs a research prompt for Claude. Nothing is sent anywhere.</span>
+  </div>
+</form>
+
+<section class="output" id="output" aria-live="polite">
+  <div class="out-head">
+    <h2>Your research prompt</h2>
+    <span class="tag" id="topicTag"></span>
+  </div>
+  <pre class="prompt" id="promptText"></pre>
+  <div class="actions">
+    <button class="primary" id="copyBtn" onclick="copyPrompt()" type="button">Copy to clipboard</button>
+    <a class="btn" id="claudeLink" href="#" target="_blank" rel="noopener">Open in Claude.ai &rarr;</a>
+    <button onclick="reset()" type="button">New question</button>
+  </div>
+</section>
+
+<section class="howto" id="howto">
+  <h2>How to use this</h2>
+  <ol class="steps">
+    <li>Type a NYC or NYS policy question into the box above &mdash; a bill ID (<code>Int 0704-2022</code>), a law (<code>LL 64/2023</code>), a topic ("source-of-income discrimination enforcement"), or a court case (<code>Vincent v. Adams</code>) all work.</li>
+    <li>Click <strong>Generate brief prompt</strong>. The page produces a self-contained research prompt that embodies the methodology used to build the example brief linked below.</li>
+    <li>Click <strong>Copy to clipboard</strong> and paste into Claude Code (terminal) or Claude.ai. Claude will pull from the cipher legislative graph, official Senate / Assembly pages, RCNY / NYCRR rule-makings, NYS Comptroller audits, IBO reports, and case law &mdash; then assemble the brief into a single durable HTML file at <code>~/projects/&lt;slug&gt;/index.html</code> with all source documents saved alongside.</li>
+    <li>The brief includes a floating TOC, a print button, hover-tooltip footnotes for every named person, expandable verbatim transcript blocks, and an administrative-and-case-law section.</li>
+  </ol>
+  <p style="font-size:14px;color:var(--muted);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+    If you have Claude Code installed locally, you can also invoke the underlying skill directly with <code style="background:var(--bg-deep);padding:1px 6px;border-radius:3px">/ny-policy-brief &lt;your topic&gt;</code>.
+  </p>
+</section>
+
+<footer class="colophon">
+  <div class="row"><strong>Example brief:</strong> <a href="https://github.com/danielgolliher/mi-mythos/tree/main/examples/electronic-rent-payments" target="_blank" rel="noopener">Electronic rent payments &mdash; NYC LL 64 of 2023</a> &mdash; the canonical output, demonstrating verbatim hearing exchanges, state Comptroller audit findings, the <em>Vincent v. Adams</em> litigation timeline, and 22 footnoted people.</div>
+  <div class="row"><strong>Methodology:</strong> the <code>ny-policy-brief</code> skill at <a href="https://github.com/danielgolliher/mi-mythos/blob/main/skill/SKILL.md" target="_blank" rel="noopener">github.com/danielgolliher/mi-mythos</a>.</div>
+  <div class="row"><strong>From:</strong> Daniel Golliher (Maximum New York &middot; Manhattan Institute Cities Fellow). Issues and pull requests welcome.</div>
+</footer>
+
+</div>
+
+<script>
+const TEMPLATE = `Generate a serious, source-grounded HTML policy brief on the following NYC or NYS topic:
+
+  TOPIC: {{TOPIC}}
+
+Output to ~/projects/{{SLUG}}/index.html with a sources/ subdirectory alongside. Save every primary source you fetch as plain text or PDF in sources/ for posterity. Never use /tmp.
+
+== METHODOLOGY ==
+
+1. NYC LEGISLATIVE MATERIAL
+   - Use the cipher MCP server first (mcp__cipher__search_nodes, get_node, get_node_attachments, get_edges, semantic_search).
+   - For any get_node_attachments output >50KB, delegate the chunked read to a subagent and ask it to save each document to sources/<short_name>.txt while returning verbatim load-bearing quotes (especially council-witness Q&A).
+
+2. STATE LEGISLATIVE MATERIAL
+   - NYS Senate: https://www.nysenate.gov/legislation/bills/<year>/<bill> and committee/hearing pages.
+   - NYS Assembly: https://nyassembly.gov/leg/?bn=<bill> and committee hearing archives.
+   - For joint hearings that 403 on direct WebFetch, use WebSearch with the hearing date.
+
+3. ADMINISTRATIVE LAW (always, when relevant)
+   - City: Title 68 RCNY for HRA/DSS rules; the Administrative Code at codelibrary.amlegal.com/codes/newyorkcity; rule-makings at rules.cityofnewyork.us.
+   - State: 18 NYCRR (social services) at law.cornell.edu/regulations/new-york; OTDA ADM directives at otda.ny.gov/policy/directives/.
+   - Note rule promulgation authority — when city rules cite state Social Services Law as their statutory floor, surface that fact.
+
+4. CASE LAW (always, when relevant)
+   - NY Court of Appeals decisions (nycourts.gov/ctapps/), Appellate Division opinions (NY Slip Opinion Service), NYSCEF (iapps.courts.state.ny.us/nyscef) for trial-court dockets.
+   - Build a <table class="timeline"> for any litigation history.
+   - Identify whether the bill in question is contested in court vs. operative.
+
+5. OVERSIGHT AND AUDIT MATERIAL
+   - NYS Comptroller (DiNapoli) audits at osc.ny.gov/state-agencies/audits/.
+   - NYC IBO at ibo.nyc.ny.us; NYC Comptroller at comptroller.nyc.gov; CBC at cbcny.org.
+
+6. PROCESSING BINARIES
+   - WebFetch returns compressed PDF binary on nyc.legistar1.com and many state PDFs. Convert locally with: pdftotext -layout <saved-pdf> sources/<doc>.txt
+   - Delegate verbatim quote extraction to a subagent for any single transcript >50KB.
+
+7. URL VERIFICATION
+   - Verify every URL before linking. Never fabricate.
+   - Council members: council.nyc.gov/<slug>/. State legislators: nysenate.gov/senators/<slug> or nyassembly.gov/mem/<First-M-Last>.
+   - For private witnesses without public profiles, do not link.
+
+== REQUIRED HTML STRUCTURE ==
+
+Single self-contained HTML file. CSS embedded in <head>, JS at end of <body>. No external dependencies.
+
+Sections, in this order:
+  1. Print row with a "Print this brief" button calling window.print()
+  2. Header (kicker, h1, deck, meta block with bill IDs, prime sponsor, compiled date)
+  3. What it does — quote operative statutory text in <blockquote>
+  4. Why it mattered — verbatim hearing exchanges in <div class="exchange"> blocks
+  5. The fiscal logic — <div class="stat-grid"> with 2–4 dollar figures
+  6. The agency context
+  7. How it moved through the legislature — <table class="timeline">
+  8. Hearing transcripts: what was said — <details class="transcript"> blocks (first one open)
+  9. Where the state fits in — Comptroller audits, parallel state programs, state preemption
+ 10. Administrative and case law — RCNY/NYCRR rules, court history, parallel enforcement statutes
+ 11. Where things stand now — current implementation status with verifiable numbers
+ 12. People mentioned — <section class="footnotes"> with one numbered entry per named person
+ 13. Sources — local files and primary URLs by category
+
+Required interactive features:
+  - Floating TOC sidebar (<nav class="toc">), fixed-position left, IntersectionObserver for active-section highlighting, "↑ Back to top" link
+  - Floating back-to-top FAB on viewports < 1180px after 400px scroll
+  - Person tooltips: every named person wrapped as <a class="person" href="#fn-<id>" data-fn="<id>">. JS on DOMContentLoaded reads PEOPLE dict and injects tooltips. Footnotes section is the no-JS fallback.
+  - Expandable transcripts via <details class="transcript">
+  - Print button at top right
+  - @media print stylesheet that: hides TOC/FAB/print-row; expands all transcript details; prints external URLs after links (except TOC/footnote/person anchors); uses @page { margin: 0.75in }; removes name underlines.
+
+CSS palette:
+  --ink: #1a1a1a; --muted: #555; --rule: #d8d4cc; --bg: #fbfaf6;
+  --accent: #6b3410; --quote-bg: #f3efe5;
+
+Body font: "Iowan Old Style", "Charter", Georgia, serif.
+UI font (kickers, captions, TOC): -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif.
+
+== EDITORIAL STANDARDS ==
+
+- Lead with verifiable facts. Numbers from on-the-record testimony, dates from official histories, dollar figures from FIS or audits.
+- Verbatim quotes win over paraphrase. Find the smoking-gun exchange and quote it.
+- Flag what you don't know. "What we still don't know" subsection is honest.
+- No editorializing about partisanship. Describe the legal architecture (returned-unsigned vs. veto, trial vs. appellate). Let the reader form opinions.
+- Never paraphrase agency testimony in a way that smooths over its concessions.
+
+== EXAMPLE OUTPUT ==
+
+The canonical example is ~/projects/electronic-rent-payments/index.html (NYC LL 64/2023). Match that brief's structure, density, and tone.
+
+== VALIDATION BEFORE DECLARING DONE ==
+
+- Every data-fn attribute resolves to a footnote ID in the page.
+- Every href="#sec-..." resolves to a heading ID.
+- No nested anchors.
+- The print preview looks clean (no TOC, no tooltip artifacts, transcripts all expanded).
+- Open the file in a browser and confirm the TOC scrolls actively as the user reads.
+`;
+
+const $ = (id) => document.getElementById(id);
+
+function slugify(s) {
+  return s.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+    .slice(0, 60) || 'policy-brief';
+}
+
+function setExample(text) {
+  $('topic').value = text;
+  $('topic').focus();
+}
+
+function generate(e) {
+  e.preventDefault();
+  const topic = $('topic').value.trim();
+  if (!topic) {
+    $('topic').focus();
+    return false;
+  }
+  const slug = slugify(topic);
+  const prompt = TEMPLATE.replace('{{TOPIC}}', topic).replace('{{SLUG}}', slug);
+  $('promptText').textContent = prompt;
+  $('topicTag').textContent = '~/projects/' + slug + '/';
+  $('output').classList.add('show');
+  // Build claude.ai link with prompt
+  const claudeUrl = 'https://claude.ai/new?q=' + encodeURIComponent(prompt);
+  $('claudeLink').href = claudeUrl;
+  // Scroll into view
+  setTimeout(() => $('output').scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  return false;
+}
+
+async function copyPrompt() {
+  const text = $('promptText').textContent;
+  const btn = $('copyBtn');
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy to clipboard';
+      btn.classList.remove('copied');
+    }, 2000);
+  } catch (err) {
+    // Fallback: select the text
+    const range = document.createRange();
+    range.selectNodeContents($('promptText'));
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    btn.textContent = 'Select all & copy manually';
+    setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 3000);
+  }
+}
+
+function reset() {
+  $('output').classList.remove('show');
+  $('topic').value = '';
+  $('topic').focus();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Cmd/Ctrl+Enter submits
+$('topic').addEventListener('keydown', (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+    $('prompter').requestSubmit();
+  }
+});
+</script>
+</body>
+</html>
