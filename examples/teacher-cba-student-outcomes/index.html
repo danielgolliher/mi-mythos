@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher contracts and student outcomes &mdash; What share of US CBAs tie compensation or evaluation to student performance?</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #555;
+    --rule: #d8d4cc;
+    --bg: #fbfaf6;
+    --accent: #6b3410;
+    --quote-bg: #f3efe5;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    font-family: "Iowan Old Style", "Charter", Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 28px 80px; }
+  header.report { border-bottom: 2px solid var(--ink); padding-bottom: 18px; margin-bottom: 28px; }
+  .kicker {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  h1 { font-size: 32px; line-height: 1.18; margin: 0 0 10px; font-weight: 700; }
+  .deck { font-size: 18px; color: var(--muted); font-style: italic; margin: 0; }
+  .meta {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px; color: var(--muted); margin-top: 14px;
+  }
+  h2 { font-size: 22px; margin: 44px 0 12px; border-bottom: 1px solid var(--rule); padding-bottom: 6px; }
+  h3 {
+    font-size: 17px; margin: 28px 0 8px;
+    font-variant: small-caps; letter-spacing: 0.04em; color: var(--accent);
+  }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 16px 0; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  blockquote {
+    background: var(--quote-bg); border-left: 3px solid var(--accent);
+    margin: 16px 0; padding: 14px 18px; font-size: 16px;
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+  .cite {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px; color: var(--muted); display: block; margin-top: 6px;
+  }
+  code, .mono {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 14px; background: #efeae0; padding: 1px 5px; border-radius: 3px;
+  }
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 18px 0;
+  }
+  .stat { border: 1px solid var(--rule); padding: 14px 16px; background: #fff; }
+  .stat .num { font-size: 24px; font-weight: 700; color: var(--accent); display: block; }
+  .stat .lbl {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 4px;
+  }
+  table.timeline { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 15px; }
+  table.timeline td { padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  table.timeline td.date {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px; white-space: nowrap; color: var(--accent); width: 130px;
+  }
+  .gap { background: #fff7e0; border: 1px solid #e6c97a; padding: 12px 14px; margin: 14px 0; font-size: 15px; }
+  .gap strong { color: #7a5a00; }
+  .pull {
+    font-family: "Iowan Old Style", "Charter", Georgia, serif;
+    font-size: 22px; line-height: 1.35; font-style: italic; color: var(--accent);
+    border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
+    padding: 18px 8px; margin: 22px 0; text-align: center;
+  }
+  .pull cite {
+    display: block; font-style: normal;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); margin-top: 10px;
+  }
+  .sources { font-size: 14px; background: #f3efe5; padding: 18px 22px; margin-top: 30px; border-top: 3px solid var(--ink); }
+  .sources ul { padding-left: 18px; }
+  .sources a { color: var(--accent); }
+  .sources li { margin-bottom: 4px; }
+  footer.report {
+    margin-top: 50px; padding-top: 18px; border-top: 1px solid var(--rule);
+    font-size: 13px; color: var(--muted);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  /* Person tooltips and footnote refs */
+  a.person {
+    color: inherit; text-decoration: none;
+    border-bottom: 1px dotted var(--accent);
+    cursor: help; position: relative;
+  }
+  a.person:hover, a.person:focus { color: var(--accent); background: rgba(107, 52, 16, 0.06); }
+  a.person .tip {
+    position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%);
+    background: #1f1f1f; color: #f6f1e3; padding: 12px 14px;
+    font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-style: normal; font-weight: 400; width: 290px;
+    border-radius: 4px; z-index: 100; line-height: 1.45;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.22); text-align: left;
+    white-space: normal; pointer-events: none; opacity: 0; visibility: hidden;
+    transition: opacity 0.12s ease, visibility 0.12s ease;
+  }
+  a.person:hover .tip, a.person:focus .tip { opacity: 1; visibility: visible; pointer-events: auto; }
+  a.person .tip::after {
+    content: ""; position: absolute; top: 100%; left: 50%; margin-left: -7px;
+    border: 7px solid transparent; border-top-color: #1f1f1f;
+  }
+  a.person .tip strong { color: #fff; display: block; margin-bottom: 5px; font-size: 14px; font-weight: 600; }
+  a.person .tip a { color: #ffd07a; text-decoration: underline; }
+  a.person .tip em { color: #c9c2af; font-style: italic; }
+  /* Footnotes section */
+  .footnotes {
+    margin-top: 50px; padding-top: 20px; border-top: 2px solid var(--ink); font-size: 14px;
+  }
+  .footnotes h2 { margin-top: 6px; border-bottom: none; }
+  .footnotes ol { list-style: decimal; padding-left: 28px; }
+  .footnotes li { margin-bottom: 14px; scroll-margin-top: 24px; line-height: 1.5; }
+  .footnotes li:target { background: #fff5cc; padding: 6px 8px; margin-left: -8px; border-radius: 3px; }
+  .footnotes .role { color: var(--muted); font-style: italic; }
+  .footnotes .more {
+    margin-left: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+  }
+  /* Floating TOC sidebar */
+  nav.toc {
+    position: fixed; top: 56px; left: 24px; width: 210px;
+    max-height: calc(100vh - 100px); overflow-y: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12.5px; line-height: 1.4; z-index: 50;
+    padding: 16px 16px 14px;
+    background: rgba(251, 250, 246, 0.92);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--rule); border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  nav.toc .toc-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--muted); font-weight: 700; margin: 0 0 8px 0;
+    padding-bottom: 6px; border-bottom: 1px solid var(--rule);
+  }
+  nav.toc ol { list-style: none; padding: 0; margin: 0 0 10px 0; counter-reset: toc; }
+  nav.toc li { margin: 0; padding: 0; counter-increment: toc; }
+  nav.toc a {
+    display: block; padding: 4px 6px 4px 20px; color: var(--muted);
+    text-decoration: none; border-left: 2px solid transparent;
+    margin-left: -2px; position: relative;
+    transition: color 0.12s, border-color 0.12s, background 0.12s;
+  }
+  nav.toc a::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute; left: 0; top: 4px; color: var(--rule);
+    font-size: 10px; font-variant-numeric: tabular-nums;
+  }
+  nav.toc a:hover { color: var(--accent); background: rgba(107, 52, 16, 0.05); }
+  nav.toc a.active { color: var(--ink); font-weight: 600; border-left-color: var(--accent); }
+  nav.toc a.active::before { color: var(--accent); }
+  nav.toc .toc-top {
+    display: block; margin-top: 10px; padding-top: 10px;
+    border-top: 1px solid var(--rule); color: var(--accent);
+    text-decoration: none; font-size: 11.5px; font-weight: 600;
+  }
+  nav.toc .toc-top:hover { text-decoration: underline; }
+  .toc-fab {
+    display: none; position: fixed; bottom: 20px; right: 20px;
+    width: 44px; height: 44px; border-radius: 22px;
+    background: var(--accent); color: #fff;
+    text-align: center; line-height: 44px;
+    text-decoration: none; font-size: 20px; z-index: 60;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+    opacity: 0; transition: opacity 0.2s; pointer-events: none;
+  }
+  .toc-fab.show { opacity: 1; pointer-events: auto; }
+  @media (max-width: 1180px) {
+    nav.toc { display: none; }
+    .toc-fab { display: block; }
+  }
+  h2[id], h3[id], li[id] { scroll-margin-top: 18px; }
+  #top-anchor { display: block; height: 1px; }
+  /* Print button */
+  .print-row { display: flex; justify-content: flex-end; margin-bottom: 14px; }
+  .print-btn {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--accent); background: transparent;
+    border: 1px solid var(--accent);
+    padding: 7px 14px; border-radius: 3px; cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .print-btn:hover { background: var(--accent); color: #fff; }
+  .print-btn:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media print {
+    body { background: #fff; color: #000; font-size: 11pt; line-height: 1.45; }
+    .wrap { padding: 0; max-width: 100%; }
+    .gap, blockquote, .stat { background: #fff; }
+    nav.toc, .toc-fab, .print-row { display: none !important; }
+    a.person { border-bottom: none; color: inherit; }
+    a.person .tip { display: none !important; }
+    h1, h2, h3 { page-break-after: avoid; }
+    blockquote, table.timeline, .stat-grid { page-break-inside: avoid; }
+    @page { margin: 0.75in; }
+    a { color: #000; text-decoration: none; }
+    a[href^="http"]::after {
+      content: " <" attr(href) ">"; font-size: 8pt; color: #555; word-break: break-all;
+    }
+    nav.toc a::after, .footnotes a::after, a.person::after,
+    .toc-top::after, blockquote a::after { content: "" !important; }
+  }
+  @media (max-width: 540px) {
+    a.person .tip { width: 230px; font-size: 12px; }
+  }
+  /* Highlight added sections in the TOC */
+  nav.toc li.toc-new a::after {
+    content: "NEW";
+    display: inline-block;
+    margin-left: 8px;
+    padding: 1px 5px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    border-radius: 2px;
+    font-weight: 700;
+    vertical-align: middle;
+  }
+  nav.toc li.toc-new a {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  /* "Added in this revision" inline badge for the section header */
+  .added-badge {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 2px 8px;
+    background: var(--accent);
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+    font-weight: 700;
+    vertical-align: middle;
+  }
+  /* Inline numbered fact footnotes */
+  sup.factref {
+    line-height: 0;
+    vertical-align: super;
+    font-size: 78%;
+    margin: 0 1px;
+  }
+  sup.factref a.fact {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    padding: 0 3px;
+    border-radius: 2px;
+    position: relative;
+  }
+  sup.factref a.fact:hover, sup.factref a.fact:focus {
+    background: rgba(107, 52, 16, 0.12);
+  }
+  sup.factref a.fact::before { content: "["; }
+  sup.factref a.fact::after { content: "]"; }
+  sup.factref a.fact .tip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f1f1f; color: #f6f1e3;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-style: normal; font-weight: 400;
+    width: 320px;
+    border-radius: 4px; z-index: 100;
+    line-height: 1.45;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+    text-align: left; white-space: normal;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.12s, visibility 0.12s;
+    pointer-events: none;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  sup.factref a.fact:hover .tip,
+  sup.factref a.fact:focus .tip {
+    opacity: 1; visibility: visible; pointer-events: auto;
+  }
+  sup.factref a.fact .tip::after {
+    content: "";
+    position: absolute;
+    top: 100%; left: 50%;
+    margin-left: -7px;
+    border: 7px solid transparent;
+    border-top-color: #1f1f1f;
+  }
+  sup.factref a.fact .tip strong {
+    color: #fff;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  sup.factref a.fact .tip a {
+    color: #ffd07a;
+    text-decoration: underline;
+  }
+  sup.factref a.fact .tip em {
+    color: #c9c2af;
+    font-style: italic;
+  }
+  /* Citations section */
+  .citations {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 2px solid var(--ink);
+    font-size: 13px;
+  }
+  .citations h2 { margin-top: 6px; border-bottom: none; }
+  .citations ol {
+    padding-left: 32px;
+    margin-bottom: 16px;
+    counter-reset: cite;
+  }
+  .citations li {
+    margin-bottom: 9px;
+    scroll-margin-top: 24px;
+    line-height: 1.5;
+    padding-left: 4px;
+  }
+  .citations li:target {
+    background: #fff5cc;
+    padding: 6px 8px;
+    margin-left: -8px;
+    border-radius: 3px;
+  }
+  .citations li a { color: var(--accent); }
+  .citations .src-name { font-weight: 600; }
+  .citations .src-note { color: var(--muted); font-style: italic; }
+  @media print {
+    sup.factref a.fact { color: #000; background: none; }
+    sup.factref a.fact .tip { display: none !important; }
+    sup.factref a.fact::before { content: "["; }
+    sup.factref a.fact::after { content: "]"; }
+    .citations { page-break-before: avoid; }
+  }
+</style>
+</head>
+<body>
+<a id="top-anchor"></a>
+
+<nav class="toc" aria-label="Table of contents">
+  <p class="toc-label">Contents</p>
+  <ol>
+    <li><a href="#sec-question">The question, made precise</a></li>
+    <li><a href="#sec-data">The data we have (and don't)</a></li>
+    <li><a href="#sec-empirical">The empirical answer</a></li>
+    <li class="toc-new"><a href="#sec-calendar">Calendar &amp; instructional time</a></li>
+    <li class="toc-new"><a href="#sec-protections">Teacher protections</a></li>
+    <li><a href="#sec-states">The state-level picture</a></li>
+    <li><a href="#sec-federal">The federal arc: RTTT to ESSA</a></li>
+    <li><a href="#sec-cases">Four districts, four endings</a></li>
+    <li><a href="#sec-law">Administrative &amp; case law</a></li>
+    <li><a href="#sec-unions">Where the unions stand</a></li>
+    <li class="toc-new"><a href="#sec-partisan">Red states, blue states</a></li>
+    <li><a href="#sec-research">What the research consensus says</a></li>
+    <li><a href="#sec-state">Where things stand now</a></li>
+    <li><a href="#footnotes">People mentioned</a></li>
+    <li><a href="#citations">Citations</a></li>
+  </ol>
+  <a class="toc-top" href="#top-anchor">&uarr; Back to top</a>
+</nav>
+<a class="toc-fab" href="#top-anchor" aria-label="Back to top" title="Back to top">&uarr;</a>
+
+<div class="wrap">
+
+<div class="print-row">
+  <button class="print-btn" onclick="window.print()" type="button" aria-label="Print this brief">Print this brief</button>
+</div>
+
+<header class="report">
+  <div class="kicker">MI Mythos &middot; Education Policy Brief</div>
+  <h1>Teacher contracts and student outcomes</h1>
+  <p class="deck">What share of America's teacher collective bargaining agreements actually tie pay or evaluation to student performance &mdash; and what's left of the experiment that produced them.</p>
+  <div class="meta">
+    Scope: U.S. K&ndash;12 public-school teacher CBAs &middot; Empirical base: NCTQ Teacher Contract Database (147 districts + 2 CMOs) &middot; State policy base: NCTQ State of the States 2022 (50 states + DC)<br>
+    Compiled May 5, 2026
+  </div>
+</header>
+
+<h2 id="sec-question">The question, made precise</h2>
+
+<p>"How many teacher contracts are tied to student outcomes?" is several different questions in a trench coat. The narrowest reading &mdash; "are pay or evaluation explicitly indexed to student-growth scores?" &mdash; produces one set of numbers. The broader reading &mdash; "do contract provisions <em>shape</em> student outcomes in measurable ways?" &mdash; produces a much bigger set, because contracts also dictate how much time teachers spend with students and which teachers end up in front of which students.</p>
+
+<p>The honest framing, then, is that CBAs influence outcomes through five distinct channels:</p>
+
+<ol>
+  <li><strong>Compensation tied to outcomes.</strong> Does the contract pay teachers more (bonuses, accelerated step increases, performance-based base salary) on the basis of evaluation results that themselves include student-growth measures?</li>
+  <li><strong>Evaluation tied to outcomes.</strong> Does the contract (or the state law it sits inside) require that student-growth measures be a component of the teacher's annual performance evaluation, regardless of whether that evaluation moves dollars?</li>
+  <li><strong>Job security tied to outcomes.</strong> Does student-growth performance affect tenure, layoff order, dismissal procedures, or the standard of cause &mdash; the rules that determine whether a teacher keeps the job?</li>
+  <li><strong>Instructional time.</strong> What does the contract say about the length of the teacher work day, the school day, the school year, the planning period, and the protected non-instructional time built into the calendar? More time with students raises outcomes; how time is allocated between teaching and planning shapes effectiveness.</li>
+  <li><strong>Job-security <em>protections</em>.</strong> Independent of any outcome metric: how does the contract decide which teachers get tenure, get laid off, get transferred, get assigned to which schools? Even when the rules don't reference test scores, they govern who stands in front of which students &mdash; which is itself an enormous lever on outcomes.</li>
+</ol>
+
+<p>The empirical answer is very different at each layer. About half of large-district contracts have something resembling (1)<sup class="factref"><a class="fact" href="#fact-3" data-fact="3">3</a></sup>. Three out of every four states have something resembling (2)<sup class="factref"><a class="fact" href="#fact-2" data-fact="2">2</a></sup>. Almost no contract anywhere ties (3) directly to outcome data &mdash; and where districts have tried, courts and state legislatures have walked it back<sup class="factref"><a class="fact" href="#fact-20" data-fact="20">20</a></sup>. Contracts (4) and (5) influence outcomes substantially without ever measuring them; that influence is the easiest part of the question to overlook and the hardest to undo.</p>
+
+<p class="pull">There is no comprehensive census of all 13,000 U.S. teacher CBAs. The best systematic data covers about 150 of the country's largest districts.<cite>NCTQ Teacher Contract Database, 2024</cite></p>
+
+<h2 id="sec-data">The data we have (and don't)</h2>
+
+<p>The most important caveat in this brief is the missing denominator. The United States has roughly <strong>13,000 K&ndash;12 public-school districts</strong><sup class="factref"><a class="fact" href="#fact-13" data-fact="13">13</a></sup>; the great majority operate under negotiated collective bargaining agreements where the state allows or requires bargaining. <strong>No agency systematically collects all of those contracts.</strong> The U.S. Department of Education does not. The U.S. Census of Governments tracks bargaining structure but not contract content. State labor boards house local CBAs but do not standardize fields across districts.</p>
+
+<p>What does exist is the <strong>NCTQ Teacher Contract Database</strong>, maintained by the <a class="person" href="#fn-peske" data-fn="peske">National Council on Teacher Quality</a>. It systematically codes the contracts and school-board policies of <strong>147 school districts and 2 charter management organizations</strong>: the 100 largest districts in the country, the largest district in each state, and the member districts of the Council of Great City Schools<sup class="factref"><a class="fact" href="#fact-1" data-fact="1">1</a></sup>. Together these districts educate a substantial share of U.S. public-school students &mdash; but they are large, urban-skewed, and not a probability sample of the universe.</p>
+
+<p>For state-level law, the same organization's <strong>State of the States</strong> series tracks teacher-evaluation policy in all 50 states plus DC<sup class="factref"><a class="fact" href="#fact-2" data-fact="2">2</a></sup>. Together, the two databases are the operative empirical foundation for any honest answer to this question.</p>
+
+<div class="gap">
+  <strong>What this brief cannot do.</strong> Provide a true national share &mdash; e.g., "X% of U.S. teacher CBAs tie compensation to student outcomes." That number does not exist as a measured quantity, and any source that supplies it is extrapolating from the NCTQ subsample (or from a single state's contracts) to the full universe. The numbers below are NCTQ's, which means: the largest 100 districts plus one per state. Treat them as a high-quality lower bound on what's happening in big districts and a poor proxy for what's happening in the small ones.
+</div>
+
+<h2 id="sec-empirical">The empirical answer</h2>
+
+<h3>Compensation tied to outcomes</h3>
+
+<p>Of the 147 districts in NCTQ's Teacher Contract Database<sup class="factref"><a class="fact" href="#fact-1" data-fact="1">1</a></sup>, <a class="person" href="#fn-peske" data-fn="peske">NCTQ</a> reports that <strong>roughly 48% &mdash; about 59 districts &mdash; offer some form of performance pay tied to a teacher's evaluation rating</strong><sup class="factref"><a class="fact" href="#fact-3" data-fact="3">3</a></sup>. That figure has trended upward modestly since 2018 (the earlier NCTQ count was 51 districts)<sup class="factref"><a class="fact" href="#fact-3" data-fact="3">3</a></sup>.</p>
+
+<div class="stat-grid">
+  <div class="stat">
+    <span class="num">~48%</span>
+    <span class="lbl">NCTQ-sample districts with some form of performance pay tied to evaluations<sup class="factref"><a class="fact" href="#fact-3" data-fact="3">3</a></sup></span>
+  </div>
+  <div class="stat">
+    <span class="num">~13%</span>
+    <span class="lbl">NCTQ-sample districts with bonuses tied <em>specifically</em> to evaluation ratings<sup class="factref"><a class="fact" href="#fact-3" data-fact="3">3</a></sup></span>
+  </div>
+  <div class="stat">
+    <span class="num">19</span>
+    <span class="lbl">Districts with rating-tied bonuses (8 universal; remainder conditional on school or subject)<sup class="factref"><a class="fact" href="#fact-3" data-fact="3">3</a></sup></span>
+  </div>
+  <div class="stat">
+    <span class="num">$100&ndash;$5,000</span>
+    <span class="lbl">Annual range for evaluation-tied universal bonuses<sup class="factref"><a class="fact" href="#fact-3" data-fact="3">3</a></sup></span>
+  </div>
+</div>
+
+<p>The structure matters as much as the headline rate. NCTQ's sub-finding<sup class="factref"><a class="fact" href="#fact-3" data-fact="3">3</a></sup>: only <strong>about 19 districts</strong> in the database (roughly 13%) tie bonuses directly to evaluation outcomes &mdash; and of those, only 8 make the bonus available to <em>all</em> teachers regardless of subject or school assignment. The remainder are limited to particular schools or subjects (typically hard-to-staff or shortage areas), where the bonus's purpose is closer to recruitment than to performance differentiation. The "performance pay" headline figure of 48% includes, for example, contracts that grant accelerated step movement to highly-rated teachers; it is a much weaker form of outcome-tied pay than a real merit bonus.</p>
+
+<h3>Evaluation tied to outcomes</h3>
+
+<p>The story at the evaluation-design layer is the higher-level political fight, and it has moved sharply over the last decade and a half. The arc:</p>
+
+<table class="timeline">
+  <tr><td class="date">2009</td><td><strong>15 states</strong> required objective student-achievement measures in teacher evaluations<sup class="factref"><a class="fact" href="#fact-11" data-fact="11">11</a></sup>.</td></tr>
+  <tr><td class="date">2015</td><td><strong>43 states</strong> required student-growth measures in teacher evaluations<sup class="factref"><a class="fact" href="#fact-12" data-fact="12">12</a></sup> &mdash; the high-water mark, driven by Race to the Top conditions<sup class="factref"><a class="fact" href="#fact-10" data-fact="10">10</a></sup> and ESEA / NCLB waivers.</td></tr>
+  <tr><td class="date">2017</td><td><strong>39 states</strong><sup class="factref"><a class="fact" href="#fact-12" data-fact="12">12</a></sup>; modest decline as ESSA's removal of the federal mandate worked through state legislatures<sup class="factref"><a class="fact" href="#fact-9" data-fact="9">9</a></sup>.</td></tr>
+  <tr><td class="date">2022</td><td><strong>34 states</strong> (NCTQ State of the States 2022)<sup class="factref"><a class="fact" href="#fact-2" data-fact="2">2</a></sup>. 10 states + DC have dropped the requirement entirely: Alaska, Arkansas, Kansas, Kentucky, Maine, New Mexico, North Carolina, Oklahoma, Wisconsin, Wyoming<sup class="factref"><a class="fact" href="#fact-2" data-fact="2">2</a></sup>.</td></tr>
+</table>
+
+<p>Where student growth is still required as a component, the weight varies dramatically: Louisiana law sets it at <strong>50% of the evaluation</strong> (35% via VAM and 15% via student-learning targets)<sup class="factref"><a class="fact" href="#fact-32" data-fact="32">32</a></sup>; Michigan caps it at <strong>20%</strong><sup class="factref"><a class="fact" href="#fact-33" data-fact="33">33</a></sup>; South Carolina uses VAM at district discretion; Florida has eliminated the state-mandated component but allows districts to keep one<sup class="factref"><a class="fact" href="#fact-27" data-fact="27">27</a></sup>. Texas's value-added system began rolling into the Teacher Incentive Allotment framework only in <strong>2025&ndash;26</strong><sup class="factref"><a class="fact" href="#fact-31" data-fact="31">31</a></sup>.</p>
+
+<h3>Job security tied to outcomes</h3>
+
+<p>Almost no major CBA in the country directly conditions tenure, layoff order, or dismissal on student-growth scores in a way that has survived legal challenge. The two big experiments in this layer &mdash; Houston's use of value-added scores as the basis for teacher termination<sup class="factref"><a class="fact" href="#fact-20" data-fact="20">20</a></sup>, and similar uses in New Mexico<sup class="factref"><a class="fact" href="#fact-30" data-fact="30">30</a></sup> &mdash; both ended in litigation that the districts effectively lost. (See <a href="#sec-law">Administrative &amp; case law</a>.)</p>
+
+<h2 id="sec-calendar">Calendar &amp; instructional time<span class="added-badge">Added</span></h2>
+
+<p>The most direct way a teacher contract influences student outcomes is the simplest: by deciding how many hours per day, and how many days per year, students and teachers are in the same room. Almost every American teacher CBA addresses three things in this domain &mdash; the length of the teacher work day, the length of the school year, and the protected non-instructional time within each day (the planning period, the prep period, lunch, restroom breaks). All three are negotiated; all three vary widely; and all three affect outcomes through the cleanest causal pathway in K&ndash;12 research.</p>
+
+<h3>The teacher work day</h3>
+
+<p>NCTQ's <em>Every Minute Counts: How Districts Govern Teacher Time</em><sup class="factref"><a class="fact" href="#fact-5" data-fact="5">5</a></sup> &mdash; the canonical empirical analysis of work-day provisions &mdash; finds that <strong>most teachers in the 145-district sample are contracted to work between 7.5 and 8 hours per day</strong><sup class="factref"><a class="fact" href="#fact-5" data-fact="5">5</a></sup>, broadly aligning with the 40-hour work week. But the variance underneath that average matters:</p>
+
+<ul>
+  <li><strong>Over 20% of districts in NCTQ's sample do not address the length of the work day at all in their CBA</strong><sup class="factref"><a class="fact" href="#fact-5" data-fact="5">5</a></sup> &mdash; meaning the operative norm is whatever the school principal sets, with no contractual protection in either direction.</li>
+  <li><strong>Six districts</strong> require significantly shorter work days of 6.5 hours or less<sup class="factref"><a class="fact" href="#fact-5" data-fact="5">5</a></sup>.</li>
+  <li>Stockton Unified School District (CA), an outlier, defines its teacher work day by instructional time alone &mdash; just over 4 hours per day for middle school and 4 hours per day for K&ndash;6 teachers, with everything else outside the contractual obligation<sup class="factref"><a class="fact" href="#fact-5" data-fact="5">5</a></sup>.</li>
+</ul>
+
+<h3>Planning time</h3>
+
+<p>The planning period is the single most heavily-negotiated calendar provision in U.S. teacher contracts. Public school teachers nationally average <strong>about 53 minutes of planning time per day</strong>, slightly above the median across NCTQ's sample<sup class="factref"><a class="fact" href="#fact-5" data-fact="5">5</a></sup>.</p>
+
+<div class="stat-grid">
+  <div class="stat">
+    <span class="num">~53 min</span>
+    <span class="lbl">National average teacher planning time per day<sup class="factref"><a class="fact" href="#fact-5" data-fact="5">5</a></sup></span>
+  </div>
+  <div class="stat">
+    <span class="num">~1/3</span>
+    <span class="lbl">NCTQ-sample districts with ~4 hours of planning per week (one period/day)<sup class="factref"><a class="fact" href="#fact-5" data-fact="5">5</a></sup></span>
+  </div>
+  <div class="stat">
+    <span class="num">50 min/day</span>
+    <span class="lbl">Manatee County (FL) elementary &mdash; plus 3h45m extra weekly<sup class="factref"><a class="fact" href="#fact-5" data-fact="5">5</a></sup></span>
+  </div>
+  <div class="stat">
+    <span class="num">50 min/week</span>
+    <span class="lbl">San Bernardino City USD (CA) elementary planning time<sup class="factref"><a class="fact" href="#fact-5" data-fact="5">5</a></sup></span>
+  </div>
+</div>
+
+<p class="cite">Source: NCTQ, <em>Every Minute Counts: How Districts Govern Teacher Time</em>.</p>
+
+<p>The 30:1 ratio between Manatee County's elementary planning time and San Bernardino's is contractual, not budgetary &mdash; both are large urban districts &mdash; and translates directly into instructional time the kids do or do not receive. A district that bargains four hours of weekly planning instead of one shifts roughly three hours of teacher attention per week from in-front-of-students into preparation, which the literature suggests is worth doing up to a point but past which the marginal return of additional planning falls below the marginal return of additional contact.</p>
+
+<h3>The school year</h3>
+
+<p>The state-mandated minimum number of school days is most commonly <strong>180 days</strong><sup class="factref"><a class="fact" href="#fact-1" data-fact="1">1</a></sup>, but the contractual school year for teachers is usually longer than the student year by anywhere from a handful to two-plus weeks of professional-development and pre-service days. The NCTQ database tracks both<sup class="factref"><a class="fact" href="#fact-1" data-fact="1">1</a></sup>. The bargained school year is rarely shorter than the state minimum, but it is also rarely much longer &mdash; districts that have attempted to extend the year have generally had to bargain compensation increases proportional to the additional days.</p>
+
+<p>Where state laws allow, contracts also typically restrict the district's ability to <em>add</em> days mid-year (e.g., for missed snow days or pandemic make-up) without negotiating compensation. This is why the COVID-era hybrid and remote schedules required reopening of contracts in many districts.</p>
+
+<h3>Why this matters for outcomes</h3>
+
+<blockquote>
+  <p>About <strong>25 percent of the variation in test outcomes between countries</strong> in reading and math could be attributed to how much time students spend learning.</p>
+  <span class="cite">&mdash; OECD, 2011, cited in NCTQ <em>Every Minute Counts</em><sup class="factref"><a class="fact" href="#fact-28" data-fact="28">28</a></sup></span>
+</blockquote>
+
+<p>The instructional-time channel is the strongest causal pathway between contract content and student outcomes that the research literature has identified. Cross-country variation in PISA scores tracks instructional time more reliably than any other observable system feature. Within the U.S., extended-day and extended-year experiments (charter schools, KIPP-style models, summer programs) have generally produced positive achievement effects, with the size of the effect roughly proportional to the time added.</p>
+
+<p>This is why the planning-period and work-day provisions in a CBA are an outcome-relevant question even though no contract anywhere indexes them to test scores. The contractual decision to allocate 53 minutes per day to planning instead of 30 or 90 is, in expectation, an outcome decision &mdash; just one made through bargaining rather than measurement.</p>
+
+<h2 id="sec-protections">Teacher protections that shape who teaches whom<span class="added-badge">Added</span></h2>
+
+<p>The largest and least-discussed influence of CBAs on outcomes runs through what economists call "the workforce-allocation problem": even setting aside compensation and evaluation, the contract decides which teacher stands in front of which student. Five contractual provisions do most of that work.</p>
+
+<h3>Tenure procedures</h3>
+
+<p>The tenure decision &mdash; the moment at which a probationary teacher acquires "just cause" protection against dismissal &mdash; is the single most consequential personnel decision in U.S. K&ndash;12 employment. Contracts and state laws set the timing and the standard:</p>
+
+<ul>
+  <li><strong>28 states</strong> set a 3-year probationary period before tenure<sup class="factref"><a class="fact" href="#fact-6" data-fact="6">6</a></sup>.</li>
+  <li><strong>4 states</strong> (California, Mississippi, South Carolina, Vermont) have only a 2-year probation<sup class="factref"><a class="fact" href="#fact-6" data-fact="6">6</a></sup>.</li>
+  <li><strong>19 states</strong> require 4 or more years<sup class="factref"><a class="fact" href="#fact-6" data-fact="6">6</a></sup>.</li>
+  <li><strong>4 states</strong> (Florida, Kansas, North Carolina, Wisconsin) have <em>functionally eliminated tenure</em> entirely &mdash; teachers serve under recurring annual or multi-year contracts<sup class="factref"><a class="fact" href="#fact-6" data-fact="6">6</a></sup>.</li>
+  <li><strong>The District of Columbia and North Dakota</strong> have no statewide tenure policy; each district sets its own rules<sup class="factref"><a class="fact" href="#fact-6" data-fact="6">6</a></sup>.</li>
+</ul>
+
+<p>A more demanding test: of the 45 states with tenure policies, <strong>only 22 have any explicit performance requirement</strong> a teacher must meet to earn tenure or non-probationary status<sup class="factref"><a class="fact" href="#fact-6" data-fact="6">6</a></sup>. In the other 23 states, tenure is effectively automatic at the end of the probationary period absent affirmative dismissal action by the district. Thirteen states allow the probationary period to be <em>extended</em> by 6 months to 2 years if a principal is uncertain &mdash; a softer alternative to denial<sup class="factref"><a class="fact" href="#fact-6" data-fact="6">6</a></sup>.</p>
+
+<p>Tenure protections do not reference student outcomes anywhere on the front of the contract. But by setting a high procedural bar for dismissing veteran teachers, they govern which teachers stay in the classroom long-term and which leave during their early-career years.</p>
+
+<h3>Layoff order: the LIFO question</h3>
+
+<p>When a district reduces force, who goes first? In most American CBAs, the answer is <strong>last-in, first-out (LIFO)</strong> &mdash; reverse seniority. The data are stark, and they break by who is required to bargain layoff procedures:</p>
+
+<table class="timeline">
+  <tr><td class="date">~80%</td><td>Of districts <em>required</em> by state law to negotiate layoff order use seniority as the <em>preponderant or sole</em> criterion<sup class="factref"><a class="fact" href="#fact-7" data-fact="7">7</a></sup>.</td></tr>
+  <tr><td class="date">~34%</td><td>Of districts that <em>choose</em> to bargain layoff procedures (state-permissive but not mandated) use seniority<sup class="factref"><a class="fact" href="#fact-7" data-fact="7">7</a></sup>.</td></tr>
+  <tr><td class="date">~13%</td><td>Of districts in states where bargaining layoff procedures is <em>prohibited</em> use seniority<sup class="factref"><a class="fact" href="#fact-7" data-fact="7">7</a></sup>.</td></tr>
+  <tr><td class="date">94%</td><td>Of districts where bargaining is permitted but not mandated, opt to bargain layoff order anyway<sup class="factref"><a class="fact" href="#fact-7" data-fact="7">7</a></sup>.</td></tr>
+  <tr><td class="date">20</td><td>States have enacted laws since 2010 to <em>restrict</em> the use of seniority as the main layoff criterion<sup class="factref"><a class="fact" href="#fact-16" data-fact="16">16</a></sup>.</td></tr>
+</table>
+
+<p class="cite">Source: NCTQ Teacher Contract Database analysis of layoff procedures.</p>
+
+<p>The most cited empirical work on LIFO is by labor economist <a class="person" href="#fn-goldhaber" data-fn="goldhaber">Dan Goldhaber</a> and colleagues, who have shown that:</p>
+
+<blockquote>
+  <p>Using a LIFO-layoff process rather than a performance-based system requires districts to lay off substantially more, and higher-quality, teachers &mdash; on the order of <strong>20 to 26 percent of a standard deviation in student achievement</strong> &mdash; to reach equivalent budget-savings targets.</p>
+  <span class="cite">&mdash; Goldhaber et al., synthesis of LIFO research<sup class="factref"><a class="fact" href="#fact-16" data-fact="16">16</a></sup></span>
+</blockquote>
+
+<p>The mechanism is straightforward: junior teachers are paid less than senior ones, so cutting by seniority sheds the cheapest people on the roster &mdash; meaning more bodies must be cut to reach the same dollar target. Effectiveness research has found that, on average, junior teachers are not less effective than senior teachers in ways that justify cutting them first, particularly because the early-career years are when teacher quality variance is highest. The result is that LIFO predictably falls hardest on schools serving low-income and minority students &mdash; because high-poverty schools tend to have the youngest teachers.</p>
+
+<h3>Mutual consent vs. forced placement</h3>
+
+<p>When a teacher is excessed from one school (the position is eliminated, the program is closed, the teacher's certification no longer matches the assignment), where does that teacher go? Two contractual regimes answer differently:</p>
+
+<ul>
+  <li><strong>Forced placement (the older default).</strong> The central office assigns the excessed teacher to a vacancy at another school. The receiving principal has no veto. The receiving school may not have wanted that teacher; the teacher may not be a good fit for that school's program. Both sides absorb the mismatch.</li>
+  <li><strong>Mutual consent.</strong> A transfer requires the agreement of both the teacher and the receiving principal. If no principal wants to hire the teacher within a defined window, the teacher does not get placed &mdash; and the district must either find another role or stop paying.</li>
+</ul>
+
+<p>Boston, New York, Chicago, and Newark have all moved partially or fully to mutual consent in the last 15 years<sup class="factref"><a class="fact" href="#fact-8" data-fact="8">8</a></sup>. The Boston experience is the cleanest natural experiment: <a class="person" href="#fn-kraft" data-fn="kraft">Matthew Kraft</a> and colleagues studied the BPS hiring reforms across 84 traditional schools and found:</p>
+
+<blockquote>
+  <p>The reforms moved up the median hire date by more than two months, reduced late hiring, increased new-hire diversity and retention, and improved student achievement by <strong>0.09σ in math and 0.07σ in ELA</strong> &mdash; effect sizes that are larger than the average across 72 school-based experimental interventions and larger than 70% of effect sizes from 181 large-scale randomized control trials of education interventions.</p>
+  <span class="cite">&mdash; Kraft et al., on Boston Public Schools mutual-consent hiring reform<sup class="factref"><a class="fact" href="#fact-17" data-fact="17">17</a></sup></span>
+</blockquote>
+
+<p>Schools also hired approximately <strong>110 more Black and Hispanic teachers</strong> in the four years after the reforms than they would have under the prior forced-placement regime<sup class="factref"><a class="fact" href="#fact-17" data-fact="17">17</a></sup> &mdash; a finding that has shifted the equity politics of mutual consent in particular.</p>
+
+<h3>The "rubber room" / Absent Teacher Reserve</h3>
+
+<p>When a district adopts mutual consent, but the teacher's CBA still guarantees full salary even when no principal will hire them, the financial pressure has to go somewhere. The most prominent example is New York City's <strong>Absent Teacher Reserve (ATR)</strong> &mdash; teachers who have been excessed but remain on payroll, often rotating between schools as long-term substitutes:</p>
+
+<div class="stat-grid">
+  <div class="stat">
+    <span class="num">$136M</span>
+    <span class="lbl">NYC ATR cost in 2017&ndash;18<sup class="factref"><a class="fact" href="#fact-14" data-fact="14">14</a></sup></span>
+  </div>
+  <div class="stat">
+    <span class="num">12%</span>
+    <span class="lbl">ATR teachers at the lowest effectiveness rating (vs. 1% of all NYC teachers)<sup class="factref"><a class="fact" href="#fact-14" data-fact="14">14</a></sup></span>
+  </div>
+  <div class="stat">
+    <span class="num">$98K</span>
+    <span class="lbl">Average ATR teacher salary (vs. $84K for all NYC teachers; ATR teachers more senior)<sup class="factref"><a class="fact" href="#fact-14" data-fact="14">14</a></sup></span>
+  </div>
+  <div class="stat">
+    <span class="num">~18 yrs</span>
+    <span class="lbl">Average ATR teacher tenure (vs. ~10 yrs for all NYC teachers)<sup class="factref"><a class="fact" href="#fact-14" data-fact="14">14</a></sup></span>
+  </div>
+</div>
+
+<p class="cite">Sources: Citizens Budget Commission; NYC Comptroller; Education Trust&ndash;New York.</p>
+
+<p>And the equity wrinkle: <strong>ATR teachers permanently placed into classrooms have been disproportionately assigned to schools serving Black students, low-income students, and schools with significant academic needs.</strong><sup class="factref"><a class="fact" href="#fact-15" data-fact="15">15</a></sup> The ATR is the visible artifact of a contract that locks in salary obligation without locking in placement consent.</p>
+
+<h3>Dismissal procedures</h3>
+
+<p>The fifth layer is the standard for dismissing tenured teachers for cause. CBAs and state law together specify what counts as cause, what process the district must follow, what evidence is admissible, and what timeline must elapse before a final dismissal decision. The procedures themselves are not outcome-related, but their stringency affects how often districts actually dismiss low-performing teachers &mdash; which means it affects which teachers remain in classrooms long-term.</p>
+
+<p>The empirical record is that formal dismissal of tenured teachers is rare in absolute terms in most districts. Most underperformance is addressed through informal counseling-out (the teacher leaves voluntarily after the principal makes the message clear), unsatisfactory-performance-rating processes, or buyouts. The contract architecture shapes which of those paths is available and how expensive each one is.</p>
+
+<h2 id="sec-states">The state-level picture: a regulated retreat</h2>
+
+<p>The story between the 2015 peak and the 2022 trough is, mostly, ESSA. The <strong>Every Student Succeeds Act</strong> (signed December 10, 2015)<sup class="factref"><a class="fact" href="#fact-9" data-fact="9">9</a></sup> reauthorized federal K&ndash;12 education law and removed the federal mandate that states tie teacher evaluations to student-achievement data &mdash; a condition that had been baked into the NCLB waivers granted by <a class="person" href="#fn-duncan" data-fn="duncan">Secretary Arne Duncan</a>'s Department of Education and that had reached as far as the Race to the Top funding formula in 2009&ndash;10<sup class="factref"><a class="fact" href="#fact-10" data-fact="10">10</a></sup>.</p>
+
+<p>What followed was not, in most places, an outright repeal. It was a quieter unwinding:</p>
+
+<ul>
+  <li><strong>Florida (HB 7069, 2017)</strong> eliminated the requirement to incorporate state-assessment data in evaluations, leaving the choice to districts<sup class="factref"><a class="fact" href="#fact-27" data-fact="27">27</a></sup>.</li>
+  <li><strong>Michigan (SB 122)</strong> delayed a planned increase in test-score weight, holding it at 25%<sup class="factref"><a class="fact" href="#fact-26" data-fact="26">26</a></sup>.</li>
+  <li><strong>Kentucky (2017)</strong> reversed a prior rule that had required student growth as a "significant factor" in evaluations<sup class="factref"><a class="fact" href="#fact-26" data-fact="26">26</a></sup>.</li>
+  <li><strong>Arkansas, Alaska, Connecticut, North Carolina</strong> passed similar policies through state boards of education or state legislation<sup class="factref"><a class="fact" href="#fact-26" data-fact="26">26</a></sup>.</li>
+  <li><strong>COVID-era pauses (2020&ndash;2021)</strong> caused at least seven additional states &mdash; Arizona, Delaware, Indiana, North Dakota, Oregon, South Carolina, West Virginia &mdash; to drop state assessments as a required or explicit measure of student growth<sup class="factref"><a class="fact" href="#fact-2" data-fact="2">2</a></sup>.</li>
+</ul>
+
+<p>The pattern is rarely "we no longer believe in measuring effectiveness." It is more often: lower the weight, broaden what counts as "growth" (so it is not solely standardized-test value-added), or leave the design choice to local districts. The result is a much more permissive regulatory floor than existed in 2015 &mdash; and a corresponding decline in the share of CBAs that need to make student-outcome ties pencil out under state law.</p>
+
+<h2 id="sec-federal">The federal arc: Race to the Top to ESSA</h2>
+
+<p>The reason the 2015 numbers were so high in the first place was federal money and federal pressure, not state preference. The arc:</p>
+
+<table class="timeline">
+  <tr><td class="date">November 2009</td><td>Race to the Top criteria published in the Federal Register. <strong>$4.35 billion</strong> in competitive state grants conditioned on commitments to evaluation reform, including using "data on student growth&hellip;as a significant factor" in differentiating teacher effectiveness<sup class="factref"><a class="fact" href="#fact-10" data-fact="10">10</a></sup>.</td></tr>
+  <tr><td class="date">2010</td><td>12 states awarded almost $4 billion in RTTT grants, payable over four years<sup class="factref"><a class="fact" href="#fact-11" data-fact="11">11</a></sup>.</td></tr>
+  <tr><td class="date">2011&ndash;2014</td><td>NCLB waivers issued by <a class="person" href="#fn-duncan" data-fn="duncan">Sec. Duncan</a>'s ED extended the same student-growth-in-evaluation conditions to states that did not win RTTT funds. By 2015, 43 states required student-growth measures in evaluation &mdash; up from 15 in 2009<sup class="factref"><a class="fact" href="#fact-12" data-fact="12">12</a></sup>.</td></tr>
+  <tr><td class="date">December 10, 2015</td><td>President Obama signs <strong>ESSA</strong>, repealing the waiver framework and explicitly removing the federal evaluation mandate. States are free to design their own systems. Federal money is no longer conditioned on student-growth-in-evaluation requirements<sup class="factref"><a class="fact" href="#fact-9" data-fact="9">9</a></sup>.</td></tr>
+  <tr><td class="date">2016&ndash;2020</td><td>State-by-state retreat. Most states keep some form of student growth in evaluation, but with reduced weights, narrower applicability, and no federal pressure to enforce<sup class="factref"><a class="fact" href="#fact-26" data-fact="26">26</a></sup>.</td></tr>
+  <tr><td class="date">2020&ndash;2021</td><td>COVID disruption. State testing programs suspended or curtailed; many states pause evaluation systems entirely; some quietly remove the student-growth component during the pause and never restore it<sup class="factref"><a class="fact" href="#fact-2" data-fact="2">2</a></sup>.</td></tr>
+  <tr><td class="date">2022 forward</td><td>34 states still require objective student-growth measures in evaluations<sup class="factref"><a class="fact" href="#fact-2" data-fact="2">2</a></sup>. Implementation is highly variable.</td></tr>
+</table>
+
+<h2 id="sec-cases">Four districts, four endings</h2>
+
+<p>Most of what we know about how outcome-tied teacher contracts perform in practice comes from a small number of high-profile experiments, each of which arrived at a different equilibrium.</p>
+
+<h3>Washington, DC &mdash; IMPACT and IMPACTplus (2009&ndash;present)</h3>
+
+<p>The country's most ambitious surviving outcome-tied evaluation system is <strong>IMPACT</strong>, launched under DC Public Schools Chancellor <a class="person" href="#fn-rhee" data-fn="rhee">Michelle Rhee</a> in 2009<sup class="factref"><a class="fact" href="#fact-22" data-fact="22">22</a></sup>. The companion compensation overlay, <strong>IMPACTplus</strong>, pays a Highly Effective rating bonus and accelerates base-salary movement after multiple consecutive Highly Effective ratings. DCPS publishes the bonus structure: up to <strong>$25,000</strong> annually, and as much as <strong>$3.7 million</strong> in additional career earnings for sustained top performance<sup class="factref"><a class="fact" href="#fact-22" data-fact="22">22</a></sup>.</p>
+
+<p>IMPACT survived the change in administrations (it predates the federal RTTT push) and has remained operative through 2024&ndash;25 and 2025&ndash;26 with continuous refinements. The 2024&ndash;25 IMPACT Guidebook is published openly<sup class="factref"><a class="fact" href="#fact-22" data-fact="22">22</a></sup>. DCPS commissioned a multi-year review of the system starting in spring 2020 that produced calibration changes but did not retract the basic outcome-tied design. DC is the closest thing the country has to a stable, large-scale, outcome-tied teacher contract.</p>
+
+<h3>Denver &mdash; ProComp (1999&ndash;present, defanged)</h3>
+
+<p>Denver Public Schools launched the country's longest-running pay-for-performance pilot in 1999 and replaced it with the <strong>Professional Compensation System for Teachers (ProComp)</strong> in 2005. ProComp eliminated the single salary schedule and substituted a base salary plus four performance components &mdash; teacher knowledge and skills, professional evaluation, market incentives, and student growth<sup class="factref"><a class="fact" href="#fact-23" data-fact="23">23</a></sup>.</p>
+
+<p>The empirical record is not encouraging for the model's design ambitions. A Harvard Strategic Data Project study found that <strong>"ProComp does not establish a differentiated compensation system as it originally set out to do. Salaries under ProComp largely mirror salaries from traditional compensation systems."</strong> The average teacher earned $456 more under ProComp than they would have on the traditional schedule &mdash; effectively a small across-the-board bump, not differentiation by performance<sup class="factref"><a class="fact" href="#fact-23" data-fact="23">23</a></sup>.</p>
+
+<p>The <strong>Denver Classroom Teachers Association</strong> has been pushing in recent contract cycles to "create a more traditional salary schedule that enables stability across the district"<sup class="factref"><a class="fact" href="#fact-23" data-fact="23">23</a></sup> &mdash; an explicit retreat from the ProComp design even as the formal architecture remains in place.</p>
+
+<h3>Houston &mdash; ASPIRE and the VAM lawsuit (2007&ndash;2017, ended)</h3>
+
+<p>Houston Independent School District ran the country's most aggressive outcome-tied teacher discipline regime through its <strong>ASPIRE</strong> program: teacher value-added scores (calculated by a proprietary third-party algorithm called <em>EVAAS</em>) were used to inform termination decisions. The Houston Federation of Teachers sued in 2014. In May 2017, the Southern District of Texas ruled that <strong>plaintiff-teachers had stated a viable Fourteenth Amendment due-process claim</strong> &mdash; principally because the third-party VAM algorithm was a black box, the district could not produce the calculations on demand, and therefore teachers had no way to verify the basis on which they were being fired<sup class="factref"><a class="fact" href="#fact-20" data-fact="20">20</a></sup>.</p>
+
+<p>HISD settled later that year, paid $237,000 in plaintiffs' fees, and <strong>agreed to stop using value-added scores as a basis for termination</strong><sup class="factref"><a class="fact" href="#fact-20" data-fact="20">20</a></sup>. The settlement is the most consequential procedural-due-process precedent in U.S. teacher-evaluation litigation: not a holding that VAM is invalid, but a holding that opaque third-party VAM cannot be the basis for a terminatable evaluation. (See <a href="#sec-law">Administrative &amp; case law</a> for the legal architecture.)</p>
+
+<h3>Long Island, NY &mdash; <em>Lederman v. King</em> (2016)</h3>
+
+<p>One single-teacher case has done more than any other to shape the state-level retreat: <strong><em>Lederman v. King</em></strong>. <a class="person" href="#fn-lederman" data-fn="lederman">Sheri Lederman</a>, a veteran fourth-grade teacher in Great Neck on Long Island whose students consistently scored well above state standards, received a state-mandated growth-component score of <strong>1 out of 20</strong> in 2013&ndash;14 &mdash; "ineffective." Her score the previous year had been 14 of 20 ("effective"); the year after, with no curricular change, it returned to "effective."<sup class="factref"><a class="fact" href="#fact-21" data-fact="21">21</a></sup></p>
+
+<p>Lederman challenged the rating. In 2016 a New York Supreme Court judge held that her growth rating was <strong>"indisputably arbitrary and capricious"</strong> &mdash; specifically because the state's "bell curve" model required predetermined percentages of teachers in each rating category every year, regardless of underlying performance, and because the ceiling effect on Lederman's already-high-performing students made measurable improvement statistically improbable<sup class="factref"><a class="fact" href="#fact-21" data-fact="21">21</a></sup>. New York's APPR system has been substantially overhauled since.</p>
+
+<h2 id="sec-law">Administrative and case law</h2>
+
+<p>The legal architecture under teacher-evaluation contracts has three layers, each of which has been actively litigated.</p>
+
+<h3>Federal level</h3>
+
+<p>The <strong>Every Student Succeeds Act</strong> (Pub. L. 114&ndash;95, signed December 10, 2015) replaced the No Child Left Behind framework and explicitly returned authority over teacher-evaluation design to states. ESSA retained federal reporting requirements on teacher quality and equitable access but dropped the conditionality that had driven the 2009&ndash;2015 expansion. Federal regulations implementing ESSA's teacher provisions sit in <strong>34 CFR Part 200</strong>, but the operative reality is that the federal floor on student-outcome-tied evaluation has been removed.</p>
+
+<h3>State administrative level</h3>
+
+<p>Where student-growth measures remain in evaluation systems, they live in state administrative codes promulgated by state education departments. Examples:</p>
+
+<ul>
+  <li>Louisiana: Bulletin 130 of the Louisiana Administrative Code governs teacher evaluation; sets the 50%-professional-practice / 50%-student-growth division.</li>
+  <li>Michigan: MCL 380.1249 (the state's educator-evaluation statute), implementing rules at the Michigan Department of Education.</li>
+  <li>Texas: 19 Texas Administrative Code Chapter 150 (Teacher Appraisal); Teacher Incentive Allotment statutory authority at Texas Education Code &sect; 21.5512; Texas Value-Added Model integration begins 2025&ndash;26.</li>
+  <li>Florida: Section 1012.34, Florida Statutes (post-HB 7069), which now leaves student-growth methodology to local districts.</li>
+</ul>
+
+<p>State CBAs operate inside this administrative floor. A district cannot bargain a contract that violates state-mandated evaluation rules, but where the state floor is permissive (Florida, post-HB 7069) the CBA is the operative source of law. The result: outcome-tied evaluation provisions are now far more often <em>contractual</em> than they are <em>statutory</em>.</p>
+
+<h3>Case law</h3>
+
+<table class="timeline">
+  <tr><td class="date">May 4, 2017</td><td><strong><em>Houston Federation of Teachers v. Houston Independent School District</em></strong>, 251 F. Supp. 3d 1168 (S.D. Tex. 2017). Federal district court holds plaintiffs stated a Fourteenth Amendment procedural-due-process claim against opaque third-party VAM-based termination. HISD settles October 2017; agrees to stop using VAM scores for termination; pays $237,000 in plaintiffs' fees<sup class="factref"><a class="fact" href="#fact-20" data-fact="20">20</a></sup>.</td></tr>
+  <tr><td class="date">May 2016</td><td><strong>Matter of <em>Lederman v. King</em></strong>, 2016 NY Slip Op 26416 (Sup. Ct. Albany Cty.). NY Supreme Court holds that the growth-component rating produced by the state's bell-curve VAM was "indisputably arbitrary and capricious." Catalyst for New York's APPR overhaul<sup class="factref"><a class="fact" href="#fact-21" data-fact="21">21</a></sup>.</td></tr>
+  <tr><td class="date">2018&ndash;2019</td><td><strong>New Mexico teacher-evaluation lawsuit</strong> (American Federation of Teachers New Mexico). Settlement; state ends VAM-based evaluation, pivots to a multiple-measures system without test-score weighting<sup class="factref"><a class="fact" href="#fact-30" data-fact="30">30</a></sup>.</td></tr>
+  <tr><td class="date">2014&ndash;2018</td><td>Multiple state-court challenges in Florida, New York, Tennessee. Most settled or dropped; the operative legal principle from <em>HFT v. HISD</em> &mdash; that evaluation algorithms must be auditable to support termination &mdash; has held<sup class="factref"><a class="fact" href="#fact-29" data-fact="29">29</a></sup>.</td></tr>
+</table>
+
+<p>The case-law pattern is narrow but consequential: courts have not held VAM-based evaluation to be substantively invalid. They have held that high-stakes uses (especially termination) require <em>procedural due process</em> &mdash; meaning the algorithm's outputs must be auditable, the data underlying them must be producible, and the standard of review must be intelligible to the affected teacher. Most school districts have read these cases as a deterrent against high-stakes outcome-tied job-security provisions, regardless of whether their own state mandates VAM.</p>
+
+<h2 id="sec-unions">Where the unions stand</h2>
+
+<p>The two national teachers' unions have meaningfully different postures, and the difference is reflected in local contract patterns.</p>
+
+<h3>NEA &mdash; opposed</h3>
+
+<p>The <strong>National Education Association</strong> (<a class="person" href="#fn-pringle" data-fn="pringle">President Becky Pringle</a> since 2020) has consistently opposed merit pay schemes and at its 2000 representative assembly amended its long-standing opposition to add a blanket rejection of "any other system of compensation based on an evaluation of an education employee's performance."<sup class="factref"><a class="fact" href="#fact-24" data-fact="24">24</a></sup> NEA officially permits bonuses for: (a) National Board for Professional Teaching Standards certification, (b) additional responsibilities like mentoring, and (c) hard-to-staff school assignments. It does not permit (in its policy resolutions) bonuses tied to evaluation ratings or student-growth scores<sup class="factref"><a class="fact" href="#fact-24" data-fact="24">24</a></sup>.</p>
+
+<h3>AFT &mdash; permissive</h3>
+
+<p>The <strong>American Federation of Teachers</strong> (<a class="person" href="#fn-weingarten" data-fn="weingarten">President Randi Weingarten</a> since 2008) takes a meaningfully more open position. AFT's policy framework explicitly recognizes that the single salary schedule has "severe drawbacks" and "does not allow teachers to be compensated like other professionals in our society."<sup class="factref"><a class="fact" href="#fact-25" data-fact="25">25</a></sup> AFT urges its locals to <em>explore</em> alternative compensation, including "financial incentives to teachers who acquire additional knowledge and skills."<sup class="factref"><a class="fact" href="#fact-25" data-fact="25">25</a></sup> That difference shows up in negotiated contracts: AFT-affiliate locals have been more willing to bargain performance-pay structures than NEA-affiliate locals, particularly in the post-2009 wave of city-district reforms.</p>
+
+<p>Nonetheless, AFT was the lead union plaintiff in <em>Houston Federation of Teachers v. HISD</em><sup class="factref"><a class="fact" href="#fact-20" data-fact="20">20</a></sup>. The union's distinction is not "outcome-tied compensation is bad" but "outcome-tied <em>termination</em> with a black-box algorithm is unconstitutional."</p>
+
+<h2 id="sec-partisan">Red states, blue states: the partisan map<span class="added-badge">Added</span></h2>
+
+<p>Underneath the federal-arc story sits a sharper sub-pattern: the moves that make CBAs more outcome-tied (eliminating tenure, weakening collective bargaining, mandating VAM-based evaluation, enacting merit pay) cluster heavily in <em>Republican-trifecta states</em>; the moves that make CBAs <em>less</em> outcome-tied or that protect contract bargaining strength cluster in <em>Democratic-trifecta states</em>. The picture isn't pure &mdash; some red states have retreated from outcome-tied evaluation, and some blue states (notably DC) host the most ambitious surviving outcome-tied compensation system in the country &mdash; but the partisan signal is real.</p>
+
+<h3>How states sort, as of April 2026</h3>
+
+<p>The starting point is the underlying political map. As of April 2026, U.S. state governments split into roughly three categories<sup class="factref"><a class="fact" href="#fact-34" data-fact="34">34</a></sup>:</p>
+
+<ul>
+  <li><strong>23 Republican trifectas</strong> (governor + both legislative chambers): the bulk of the South (FL, TX, GA, AL, MS, LA, SC, TN, AR, OK), most of the Mountain West (ID, WY, MT, UT), and the Plains (KS, NE, ND, SD, IA, MO, IN, OH, WV, AK, NH).</li>
+  <li><strong>16 Democratic trifectas</strong>: the Northeast (NY, NJ, MA, CT, RI, DE, MD), Mid-Atlantic plus DC, the West Coast (CA, OR, WA), Hawaii, Illinois, Colorado, New Mexico, Minnesota (lost trifecta in 2024 elections; included with reservations), and Virginia (gained trifecta 2024).</li>
+  <li><strong>11 divided governments</strong>: AZ, KY, MI, NV, NC, PA, VT, WI, plus a few others where the legislature and governor split. These are the "purple" or "ambiguous" category for present purposes.</li>
+</ul>
+
+<p>That partisan map maps imperfectly but recognizably onto the teacher-CBA terrain.</p>
+
+<h3>Collective bargaining itself</h3>
+
+<p>The starkest red/blue split is at the most fundamental layer: whether public-school teachers can bargain at all. Approximately <strong>46 states</strong> permit teacher collective bargaining<sup class="factref"><a class="fact" href="#fact-35" data-fact="35">35</a></sup>; the small set that prohibits or heavily restricts it is dominated by red Southern states. North Carolina and South Carolina expressly prohibit public-sector collective bargaining; Georgia and Texas restrict it to "meet and confer" arrangements that have no force of contract. Virginia repealed its prohibition in 2020 under a brief Democratic trifecta. Wisconsin's <strong>Act 10</strong> (2011, signed by Republican Gov. Scott Walker) didn't formally prohibit teacher CB but gutted it &mdash; teachers can bargain only over base-wage increases capped at inflation; dues check-off is banned; unions must recertify annually<sup class="factref"><a class="fact" href="#fact-36" data-fact="36">36</a></sup>. A Dane County circuit court struck down parts of Act 10 in December 2024 as a violation of the state constitution's equal-protection clause; the appeal is pending as of 2026<sup class="factref"><a class="fact" href="#fact-36" data-fact="36">36</a></sup>.</p>
+
+<p>None of these CB-restrictive moves were taken in a Democratic-trifecta state.</p>
+
+<h3>Tenure elimination is a red-state move</h3>
+
+<p>All four states that have functionally eliminated tenure for teachers acted under Republican control:</p>
+
+<table class="timeline">
+  <tr><td class="date">March 2011</td><td><strong>Florida SB 736</strong> (Gov. Rick Scott, R-trifecta). Teachers hired after July 1, 2011 receive only annual contracts; renewal contingent on satisfactory evaluation<sup class="factref"><a class="fact" href="#fact-37" data-fact="37">37</a></sup>.</td></tr>
+  <tr><td class="date">2013</td><td><strong>North Carolina</strong> repeals the Career Status Law (R-trifecta). Teachers placed on annual contracts; existing tenured teachers lose their tenured-status protections<sup class="factref"><a class="fact" href="#fact-37" data-fact="37">37</a></sup>.</td></tr>
+  <tr><td class="date">2014</td><td><strong>Kansas</strong> ends teacher due-process via a rider folded into a K&ndash;12 appropriations bill, without public hearings (R-trifecta)<sup class="factref"><a class="fact" href="#fact-37" data-fact="37">37</a></sup>.</td></tr>
+  <tr><td class="date">Earlier</td><td><strong>Wisconsin</strong>'s Act 10 (2011) functionally weakens tenure indirectly by removing the bargaining vehicle through which tenure was protected (R-trifecta at the time)<sup class="factref"><a class="fact" href="#fact-36" data-fact="36">36</a></sup>.</td></tr>
+</table>
+
+<p>In addition, the District of Columbia (Democratic) and North Dakota (Republican) have no statewide tenure policy &mdash; but for different reasons. DC opted out because its school governance was reorganized under mayoral control with the IMPACT-style reform agenda (a blue-jurisdiction outcome-tied model). North Dakota left it to local school boards in a low-density, low-conflict policy environment<sup class="factref"><a class="fact" href="#fact-6" data-fact="6">6</a></sup>.</p>
+
+<p>The 2024 Republican Party platform explicitly endorses ending teacher tenure nationwide; no comparable Democratic Party position exists at the national level.</p>
+
+<h3>Where strong outcome-tied evaluation lives</h3>
+
+<p>Among the surviving high-weight VAM systems, the partisan pattern is also clear:</p>
+
+<ul>
+  <li><strong>Louisiana (R-trifecta)</strong>: 50% of evaluation is student growth; 35% via VAM<sup class="factref"><a class="fact" href="#fact-32" data-fact="32">32</a></sup>.</li>
+  <li><strong>Texas (R-trifecta)</strong>: Texas VAM rolling into the Teacher Incentive Allotment in 2025&ndash;26<sup class="factref"><a class="fact" href="#fact-31" data-fact="31">31</a></sup>.</li>
+  <li><strong>Tennessee (R-trifecta)</strong>: TVAAS (Tennessee Value-Added Assessment System) is among the country's longest-running VAM systems and remains operative.</li>
+  <li><strong>Florida (R-trifecta)</strong>: had high VAM weights pre-2017; HB 7069 (R-trifecta legislation) eliminated the state-mandated component, leaving the choice to districts<sup class="factref"><a class="fact" href="#fact-27" data-fact="27">27</a></sup>.</li>
+  <li><strong>Michigan (purple, divided government as of 2024)</strong>: 25% test-score weight, holding pattern under SB 122<sup class="factref"><a class="fact" href="#fact-26" data-fact="26">26</a></sup>.</li>
+</ul>
+
+<p>The states that retreated from VAM-based evaluation since ESSA include both red retrenchment (AR, KS, OK, KY, AK, WY, NC) and blue concession (NM after the AFT lawsuit, DC). The mechanism is different: red retreats happen through legislative action under the "ESSA flexibility" framing; blue retreats happen through litigation pressure or quiet rule-change.</p>
+
+<h3>Where performance pay actually exists</h3>
+
+<p>The 67 teacher-pay bills introduced in 26 states in 2023, of which 11 became law in 9 states, sort by state with the same partisan signal<sup class="factref"><a class="fact" href="#fact-38" data-fact="38">38</a></sup>:</p>
+
+<ul>
+  <li><strong>Republican-trifecta states</strong> have been the most active sources of <em>performance-pay</em> legislation: Utah's SB 173 (2023, R-trifecta) created a five-year pilot paying <strong>$10,000 bonuses to the top 5% of Utah teachers</strong> and $2,000&ndash;$5,000 to the next 20%<sup class="factref"><a class="fact" href="#fact-38" data-fact="38">38</a></sup>. Tennessee, Arkansas, Florida, and Oklahoma all enacted teacher-pay measures in 2023 with performance components.</li>
+  <li><strong>Democratic-trifecta states</strong> have generally focused on <em>across-the-board</em> base-pay increases, not differentiated performance pay. Maryland and Washington enacted 2023 measures focused on raising minimum salaries.</li>
+  <li><strong>The major outlier</strong>: District of Columbia. DC is a Democratic jurisdiction but hosts <strong>IMPACT/IMPACTplus</strong> &mdash; the country's most generous outcome-tied compensation system &mdash; with bonuses up to $25,000 and career-earning differentials up to $3.7 million<sup class="factref"><a class="fact" href="#fact-22" data-fact="22">22</a></sup>. DC's exception traces to its unique mayoral-control governance and the legacy of the <a class="person" href="#fn-rhee" data-fn="rhee">Rhee</a>-era reform window in 2007&ndash;2010.</li>
+</ul>
+
+<h3>Public opinion is partisan, modestly</h3>
+
+<p>Public-opinion data on outcome-tied teacher pay shows a real but moderate partisan gap:</p>
+
+<div class="stat-grid">
+  <div class="stat">
+    <span class="num">56%</span>
+    <span class="lbl">Republican support for basing part of teacher salaries on student learning<sup class="factref"><a class="fact" href="#fact-39" data-fact="39">39</a></sup></span>
+  </div>
+  <div class="stat">
+    <span class="num">47%</span>
+    <span class="lbl">Democratic support<sup class="factref"><a class="fact" href="#fact-39" data-fact="39">39</a></sup></span>
+  </div>
+  <div class="stat">
+    <span class="num">51%</span>
+    <span class="lbl">Overall public support<sup class="factref"><a class="fact" href="#fact-39" data-fact="39">39</a></sup></span>
+  </div>
+  <div class="stat">
+    <span class="num">~3.5%</span>
+    <span class="lbl">U.S. school districts reporting merit-pay plans (2011 baseline)<sup class="factref"><a class="fact" href="#fact-40" data-fact="40">40</a></sup></span>
+  </div>
+</div>
+
+<p>Even the lower number among Democrats &mdash; 47% &mdash; is higher than the 3.5% of districts that have actually adopted merit pay. The constraint isn't public opinion; it's the bargaining table.</p>
+
+<h3>Litigation venues split predictably</h3>
+
+<p>The major teacher-evaluation lawsuits have come out of red states and blue states for different reasons:</p>
+
+<ul>
+  <li><strong>Red-state venues</strong>: Houston (TX) &mdash; <em>HFT v. HISD</em><sup class="factref"><a class="fact" href="#fact-20" data-fact="20">20</a></sup>; Florida and Tennessee multiple cases<sup class="factref"><a class="fact" href="#fact-29" data-fact="29">29</a></sup>. The pattern: aggressive outcome-tied regimes provoke procedural-due-process challenges.</li>
+  <li><strong>Blue-state venues</strong>: New York (Lederman)<sup class="factref"><a class="fact" href="#fact-21" data-fact="21">21</a></sup>; New Mexico (AFT-NM)<sup class="factref"><a class="fact" href="#fact-30" data-fact="30">30</a></sup>. The pattern: state mandates (often holdover RTTT-era requirements) get challenged on the science of the underlying VAM, with state governments more willing to settle than fight.</li>
+</ul>
+
+<h3>The honest synthesis</h3>
+
+<p>The pattern is not "Republicans want outcome-tied teacher contracts and Democrats don't." Both parties have been involved in the federal push for outcome-tied evaluation (Race to the Top was a Democratic-administration program; ESSA's pull-back was bipartisan). The real partisan pattern is at the <em>state-implementation</em> level:</p>
+
+<ol>
+  <li>The most aggressive moves to make CBAs <em>more</em> outcome-tied (eliminating tenure, weakening bargaining, enacting merit pay, mandating high-weight VAM) are concentrated in Republican-trifecta states.</li>
+  <li>The most aggressive moves to <em>preserve traditional</em> CBA structures (statutory protections, mandatory bargaining, restrictions on RIF criteria) are concentrated in Democratic-trifecta states.</li>
+  <li>The <em>retreat</em> from outcome-tied evaluation since ESSA has happened in both red and blue states &mdash; but for different reasons. Red retreats are framed as deregulation; blue retreats are framed as research-driven course corrections.</li>
+  <li>The country's strongest <em>working</em> example of outcome-tied compensation (DC IMPACT) sits in a Democratic jurisdiction operating outside the standard state-CBA framework. There is no pure Democratic-trifecta-state IMPACT analog.</li>
+</ol>
+
+<h2 id="sec-research">What the research consensus says</h2>
+
+<p>The empirical literature is not flattering to the strong form of outcome-tied teacher pay, and the professional research associations have said so on the record.</p>
+
+<ul>
+  <li><strong>American Statistical Association, April 2014:</strong> position statement cautioning that VAM should not be used as the primary or sole means of evaluating teachers, citing instability across years, sensitivity to test choice, and the small share of student-outcome variance that is attributable to teacher effects<sup class="factref"><a class="fact" href="#fact-19" data-fact="19">19</a></sup>.</li>
+  <li><strong>American Educational Research Association, November 2015:</strong> formal statement holding that VAM use in high-stakes employment decisions carries "considerable risks of misclassification and misinterpretation." AERA explicitly does not recommend a single methodology but lists eight conditions that must be met before VAM-based evaluation is defensible<sup class="factref"><a class="fact" href="#fact-18" data-fact="18">18</a></sup>.</li>
+  <li><strong><a class="person" href="#fn-amrein" data-fn="amrein">Amrein-Beardsley</a> et al., 2020:</strong> "<em>Houston, We Have a Lawsuit</em>: A Cautionary Tale for the Implementation of Value-Added Models for High-Stakes Employment Decisions." <em>Educational Researcher</em>, 49(5)<sup class="factref"><a class="fact" href="#fact-29" data-fact="29">29</a></sup>. Synthesizes the legal and methodological objections that produced the HFT settlement.</li>
+  <li><strong><a class="person" href="#fn-hanushek" data-fn="hanushek">Hanushek</a>, 2014:</strong> Stanford economist Eric Hanushek's research on teacher quality finds large teacher-effect differences in student achievement, providing the strongest published empirical case for outcome-tied compensation. His work is the principal counterweight to the methodological-skepticism school.</li>
+</ul>
+
+<p>The professional consensus is genuinely contested at the level of "how big is teacher effect, and how stably can it be measured?" but is more unified at the level of "whatever the answer, the algorithms commercially deployed in 2010&ndash;2015 were not stable enough to be the basis for firing people."</p>
+
+<h2 id="sec-state">Where things stand now</h2>
+
+<p>As of the 2025&ndash;26 school year, the headline state of play is one of regulated retreat with localized exceptions:</p>
+
+<ul>
+  <li><strong>Compensation tier:</strong> Roughly half of large-district CBAs (<a class="person" href="#fn-peske" data-fn="peske">NCTQ</a>'s 147-district sample) include some form of evaluation-tied performance pay<sup class="factref"><a class="fact" href="#fact-3" data-fact="3">3</a></sup>, but the bonus amounts are usually modest ($100&ndash;$5,000 universal range) and the strongest forms (multi-thousand-dollar bonuses with sustained-rating accelerators) are concentrated in a handful of districts &mdash; DC<sup class="factref"><a class="fact" href="#fact-22" data-fact="22">22</a></sup>, a small set of TIA-participating Texas districts<sup class="factref"><a class="fact" href="#fact-31" data-fact="31">31</a></sup>, and a few city outliers.</li>
+  <li><strong>Evaluation tier:</strong> 34 states still require objective student-growth measures, down from 43 in 2015<sup class="factref"><a class="fact" href="#fact-2" data-fact="2">2</a></sup>. Where it persists, the weight has typically been lowered (Michigan 25%<sup class="factref"><a class="fact" href="#fact-26" data-fact="26">26</a></sup>; many states 20% or "informational only"). Texas's 2025&ndash;26 VAM rollout is the most significant new entrant in years<sup class="factref"><a class="fact" href="#fact-31" data-fact="31">31</a></sup>.</li>
+  <li><strong>Job-security tier:</strong> Effectively absent at scale. <em>Houston Federation of Teachers v. HISD</em> is the deterrent precedent<sup class="factref"><a class="fact" href="#fact-20" data-fact="20">20</a></sup>; New Mexico's settlement is the regional confirming case<sup class="factref"><a class="fact" href="#fact-30" data-fact="30">30</a></sup>. Districts that retain VAM in evaluation almost universally do <em>not</em> use it as the sole basis for termination.</li>
+  <li><strong>Federal pressure tier:</strong> Removed in 2015 and not restored<sup class="factref"><a class="fact" href="#fact-9" data-fact="9">9</a></sup>. Neither the first nor second Trump administration nor the Biden administration restored the conditionality that had driven the 2009&ndash;2015 expansion. There is no current federal proposal to do so.</li>
+</ul>
+
+<h3>Why the share has fallen</h3>
+
+<p>Four overlapping reasons explain the trajectory:</p>
+
+<ol>
+  <li><strong>Methodological problems with VAM proved durable.</strong> The 2014&ndash;2017 wave of measurement skepticism (ASA, AERA, peer-reviewed work in <em>Educational Researcher</em>) was not refuted; it was absorbed.</li>
+  <li><strong>Litigation made high-stakes use risky.</strong> Houston, New Mexico, and the Lederman case taught districts that any opaque algorithm used for adverse employment action invites Fourteenth Amendment exposure.</li>
+  <li><strong>Federal money stopped flowing.</strong> ESSA's removal of the conditionality made the political costs of pushing outcome-tied evaluation through state legislatures harder to justify locally.</li>
+  <li><strong>COVID disruption created a permission structure for unwinding.</strong> Many states paused evaluations during the 2020&ndash;21 school year; the pause was politically convenient for restructuring or quietly retiring components that had been controversial since 2010.</li>
+</ol>
+
+<h3>What we still don't know</h3>
+
+<ul>
+  <li><strong>The true national share.</strong> Without a comprehensive CBA database covering small districts, the NCTQ subsample is the floor. The actual share of all U.S. CBAs with any outcome ties may be substantially lower than 48% (small districts are typically less likely to have formalized performance-pay structures).</li>
+  <li><strong>Whether the surviving regimes work.</strong> Quasi-experimental evaluations of DC IMPACT have shown positive effects; ProComp's evaluations have been more mixed; Denver and Houston's outcomes have been deeply confounded by simultaneous policy changes. There is no clean cross-district comparative evaluation of outcome-tied vs. traditional compensation as currently implemented.</li>
+  <li><strong>Whether the Texas 2025&ndash;26 VAM rollout will scale or repeat the cycle.</strong> Texas's TIA framework is the most ambitious new experiment; its early-implementation data should be available by 2027.</li>
+  <li><strong>How the Janus v. AFSCME (2018) reduction in mandatory union dues has shifted local contract-bargaining dynamics.</strong> Public-sector union finances and political capacity have changed materially since 2018; whether that has affected willingness to bargain outcome-tied compensation is not yet well-documented.</li>
+</ul>
+
+<section class="citations" id="citations">
+  <h2>Citations</h2>
+  <p style="font-size:13px;color:var(--muted);margin-top:-4px">Hover any bracketed number in the body to see the source. Click to jump to the full entry below. Numbers reflect first-instance ordering; the same source may be cited multiple times throughout.</p>
+  <ol>
+    <li id="fact-1"><span class="src-name">NCTQ Teacher Contract Database</span>. <a href="https://teacherquality.nctq.org/contract-database/home" target="_blank" rel="noopener">teacherquality.nctq.org/contract-database</a>. <span class="src-note">147 districts + 2 CMOs: the 100 largest districts in the country, the largest district in each state, and member districts of the Council of Great City Schools.</span></li>
+    <li id="fact-2"><span class="src-name">NCTQ State of the States 2022: Teacher and Principal Evaluation Policies</span>. <a href="https://www.nctq.org/research-insights/state-of-the-states-2022-teacher-and-principal-evaluation-policies/" target="_blank" rel="noopener">nctq.org</a>; full PDF at <a href="https://files.eric.ed.gov/fulltext/ED624887.pdf" target="_blank" rel="noopener">ERIC</a>. <span class="src-note">Tracks teacher-evaluation policy in all 50 states + DC.</span></li>
+    <li id="fact-3"><span class="src-name">NCTQ — "A new look at teacher performance pay" (blog)</span>. <a href="https://www.nctq.org/blog/A-new-look-at-performance-pay" target="_blank" rel="noopener">nctq.org/blog</a>; companion synthesis at <a href="https://www.nctq.org/research-insights/performance-pay-how-teacher-evaluations-impact-compensation/" target="_blank" rel="noopener">"Performance Pay: How Teacher Evaluations Impact Compensation"</a>. <span class="src-note">Source for the ~48% / 59-district performance-pay figure and the 19-district rating-tied-bonus breakdown.</span></li>
+    <li id="fact-5"><span class="src-name">NCTQ — "Every Minute Counts: How Districts Govern Teacher Time"</span>. <a href="https://www.nctq.org/research-insights/every-minute-counts-how-districts-govern-teacher-time/" target="_blank" rel="noopener">nctq.org/research-insights</a>. <span class="src-note">Canonical analysis of work-day, planning-time, and instructional-time provisions in NCTQ-sample contracts.</span></li>
+    <li id="fact-6"><span class="src-name">NCTQ — "Tenure decisions and teacher effectiveness"</span>. <a href="https://www.nctq.org/research-insights/tenure-decisions-and-teacher-effectiveness/" target="_blank" rel="noopener">nctq.org/research-insights</a>. <span class="src-note">Source for the state-by-state probationary-period and tenure-policy data.</span></li>
+    <li id="fact-7"><span class="src-name">NCTQ — "Do state collective bargaining rules influence district teacher policies?"</span>. <a href="https://www.nctq.org/research-insights/do-state-collective-bargaining-rules-influence-district-teacher-policies/" target="_blank" rel="noopener">nctq.org/research-insights</a>. <span class="src-note">Layoff-procedure data: 80% / 34% / 13% by bargaining regime.</span></li>
+    <li id="fact-8"><span class="src-name">NCTQ — "Teacher transfers: finding the right fit"</span>. <a href="https://www.nctq.org/research-insights/teacher-transfers-finding-the-right-fit/" target="_blank" rel="noopener">nctq.org/research-insights</a>; see also <a href="https://www.nctq.org/blog/April-2016:-Teacher-transfers-and-mutual-consent" target="_blank" rel="noopener">April 2016 blog</a>.</li>
+    <li id="fact-9"><span class="src-name">Every Student Succeeds Act</span>, Pub. L. 114&ndash;95 (Dec. 10, 2015). <a href="https://www.ed.gov/essa" target="_blank" rel="noopener">ed.gov/essa</a>. <span class="src-note">Replaced NCLB; removed federal mandate that states tie teacher evaluations to student-achievement data.</span></li>
+    <li id="fact-10"><span class="src-name">Race to the Top fact sheet</span>, Obama White House (archived). <a href="https://obamawhitehouse.archives.gov/sites/default/files/RTT_factsheet.pdf" target="_blank" rel="noopener">obamawhitehouse.archives.gov</a>. <span class="src-note">$4.35B in competitive state grants; criteria published Federal Register Nov. 2009.</span></li>
+    <li id="fact-11"><span class="src-name">GAO-13-777 — Race to the Top: States Implementing Teacher and Principal Evaluation Systems despite Challenges</span> (2013). <a href="https://www.gao.gov/products/gao-13-777" target="_blank" rel="noopener">gao.gov/products/gao-13-777</a>. <span class="src-note">12 states awarded ~$4 billion in 2010 RTTT grants.</span></li>
+    <li id="fact-12"><span class="src-name">Bellwether — "Will States Keep Student Growth in Teacher Evaluation Systems After ESSA?"</span>. <a href="https://bellwether.org/blog/will-states-keep-student-growth-in-teacher-evaluation-systems-after-essa-2/" target="_blank" rel="noopener">bellwether.org</a>. <span class="src-note">2015 high of 43 states with student-growth requirements; 39 by 2017.</span></li>
+    <li id="fact-13"><span class="src-name">U.S. Department of Education / NCES</span>. <a href="https://nces.ed.gov/programs/digest/" target="_blank" rel="noopener">nces.ed.gov/digest</a>. <span class="src-note">~13,500 regular school districts; figure varies by inclusion of supervisory unions and other entity types.</span></li>
+    <li id="fact-14"><span class="src-name">Citizens Budget Commission &mdash; "Absent Teacher Reserve Costs $136 Million and Needs Reform"</span>. <a href="https://cbcny.org/research/absent-teacher-reserve-costs-136-million-and-needs-reform" target="_blank" rel="noopener">cbcny.org/research</a>. <span class="src-note">2017&ndash;18 cost; salary and tenure averages.</span></li>
+    <li id="fact-15"><span class="src-name">NYC Comptroller Audit of DOE's Utilization of the ATR Pool</span>. <a href="https://comptroller.nyc.gov/reports/audit-report-on-the-department-of-educations-utilization-of-the-absent-teacher-reserve-pool/" target="_blank" rel="noopener">comptroller.nyc.gov/reports</a>.</li>
+    <li id="fact-16"><span class="src-name">Goldhaber, Lavery &amp; Theobald and related LIFO research</span>. See <a href="https://hechingerreport.org/proof-points-teacher-layoffs-seniority-protections/" target="_blank" rel="noopener">Hechinger Report synthesis</a> and <a href="https://www.nctq.org/research-insights/teacher-layoffs-loom-large-how-to-lessen-the-blow/" target="_blank" rel="noopener">NCTQ summary</a>. <span class="src-note">Finding: LIFO requires substantially more teacher layoffs (and higher-quality teachers) than performance-based layoffs to reach the same budget savings.</span></li>
+    <li id="fact-17"><span class="src-name">Kraft &amp; Brunner et al. &mdash; "The Benefits of Early and Unconstrained Hiring"</span>. <a href="https://conference.iza.org/conference_files/edu_2020/kraft_m30325.pdf" target="_blank" rel="noopener">IZA conference paper</a>. <span class="src-note">Boston Public Schools mutual-consent reform across 84 schools; 0.09σ math, 0.07σ ELA achievement effects.</span></li>
+    <li id="fact-18"><span class="src-name">AERA Statement on Use of Value-Added Models in Evaluation</span> (November 2015). <a href="https://www.aera.net/Newsroom/News-Releases-and-Statements/AERA-Issues-Statement-on-the-Use-of-Value-Added-Models-in-Evaluation-of-Educators-and-Educator-Preparation-Programs" target="_blank" rel="noopener">aera.net</a>.</li>
+    <li id="fact-19"><span class="src-name">American Statistical Association Statement on Using Value-Added Models for Educational Assessment</span> (April 2014). Available via the ASA archive.</li>
+    <li id="fact-20"><span class="src-name"><em>Houston Federation of Teachers v. Houston Independent School District</em></span>, 251 F. Supp. 3d 1168 (S.D. Tex. 2017). <a href="https://case-law.vlex.com/vid/hous-fed-n-of-890414574" target="_blank" rel="noopener">case-law.vlex.com</a>; AFT settlement release at <a href="https://www.aft.org/press-release/federal-suit-settlement-end-value-added-measures-teacher-termination-houston" target="_blank" rel="noopener">aft.org</a>; EdWeek coverage at <a href="https://www.edweek.org/teaching-learning/houston-district-settles-lawsuit-with-teachers-union-over-value-added-scores/2017/10" target="_blank" rel="noopener">edweek.org</a>.</li>
+    <li id="fact-21"><span class="src-name">Matter of <em>Lederman v. King</em></span>, 2016 NY Slip Op 26416 (Sup. Ct. Albany Cty.). <a href="https://law.justia.com/cases/new-york/other-courts/2016/2016-ny-slip-op-26416.html" target="_blank" rel="noopener">law.justia.com</a>.</li>
+    <li id="fact-22"><span class="src-name">DCPS IMPACT &mdash; Evaluation and Feedback System</span>. <a href="https://dcps.dc.gov/page/impact-dcps-evaluation-and-feedback-system-school-based-personnel" target="_blank" rel="noopener">dcps.dc.gov</a>; 2024&ndash;25 IMPACT Guidebooks at <a href="https://dcps.dc.gov/page/2024-2025-impact-guidebooks" target="_blank" rel="noopener">dcps.dc.gov</a>; IMPACTplus structure at <a href="https://teacherquality.nctq.org/dmsView/DC_IMPACTplus_Teachers" target="_blank" rel="noopener">NCTQ doc</a>.</li>
+    <li id="fact-23"><span class="src-name">Denver Public Schools ProComp &mdash; Harvard Strategic Data Project Study</span>. See NCTQ overview at <a href="https://teacherquality.nctq.org/contract-database/district/Denver-Public-Schools" target="_blank" rel="noopener">teacherquality.nctq.org</a> and the Denver Classroom Teachers Association salary plan at <a href="https://denverteachers.org/the-100000-teacher-plan/" target="_blank" rel="noopener">denverteachers.org</a>. <span class="src-note">Harvard SDP study: ProComp salaries largely mirror the traditional schedule; average teacher earned $456 more.</span></li>
+    <li id="fact-24"><span class="src-name">NEA &mdash; "Teacher Evaluations under ESSA"</span>. <a href="https://www.nea.org/resource-library/teacher-evaluations-under-essa" target="_blank" rel="noopener">nea.org/resource-library</a>; see also Education Week, <a href="https://www.edweek.org/teaching-learning/nea-delegates-take-hard-line-against-pay-for-performance/2000/07" target="_blank" rel="noopener">"NEA Delegates Take Hard Line Against Pay for Performance"</a> (2000).</li>
+    <li id="fact-25"><span class="src-name">American Federation of Teachers</span>. <a href="https://www.aft.org/" target="_blank" rel="noopener">aft.org</a>. <span class="src-note">Policy framework on alternative compensation; AFT was the lead union plaintiff in HFT v. HISD.</span></li>
+    <li id="fact-26"><span class="src-name">EdWeek &mdash; "Are States Changing Course on Teacher Evaluation?"</span> (2017). <a href="https://www.edweek.org/policy-politics/are-states-changing-course-on-teacher-evaluation/2017/11" target="_blank" rel="noopener">edweek.org</a>. <span class="src-note">FL HB 7069, MI SB 122, KY 2017 reversal, AR/AK/CT/NC actions.</span></li>
+    <li id="fact-27"><span class="src-name">Florida HB 7069 (2017)</span>. <span class="src-note">Eliminated requirement to incorporate state-assessment data in teacher evaluations; left to local districts.</span></li>
+    <li id="fact-28"><span class="src-name">OECD &mdash; PISA 2009 / 2011 reports on instructional time</span>. Cited by NCTQ in <em>Every Minute Counts</em>. <span class="src-note">~25% of cross-country variation in test outcomes attributable to instructional time.</span></li>
+    <li id="fact-29"><span class="src-name">Paige &amp; Amrein-Beardsley &mdash; "Houston, We Have a Lawsuit: A Cautionary Tale for the Implementation of Value-Added Models for High-Stakes Employment Decisions"</span>, <em>Educational Researcher</em>, 49(5) (2020). <a href="https://journals.sagepub.com/doi/10.3102/0013189X20923046" target="_blank" rel="noopener">SAGE Journals</a>.</li>
+    <li id="fact-30"><span class="src-name">American Federation of Teachers New Mexico v. PED settlement (2018-2019)</span>. <span class="src-note">Settlement ended VAM-based teacher evaluation in New Mexico; pivot to multiple-measures system without test-score weighting.</span></li>
+    <li id="fact-31"><span class="src-name">Texas Teacher Incentive Allotment / Texas VAM</span>. <a href="https://tiatexas.org/resources/texas-vam/" target="_blank" rel="noopener">tiatexas.org</a>; <a href="https://tiatexas.org/wp-content/uploads/2025/01/VAM-Guidance-Fall2024_25.1.10-1.pdf" target="_blank" rel="noopener">2024-25 VAM guidance (PDF)</a>. <span class="src-note">Texas VAM rolling into TIA framework starting 2025-26.</span></li>
+    <li id="fact-32"><span class="src-name">Louisiana Department of Education &mdash; Value-Added FAQ</span>. <a href="https://doe.louisiana.gov/docs/default-source/teaching/value-added-frequently-asked-questions-list.pdf?sfvrsn=fbe1951f_14" target="_blank" rel="noopener">doe.louisiana.gov</a>. <span class="src-note">50% professional practice / 50% student growth split; 35% VAM + 15% SLT within the student-growth half.</span></li>
+    <li id="fact-33"><span class="src-name">Michigan Department of Education &mdash; Educator Evaluation, Student Growth</span>. <a href="https://www.michigan.gov/mde/services/ed-serv/educator-retention-supports/educator-eval/student-growth" target="_blank" rel="noopener">michigan.gov/mde</a>. <span class="src-note">20% student-growth weight in evaluations.</span></li>
+    <li id="fact-34"><span class="src-name">Ballotpedia &mdash; State government trifectas</span>. <a href="https://ballotpedia.org/State_government_trifectas" target="_blank" rel="noopener">ballotpedia.org/State_government_trifectas</a>; 2024 election results at <a href="https://ballotpedia.org/Election_results,_2024:_State_government_trifectas" target="_blank" rel="noopener">ballotpedia.org/Election_results,_2024</a>. <span class="src-note">As of April 2026: 23 R trifectas, 16 D trifectas, 11 divided governments.</span></li>
+    <li id="fact-35"><span class="src-name">NCTQ Collective Bargaining Map</span>. <a href="https://teacherquality.nctq.org/contract-database/collectiveBargaining" target="_blank" rel="noopener">teacherquality.nctq.org/contract-database/collectiveBargaining</a>; Education Commission of the States &mdash; <em>State Collective Bargaining Policies for Teachers</em>, <a href="https://www.ecs.org/clearinghouse/99/78/9978.pdf" target="_blank" rel="noopener">PDF</a>. <span class="src-note">~46 states allow public-school teacher collective bargaining; NC and SC expressly prohibit; GA and TX heavily restrict; VA repealed prohibition in 2020.</span></li>
+    <li id="fact-36"><span class="src-name">2011 Wisconsin Act 10</span>. Signed by Gov. Scott Walker March 11, 2011. <a href="https://en.wikipedia.org/wiki/2011_Wisconsin_Act_10" target="_blank" rel="noopener">Wikipedia</a>; <a href="https://wisconsinwatch.org/2024/12/wisconsin-unions-score-win-as-dane-county-judge-strikes-down-act-10/" target="_blank" rel="noopener">Dane County Circuit Court ruling, December 2024</a>. <span class="src-note">Ended most collective bargaining for WI public-employee unions outside public-safety; allowed bargaining only on base-wage increases capped at inflation; banned dues check-off; required annual recertification. Partially struck down by Dane County court December 2024; appeal pending as of 2026.</span></li>
+    <li id="fact-37"><span class="src-name">University Business &mdash; "Tenure takedown: What schools&mdash;and states&mdash;have recently turned against it?"</span>. <a href="https://universitybusiness.com/tenure-takedown-what-schools-and-states-have-recently-gone-against-it/" target="_blank" rel="noopener">universitybusiness.com</a>. <span class="src-note">FL SB 736 (2011, Gov. Rick Scott); NC Career Status Law repeal (2013); KS appropriations rider (2014).</span></li>
+    <li id="fact-38"><span class="src-name">FutureEd &mdash; Legislative Tracker: 2023 Teacher-Pay Bills in the States</span>. <a href="https://www.future-ed.org/legislative-tracker-2023-teacher-pay-bills-in-the-states/" target="_blank" rel="noopener">future-ed.org</a>; companion 2024 tracker at <a href="https://www.future-ed.org/legislative-tracker-2024-teacher-pay-bills-in-the-states/" target="_blank" rel="noopener">future-ed.org/legislative-tracker-2024</a>. <span class="src-note">67 teacher-pay bills introduced in 26 states in 2023; 11 enacted in 9 states. Utah SB 173: $10,000 bonus for top 5% of teachers.</span></li>
+    <li id="fact-39"><span class="src-name">Education Week &mdash; "Does Performance-Based Teacher Pay Work? Here's What the Research Says"</span>. <a href="https://www.edweek.org/leadership/does-performance-based-teacher-pay-work-heres-what-the-research-says/2023/06" target="_blank" rel="noopener">edweek.org</a>. <span class="src-note">Republican support for outcome-tied teacher pay (56%) vs. Democratic support (47%).</span></li>
+    <li id="fact-40"><span class="src-name">National Center on Performance Incentives, 2011 report</span>. Cited in EdWeek and FutureEd analyses. <span class="src-note">Approximately 3.5% of US school districts reported adopting merit-pay plans (2011 baseline).</span></li>
+  </ol>
+</section>
+
+<section class="footnotes" id="footnotes">
+  <h2>People mentioned in this report</h2>
+  <p style="font-size:14px;color:var(--muted);margin-top:-4px">Hover any underlined name in the body of the report to see a short tooltip; click to jump to the full entry below.</p>
+  <ol>
+    <li id="fn-duncan"><strong>Arne Duncan</strong> &mdash; <span class="role">9th U.S. Secretary of Education (2009&ndash;2015) under President Obama; previously CEO of Chicago Public Schools.</span> Architect of Race to the Top and the NCLB-waiver framework that drove the 2009&ndash;2015 expansion of student-outcome-tied teacher evaluation. <a class="more" href="https://en.wikipedia.org/wiki/Arne_Duncan" target="_blank" rel="noopener">Wikipedia &rarr;</a></li>
+    <li id="fn-rhee"><strong>Michelle Rhee</strong> &mdash; <span class="role">Chancellor of DC Public Schools (2007&ndash;2010) under Mayor Adrian Fenty; founded StudentsFirst in 2010.</span> Launched IMPACT, the country's most prominent surviving outcome-tied teacher-evaluation system, in 2009. <a class="more" href="https://en.wikipedia.org/wiki/Michelle_Rhee" target="_blank" rel="noopener">Wikipedia &rarr;</a></li>
+    <li id="fn-weingarten"><strong>Randi Weingarten</strong> &mdash; <span class="role">President of the American Federation of Teachers (AFT) since 2008; former president of NYC's UFT (1998&ndash;2009); attorney, former history teacher at Clara Barton High School in Brooklyn.</span> AFT's national posture on outcome-tied compensation is meaningfully more open than NEA's. AFT was the lead union plaintiff in <em>Houston Federation of Teachers v. HISD</em>. <a class="more" href="https://www.aft.org/about/leadership/randi-weingarten" target="_blank" rel="noopener">aft.org &rarr;</a></li>
+    <li id="fn-pringle"><strong>Becky Pringle</strong> &mdash; <span class="role">President of the National Education Association (NEA) since 2020; former middle-school science teacher in Susquehanna Township, Pennsylvania.</span> NEA's policy resolutions formally oppose merit pay and "any other system of compensation based on an evaluation of an education employee's performance." <a class="more" href="https://www.nea.org/about-nea/leadership" target="_blank" rel="noopener">nea.org &rarr;</a></li>
+    <li id="fn-peske"><strong>Heather G. Peske</strong> &mdash; <span class="role">President of the National Council on Teacher Quality (NCTQ) since May 2022, succeeding Kate Walsh's 20-year tenure. Former Senior Associate Commissioner at the Massachusetts Department of Elementary and Secondary Education; former VP of Programs at Teach Plus; doctorate from Harvard Graduate School of Education.</span> Oversees the Teacher Contract Database that supplies the empirical baseline for this brief. <a class="more" href="https://www.nctq.org/people/heather-peske/" target="_blank" rel="noopener">nctq.org &rarr;</a></li>
+    <li id="fn-lederman"><strong>Sheri Lederman</strong> &mdash; <span class="role">Veteran fourth-grade elementary teacher in Great Neck, Long Island.</span> Plaintiff in <em>Matter of Lederman v. King</em> (2016 NY Slip Op 26416), the New York case in which a state Supreme Court justice held that a teacher's state-mandated growth rating was "indisputably arbitrary and capricious" because of the bell-curve model and ceiling effects on her high-performing students. The catalyst case for New York's APPR overhaul.</li>
+    <li id="fn-amrein"><strong>Audrey Amrein-Beardsley</strong> &mdash; <span class="role">Professor at Arizona State University's Mary Lou Fulton Teachers College; former middle- and high-school mathematics teacher; PhD ASU 2002 in research methods.</span> Lead empirical researcher and frequent expert witness on the methodological problems with value-added measurement; runs the <a href="http://vamboozled.com/" target="_blank" rel="noopener">VAMboozled!</a> blog; co-author of "Houston, We Have a Lawsuit" (2020). <a class="more" href="https://education.asu.edu/about/people/audrey-beardsley" target="_blank" rel="noopener">ASU profile &rarr;</a></li>
+    <li id="fn-hanushek"><strong>Eric A. Hanushek</strong> &mdash; <span class="role">Paul and Jean Hanna Senior Fellow at the Hoover Institution, Stanford University; one of the most cited education economists in the United States. PhD MIT 1968.</span> His research on teacher-effect heterogeneity and student-outcome stakes is the principal published empirical case for outcome-tied teacher compensation. <a class="more" href="https://hanushek.stanford.edu/" target="_blank" rel="noopener">hanushek.stanford.edu &rarr;</a></li>
+    <li id="fn-goldhaber"><strong>Dan Goldhaber</strong> &mdash; <span class="role">Labor economist; Vice President at the American Institutes for Research and Director of CALDER (the National Center for Analysis of Longitudinal Data in Education Research). PhD Cornell.</span> Lead empirical researcher on teacher layoffs, the LIFO question, teacher mobility, and the equity consequences of seniority-based personnel rules. <a class="more" href="https://caldercenter.org/our-team/dan-goldhaber" target="_blank" rel="noopener">CALDER profile &rarr;</a></li>
+    <li id="fn-kraft"><strong>Matthew A. Kraft</strong> &mdash; <span class="role">Associate Professor of Education and Economics at Brown University; affiliated with the Annenberg Institute for School Reform; former Brookline (MA) public-school teacher.</span> Principal investigator on the Boston Public Schools mutual-consent hiring-reform study; has published widely on teacher effectiveness, observation-based evaluation, and the design of hiring systems. <a class="more" href="https://scholar.harvard.edu/mkraft" target="_blank" rel="noopener">scholar.harvard.edu/mkraft &rarr;</a></li>
+  </ol>
+</section>
+
+<div class="sources">
+  <h3 style="margin-top:0">Sources</h3>
+  <p><strong>Empirical / contract data:</strong></p>
+  <ul>
+    <li><a href="https://teacherquality.nctq.org/contract-database/home" target="_blank" rel="noopener">NCTQ Teacher Contract Database</a> &mdash; 147 districts + 2 CMOs; the operative empirical base</li>
+    <li><a href="https://www.nctq.org/research-insights/performance-pay-how-teacher-evaluations-impact-compensation/" target="_blank" rel="noopener">NCTQ &mdash; "Performance Pay: How Teacher Evaluations Impact Compensation"</a></li>
+    <li><a href="https://www.nctq.org/blog/A-new-look-at-performance-pay" target="_blank" rel="noopener">NCTQ &mdash; "A new look at teacher performance pay"</a></li>
+    <li><a href="https://www.nctq.org/research-insights/state-of-the-states-2022-teacher-and-principal-evaluation-policies/" target="_blank" rel="noopener">NCTQ State of the States 2022: Teacher and Principal Evaluation Policies</a></li>
+    <li><a href="https://files.eric.ed.gov/fulltext/ED624887.pdf" target="_blank" rel="noopener">NCTQ State of the States 2022 (PDF)</a></li>
+  </ul>
+  <p><strong>Federal regulatory history:</strong></p>
+  <ul>
+    <li><a href="https://obamawhitehouse.archives.gov/sites/default/files/RTT_factsheet.pdf" target="_blank" rel="noopener">Race to the Top fact sheet (Obama White House archive)</a></li>
+    <li><a href="https://www.gao.gov/products/gao-13-777" target="_blank" rel="noopener">GAO-13-777: "Race to the Top: States Implementing Teacher and Principal Evaluation Systems despite Challenges" (2013)</a></li>
+    <li><a href="https://www.ed.gov/essa" target="_blank" rel="noopener">Every Student Succeeds Act (Pub. L. 114&ndash;95)</a></li>
+    <li><a href="https://bellwether.org/blog/will-states-keep-student-growth-in-teacher-evaluation-systems-after-essa-2/" target="_blank" rel="noopener">Bellwether &mdash; "Will States Keep Student Growth in Teacher Evaluation Systems After ESSA?"</a></li>
+    <li><a href="https://www.act.org/content/dam/act/unsecured/documents/teacher-evaluation-legislation-since-essa.pdf" target="_blank" rel="noopener">ACT &mdash; "Teacher Evaluation Legislation since ESSA"</a></li>
+  </ul>
+  <p><strong>Case studies:</strong></p>
+  <ul>
+    <li><a href="https://dcps.dc.gov/page/impact-dcps-evaluation-and-feedback-system-school-based-personnel" target="_blank" rel="noopener">DCPS IMPACT: Evaluation and Feedback System</a></li>
+    <li><a href="https://dcps.dc.gov/page/2024-2025-impact-guidebooks" target="_blank" rel="noopener">DCPS 2024-2025 IMPACT Guidebooks</a></li>
+    <li><a href="https://teacherquality.nctq.org/contract-database/district/Denver-Public-Schools" target="_blank" rel="noopener">NCTQ Teacher Contract Database &mdash; Denver Public Schools</a></li>
+    <li><a href="https://denverteachers.org/the-100000-teacher-plan/" target="_blank" rel="noopener">Denver Classroom Teachers Association &mdash; salary plan position</a></li>
+  </ul>
+  <p><strong>Litigation:</strong></p>
+  <ul>
+    <li><a href="https://case-law.vlex.com/vid/hous-fed-n-of-890414574" target="_blank" rel="noopener"><em>Houston Federation of Teachers v. Houston Independent School District</em>, 251 F. Supp. 3d 1168 (S.D. Tex. 2017)</a></li>
+    <li><a href="https://www.aft.org/press-release/federal-suit-settlement-end-value-added-measures-teacher-termination-houston" target="_blank" rel="noopener">AFT press release on the HFT settlement</a></li>
+    <li><a href="https://www.edweek.org/teaching-learning/houston-district-settles-lawsuit-with-teachers-union-over-value-added-scores/2017/10" target="_blank" rel="noopener">Education Week &mdash; HISD settlement coverage</a></li>
+    <li><a href="https://law.justia.com/cases/new-york/other-courts/2016/2016-ny-slip-op-26416.html" target="_blank" rel="noopener">Matter of <em>Lederman v. King</em>, 2016 NY Slip Op 26416</a></li>
+    <li><a href="https://journals.sagepub.com/doi/10.3102/0013189X20923046" target="_blank" rel="noopener">Paige &amp; Amrein-Beardsley, "<em>Houston, We Have a Lawsuit</em>" (Educational Researcher, 2020)</a></li>
+  </ul>
+  <p><strong>Research consensus:</strong></p>
+  <ul>
+    <li><a href="https://www.aera.net/Newsroom/News-Releases-and-Statements/AERA-Issues-Statement-on-the-Use-of-Value-Added-Models-in-Evaluation-of-Educators-and-Educator-Preparation-Programs" target="_blank" rel="noopener">AERA Statement on Value-Added Models (November 2015)</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Value-added_modeling" target="_blank" rel="noopener">Value-added modeling &mdash; methodology overview (Wikipedia)</a></li>
+    <li><a href="https://fordhaminstitute.org/national/commentary/teacher-evaluation-reform-was-very-successful-paper" target="_blank" rel="noopener">Thomas B. Fordham Institute &mdash; "Teacher evaluation reform was very successful &mdash; on paper"</a></li>
+    <li><a href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2023.1221569/full" target="_blank" rel="noopener">Frontiers in Education &mdash; "The sizzle and fizzle of teacher evaluation"</a></li>
+  </ul>
+  <p><strong>Union positions:</strong></p>
+  <ul>
+    <li><a href="https://www.nea.org/resource-library/teacher-evaluations-under-essa" target="_blank" rel="noopener">NEA &mdash; "Teacher Evaluations under ESSA"</a></li>
+    <li><a href="https://www.aft.org/" target="_blank" rel="noopener">American Federation of Teachers</a></li>
+    <li><a href="https://www.edweek.org/teaching-learning/nea-delegates-take-hard-line-against-pay-for-performance/2000/07" target="_blank" rel="noopener">Education Week &mdash; "NEA Delegates Take Hard Line Against Pay for Performance" (2000)</a></li>
+  </ul>
+</div>
+
+<footer class="report">
+  Compiled by Daniel Golliher (Maximum New York &middot; Manhattan Institute Cities Fellow). The empirical claims in this brief are bounded by the NCTQ Teacher Contract Database (147 districts + 2 CMOs) and the NCTQ State of the States 2022 (50 states + DC) &mdash; the best systematic data available on U.S. teacher CBAs. There is no comprehensive census of all U.S. CBAs; numbers extrapolating to the full ~13,000-district universe should be treated with skepticism unless their underlying sample is disclosed.<br><br>
+  Built using the policy-brief methodology packaged at <a href="https://github.com/danielgolliher/mi-mythos">github.com/danielgolliher/mi-mythos</a>, adapted from a NYC/NYS scope to a national / federal scope. The methodology powers <a href="https://danielgolliher.github.io/mi-mythos/">MI Mythos</a>.
+</footer>
+
+</div>
+
+<script>
+const PEOPLE = {
+  "duncan": {n:"Arne Duncan", r:"9th U.S. Secretary of Education (2009-2015) under Obama. Architect of Race to the Top.", u:"https://en.wikipedia.org/wiki/Arne_Duncan"},
+  "rhee": {n:"Michelle Rhee", r:"Chancellor of DC Public Schools (2007-2010); launched IMPACT in 2009.", u:"https://en.wikipedia.org/wiki/Michelle_Rhee"},
+  "weingarten": {n:"Randi Weingarten", r:"President of the AFT since 2008; former NYC UFT president; attorney; former Brooklyn HS history teacher.", u:"https://www.aft.org/about/leadership/randi-weingarten"},
+  "pringle": {n:"Becky Pringle", r:"President of the NEA since 2020; former Pennsylvania middle-school science teacher.", u:"https://www.nea.org/about-nea/leadership"},
+  "peske": {n:"Heather G. Peske", r:"President of NCTQ since May 2022. Oversees the Teacher Contract Database.", u:"https://www.nctq.org/people/heather-peske/"},
+  "lederman": {n:"Sheri Lederman", r:"Long Island fourth-grade teacher whose 2016 lawsuit became the catalyst for NY APPR overhaul."},
+  "amrein": {n:"Audrey Amrein-Beardsley", r:"ASU professor; lead empirical critic of VAM-based teacher evaluation; expert witness in HFT v. HISD.", u:"https://education.asu.edu/about/people/audrey-beardsley"},
+  "hanushek": {n:"Eric A. Hanushek", r:"Hoover Institution / Stanford education economist; principal empirical case for outcome-tied teacher compensation.", u:"https://hanushek.stanford.edu/"},
+  "goldhaber": {n:"Dan Goldhaber", r:"Labor economist at the American Institutes for Research and CALDER; lead empirical researcher on teacher layoffs, mobility, and effectiveness.", u:"https://caldercenter.org/our-team/dan-goldhaber"},
+  "kraft": {n:"Matthew A. Kraft", r:"Associate professor of education and economics at Brown University; PI on the Boston Public Schools hiring-reform research.", u:"https://scholar.harvard.edu/mkraft"}
+};
+
+const FACTS = {
+  "1": {s:"NCTQ Teacher Contract Database", u:"https://teacherquality.nctq.org/contract-database/home", n:"147 districts + 2 CMOs."},
+  "2": {s:"NCTQ State of the States 2022", u:"https://www.nctq.org/research-insights/state-of-the-states-2022-teacher-and-principal-evaluation-policies/", n:"Teacher evaluation policy across 50 states + DC."},
+  "3": {s:"NCTQ — A new look at teacher performance pay", u:"https://www.nctq.org/blog/A-new-look-at-performance-pay", n:"Performance-pay coverage and bonus structure data; companion synthesis at nctq.org/research-insights/performance-pay-how-teacher-evaluations-impact-compensation/."},
+  "5": {s:"NCTQ — Every Minute Counts: How Districts Govern Teacher Time", u:"https://www.nctq.org/research-insights/every-minute-counts-how-districts-govern-teacher-time/", n:"Canonical analysis of work-day, planning-time, and instructional-time provisions."},
+  "6": {s:"NCTQ — Tenure decisions and teacher effectiveness", u:"https://www.nctq.org/research-insights/tenure-decisions-and-teacher-effectiveness/", n:"State-by-state probationary periods and tenure performance requirements."},
+  "7": {s:"NCTQ — Do state collective bargaining rules influence district teacher policies?", u:"https://www.nctq.org/research-insights/do-state-collective-bargaining-rules-influence-district-teacher-policies/", n:"80% / 34% / 13% LIFO data by bargaining regime."},
+  "8": {s:"NCTQ — Teacher transfers: finding the right fit", u:"https://www.nctq.org/research-insights/teacher-transfers-finding-the-right-fit/", n:"Mutual consent vs. forced placement."},
+  "9": {s:"Every Student Succeeds Act, Pub. L. 114-95 (Dec. 10, 2015)", u:"https://www.ed.gov/essa", n:"Replaced NCLB; removed federal mandate on student-growth in evaluations."},
+  "10": {s:"Race to the Top fact sheet (Obama White House archive)", u:"https://obamawhitehouse.archives.gov/sites/default/files/RTT_factsheet.pdf", n:"$4.35B in competitive state grants."},
+  "11": {s:"GAO-13-777: Race to the Top — States Implementing Teacher and Principal Evaluation Systems despite Challenges (2013)", u:"https://www.gao.gov/products/gao-13-777", n:""},
+  "12": {s:"Bellwether — Will States Keep Student Growth in Teacher Evaluation Systems After ESSA?", u:"https://bellwether.org/blog/will-states-keep-student-growth-in-teacher-evaluation-systems-after-essa-2/", n:"43 states (2015) → 39 states (2017)."},
+  "13": {s:"NCES — Digest of Education Statistics", u:"https://nces.ed.gov/programs/digest/", n:"~13,500 regular school districts."},
+  "14": {s:"Citizens Budget Commission — Absent Teacher Reserve Costs $136 Million and Needs Reform", u:"https://cbcny.org/research/absent-teacher-reserve-costs-136-million-and-needs-reform", n:""},
+  "15": {s:"NYC Comptroller Audit of DOE Utilization of the ATR Pool", u:"https://comptroller.nyc.gov/reports/audit-report-on-the-department-of-educations-utilization-of-the-absent-teacher-reserve-pool/", n:""},
+  "16": {s:"Goldhaber et al. — LIFO research", u:"https://hechingerreport.org/proof-points-teacher-layoffs-seniority-protections/", n:"LIFO requires substantially more layoffs (and higher-quality teachers) to hit the same dollar target as effectiveness-based layoffs."},
+  "17": {s:"Kraft & Brunner et al. — The Benefits of Early and Unconstrained Hiring", u:"https://conference.iza.org/conference_files/edu_2020/kraft_m30325.pdf", n:"Boston Public Schools mutual-consent reform; 0.09σ math, 0.07σ ELA."},
+  "18": {s:"AERA Statement on Use of Value-Added Models in Evaluation (Nov 2015)", u:"https://www.aera.net/Newsroom/News-Releases-and-Statements/AERA-Issues-Statement-on-the-Use-of-Value-Added-Models-in-Evaluation-of-Educators-and-Educator-Preparation-Programs", n:""},
+  "19": {s:"American Statistical Association Statement on Using Value-Added Models for Educational Assessment (April 2014)", u:"", n:"ASA cautioned against VAM as primary or sole basis for evaluation."},
+  "20": {s:"Houston Federation of Teachers v. Houston Independent School District, 251 F. Supp. 3d 1168 (S.D. Tex. 2017)", u:"https://case-law.vlex.com/vid/hous-fed-n-of-890414574", n:"Court held plaintiffs stated viable due-process claim against opaque VAM."},
+  "21": {s:"Matter of Lederman v. King, 2016 NY Slip Op 26416", u:"https://law.justia.com/cases/new-york/other-courts/2016/2016-ny-slip-op-26416.html", n:"NY Supreme Court ruled growth-component rating arbitrary and capricious."},
+  "22": {s:"DCPS IMPACT", u:"https://dcps.dc.gov/page/impact-dcps-evaluation-and-feedback-system-school-based-personnel", n:"Evaluation system + IMPACTplus performance pay (up to $25K bonus, $3.7M career)."},
+  "23": {s:"Denver ProComp / Harvard Strategic Data Project Study", u:"https://teacherquality.nctq.org/contract-database/district/Denver-Public-Schools", n:"ProComp salaries largely mirror the traditional schedule; avg $456 difference."},
+  "24": {s:"NEA position on performance pay", u:"https://www.nea.org/resource-library/teacher-evaluations-under-essa", n:"NEA opposes merit pay; 2000 Representative Assembly amendment broadened opposition."},
+  "25": {s:"AFT policy framework", u:"https://www.aft.org/", n:"AFT recognizes 'severe drawbacks' of single salary schedule; lead plaintiff in HFT v. HISD."},
+  "26": {s:"EdWeek — Are States Changing Course on Teacher Evaluation? (2017)", u:"https://www.edweek.org/policy-politics/are-states-changing-course-on-teacher-evaluation/2017/11", n:""},
+  "27": {s:"Florida HB 7069 (2017)", u:"", n:"Eliminated state requirement to incorporate state-assessment data in evaluations."},
+  "28": {s:"OECD PISA 2009/2011 — instructional time analysis", u:"", n:"~25% of cross-country variation in test outcomes tracks instructional time. Cited by NCTQ Every Minute Counts."},
+  "29": {s:"Paige & Amrein-Beardsley — Houston, We Have a Lawsuit (Educational Researcher, 2020)", u:"https://journals.sagepub.com/doi/10.3102/0013189X20923046", n:""},
+  "30": {s:"American Federation of Teachers New Mexico settlement (2018-2019)", u:"", n:"Ended VAM-based evaluation in NM; multi-measures system without test-score weighting."},
+  "31": {s:"Texas TIA / Texas VAM", u:"https://tiatexas.org/resources/texas-vam/", n:"Texas Value-Added Model integration into TIA framework began 2025-26."},
+  "32": {s:"Louisiana DOE — Value-Added FAQ", u:"https://doe.louisiana.gov/docs/default-source/teaching/value-added-frequently-asked-questions-list.pdf?sfvrsn=fbe1951f_14", n:"50% professional practice + 50% student growth (35% VAM + 15% SLT)."},
+  "33": {s:"Michigan Department of Education — Student Growth in Educator Evaluation", u:"https://www.michigan.gov/mde/services/ed-serv/educator-retention-supports/educator-eval/student-growth", n:"20% student-growth weight."},
+  "34": {s:"Ballotpedia — State government trifectas", u:"https://ballotpedia.org/State_government_trifectas", n:"April 2026: 23 R trifectas, 16 D trifectas, 11 divided governments."},
+  "35": {s:"NCTQ Collective Bargaining Map", u:"https://teacherquality.nctq.org/contract-database/collectiveBargaining", n:"~46 states allow teacher CB; NC and SC expressly prohibit; GA and TX heavily restrict; VA repealed in 2020."},
+  "36": {s:"2011 Wisconsin Act 10 (Gov. Scott Walker)", u:"https://en.wikipedia.org/wiki/2011_Wisconsin_Act_10", n:"Ended most collective bargaining for WI public-sector unions outside public safety; partially struck down December 2024."},
+  "37": {s:"State tenure-elimination chronology", u:"https://universitybusiness.com/tenure-takedown-what-schools-and-states-have-recently-gone-against-it/", n:"FL SB 736 (2011); NC Career Status Law repeal (2013); KS appropriations rider (2014)."},
+  "38": {s:"FutureEd — 2023/2024 Teacher-Pay Bills Trackers", u:"https://www.future-ed.org/legislative-tracker-2023-teacher-pay-bills-in-the-states/", n:"67 bills in 26 states in 2023; 11 enacted in 9 states. Utah SB 173: $10K bonuses for top 5% of teachers."},
+  "39": {s:"EdWeek — Does Performance-Based Teacher Pay Work?", u:"https://www.edweek.org/leadership/does-performance-based-teacher-pay-work-heres-what-the-research-says/2023/06", n:"Republican support 56% vs. Democratic support 47% for outcome-tied teacher pay."},
+  "40": {s:"National Center on Performance Incentives, 2011 report", u:"", n:"~3.5% of US school districts reported adopting merit-pay plans (2011 baseline)."}
+};
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll("a.person[data-fn]").forEach(function(el) {
+    var p = PEOPLE[el.dataset.fn];
+    if (!p) return;
+    var tip = document.createElement("span");
+    tip.className = "tip";
+    var html = "<strong>" + p.n + "</strong>" + p.r;
+    if (p.u) html += ' <em>·</em> <a href="' + p.u + '" target="_blank" rel="noopener">profile &rarr;</a>';
+    tip.innerHTML = html;
+    el.appendChild(tip);
+  });
+  // Fact tooltips
+  document.querySelectorAll("a.fact[data-fact]").forEach(function(el) {
+    var f = FACTS[el.dataset.fact];
+    if (!f) return;
+    var tip = document.createElement("span");
+    tip.className = "tip";
+    var html = "<strong>" + f.s + "</strong>";
+    if (f.n) html += '<em>' + f.n + '</em><br>';
+    if (f.u) html += '<a href="' + f.u + '" target="_blank" rel="noopener">' + f.u + ' &rarr;</a>';
+    tip.innerHTML = html;
+    el.appendChild(tip);
+  });
+
+  var tocLinks = document.querySelectorAll("nav.toc a[href^='#sec-'], nav.toc a[href='#footnotes']");
+  var sections = [];
+  tocLinks.forEach(function(a) {
+    var id = a.getAttribute("href").slice(1);
+    var el = document.getElementById(id);
+    if (el) sections.push({ id: id, el: el, link: a });
+  });
+  function setActive(id) {
+    tocLinks.forEach(function(a) {
+      if (a.getAttribute("href") === "#" + id) a.classList.add("active");
+      else a.classList.remove("active");
+    });
+  }
+  if ("IntersectionObserver" in window && sections.length) {
+    var observer = new IntersectionObserver(function(entries) {
+      var visible = entries.filter(function(e) { return e.isIntersecting; });
+      if (visible.length) {
+        visible.sort(function(a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+        setActive(visible[0].target.id);
+      }
+    }, { rootMargin: "-20% 0px -70% 0px", threshold: 0 });
+    sections.forEach(function(s) { observer.observe(s.el); });
+  }
+
+  var fab = document.querySelector(".toc-fab");
+  if (fab) {
+    var onScroll = function() {
+      if (window.scrollY > 400) fab.classList.add("show");
+      else fab.classList.remove("show");
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+});
+</script>
+</body>
+</html>

@@ -36,14 +36,18 @@ mi-mythos/
 ├── skill/
 │   └── SKILL.md            # the underlying methodology, formatted as a Claude Code skill
 └── examples/
-    └── electronic-rent-payments/
-        ├── index.html      # canonical example brief: NYC LL 64/2023
-        └── sources/        # primary-source documents the brief was built from
+    ├── electronic-rent-payments/      # NYC LL 64/2023 (NYC/NYS scope)
+    │   ├── index.html
+    │   └── sources/                   # primary-source documents
+    └── teacher-cba-student-outcomes/  # US teacher CBAs (national scope)
+        └── index.html
 ```
 
-## The example brief
+## The example briefs
 
-[Electronic rent payments — NYC LL 64 of 2023](https://danielgolliher.github.io/mi-mythos/examples/electronic-rent-payments/) is the canonical demonstration:
+### [Electronic rent payments — NYC LL 64 of 2023](https://danielgolliher.github.io/mi-mythos/examples/electronic-rent-payments/)
+
+NYC/NYS scope. The canonical demonstration of the skill applied to a single bill.
 
 - Verbatim hearing exchanges (the December 2022 General Welfare Committee oversight session, including the Abreu/Berry "all the payments to private landlords are currently made by paper check" exchange)
 - State Comptroller audit findings (DiNapoli, October 2024 + January 2026)
@@ -51,6 +55,20 @@ mi-mythos/
 - HAVP as a state-level parallel program
 - 22 footnoted people, every one with a hover tooltip and a verified profile link
 - A print button that produces a clean, paginated PDF
+
+### [Teacher contracts and student outcomes](https://danielgolliher.github.io/mi-mythos/examples/teacher-cba-student-outcomes/)
+
+National scope. Demonstrates the methodology adapted from a single-bill NYC focus to a broad national-policy question.
+
+- NCTQ Teacher Contract Database synthesis (147 districts + 2 CMOs)
+- Federal regulatory arc (Race to the Top → ESSA → COVID-era retreat)
+- Four district case studies (DC IMPACT, Denver ProComp, Houston ASPIRE, NY Lederman)
+- Active litigation: *Houston Federation of Teachers v. HISD* and *Lederman v. King*
+- Calendar/instructional-time analysis (planning periods, school-day length, 30:1 ratio between districts on planning time)
+- Teacher-protections analysis (tenure, LIFO, mutual consent, ATR)
+- Red-vs-blue partisan breakdown of CBA policy moves
+- **130 inline fact citations across 40 unique sources** — every numeric or specific claim has a hover tooltip showing the underlying source
+- 10 footnoted people
 
 ## Installing the skill locally
 
