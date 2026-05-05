@@ -1579,28 +1579,44 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // === Anchor capture & resolution ===
+  // Anchor strategy: the entire .wrap is the search scope. We capture the exact
+  // selected text plus 60 chars of context before/after (in normalized whitespace),
+  // which lets us re-find the same passage on later page loads even if surrounding
+  // markup shifts. sectionId is metadata for display only — the closest preceding
+  // heading-with-id is recorded as a label.
   function captureAnchor(range) {
-    let node = range.startContainer;
-    let section = node.nodeType === 3 ? node.parentElement : node;
-    while (section && !section.id) section = section.parentElement;
-    if (!section || section.tagName === 'HTML' || section.tagName === 'BODY') return null;
     const exact = (range.toString() || '').replace(/\s+/g, ' ').trim();
     if (!exact || exact.length < 3) return null;
-    const sectionText = section.textContent.replace(/\s+/g, ' ').trim();
-    const idx = sectionText.indexOf(exact);
+    const wrap = document.querySelector('.wrap');
+    if (!wrap) return null;
+    const haystack = wrap.textContent.replace(/\s+/g, ' ').trim();
+    const idx = haystack.indexOf(exact);
     if (idx === -1) return null;
+    let label = 'main';
+    let n = range.startContainer.nodeType === 3 ? range.startContainer.parentElement : range.startContainer;
+    if (n && n.id && /^sec-/.test(n.id)) label = n.id;
+    while (n && n !== wrap && label === 'main') {
+      let prev = n.previousElementSibling;
+      while (prev) {
+        if (prev.id && /^sec-/.test(prev.id)) { label = prev.id; break; }
+        const found = prev.querySelector ? prev.querySelector('[id^="sec-"]') : null;
+        if (found) { label = found.id; break; }
+        prev = prev.previousElementSibling;
+      }
+      n = n.parentElement;
+    }
     return {
-      sectionId: section.id,
-      prefix: sectionText.slice(Math.max(0, idx - 40), idx),
+      sectionId: label,
+      prefix: haystack.slice(Math.max(0, idx - 60), idx),
       exact: exact,
-      suffix: sectionText.slice(idx + exact.length, idx + exact.length + 40)
+      suffix: haystack.slice(idx + exact.length, idx + exact.length + 60)
     };
   }
 
   function findAndWrap(comment) {
-    const section = document.getElementById(comment.anchor.sectionId);
-    if (!section) return false;
-    const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT, {
+    const wrap = document.querySelector('.wrap');
+    if (!wrap) return false;
+    const walker = document.createTreeWalker(wrap, NodeFilter.SHOW_TEXT, {
       acceptNode: function(n) {
         if (n.parentElement.closest('mark.annotation, script, style, #comments-sidebar, #comment-modal, #selection-toolbar, nav.toc, .toc-fab, #comments-fab')) {
           return NodeFilter.FILTER_REJECT;
