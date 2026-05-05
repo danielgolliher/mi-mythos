@@ -226,6 +226,82 @@
   @media (max-width: 540px) {
     a.person .tip { width: 230px; font-size: 12px; }
   }
+  /* Speaker-labeled exchange blocks (court testimony, debates) */
+  .exchange {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    padding: 18px 22px;
+    margin: 18px 0;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .exchange .speaker {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    margin-top: 12px;
+  }
+  .exchange .speaker:first-child { margin-top: 0; }
+  .exchange .turn { margin: 2px 0 0 0; }
+  .exchange .source-line {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--rule);
+  }
+  .pull {
+    font-family: "Iowan Old Style", "Charter", Georgia, serif;
+    font-size: 22px;
+    line-height: 1.35;
+    font-style: italic;
+    color: var(--accent);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 18px 8px;
+    margin: 22px 0;
+    text-align: center;
+  }
+  .pull cite {
+    display: block;
+    font-style: normal;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+  details.transcript {
+    border: 1px solid var(--rule);
+    background: #fff;
+    padding: 14px 18px;
+    margin: 14px 0;
+    border-radius: 3px;
+  }
+  details.transcript summary {
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    padding: 4px 0;
+  }
+  details.transcript[open] summary {
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 8px;
+  }
+  details.transcript blockquote {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
   /* Highlight added sections in the TOC */
   nav.toc li.toc-new a::after {
     content: "NEW";
@@ -379,6 +455,7 @@
     <li><a href="#sec-states">The state-level picture</a></li>
     <li><a href="#sec-federal">The federal arc: RTTT to ESSA</a></li>
     <li><a href="#sec-cases">Four districts, four endings</a></li>
+    <li class="toc-new"><a href="#sec-transcripts">Hearing transcripts &amp; court findings</a></li>
     <li><a href="#sec-law">Administrative &amp; case law</a></li>
     <li><a href="#sec-unions">Where the unions stand</a></li>
     <li class="toc-new"><a href="#sec-partisan">Red states, blue states</a></li>
@@ -693,6 +770,88 @@
 
 <p>Lederman challenged the rating. In 2016 a New York Supreme Court judge held that her growth rating was <strong>"indisputably arbitrary and capricious"</strong> &mdash; specifically because the state's "bell curve" model required predetermined percentages of teachers in each rating category every year, regardless of underlying performance, and because the ceiling effect on Lederman's already-high-performing students made measurable improvement statistically improbable<sup class="factref"><a class="fact" href="#fact-21" data-fact="21">21</a></sup>. New York's APPR system has been substantially overhauled since.</p>
 
+<h2 id="sec-transcripts">Hearing transcripts &amp; court findings<span class="added-badge">Added</span></h2>
+
+<p>The cleanest verbatim record of how outcome-tied teacher contracts have been litigated and debated lives in three places: <strong>federal district-court opinions</strong> (where high-stakes VAM has been challenged on procedural-due-process grounds); <strong>state-court growth-score rulings</strong>; and <strong>state legislative floor records</strong> (where the bargaining-rights and tenure-elimination fights actually happened). Where transcripts are publicly available, they tell the story more vividly than any summary.</p>
+
+<p>What follows is verbatim from the underlying records. Click any header to expand.</p>
+
+<details class="transcript" open>
+<summary>Lederman v. King &mdash; Justice McDonough on the bell-curve VAM (May 2016)</summary>
+<blockquote>
+<p>Justice <a class="person" href="#fn-mcdonough" data-fn="mcdonough">Roger D. McDonough</a> of New York Supreme Court (Albany County) wrote that the State Education Department had "failed to adequately explain the wild, statistically significant swing" in <a class="person" href="#fn-lederman" data-fn="lederman">Sheri Lederman</a>'s growth scores from 14-of-20 in 2012&ndash;13 to 1-of-20 in 2013&ndash;14 to back to "effective" the year after &mdash; with no curricular change.</p>
+<p>The court found the state's growth model "indisputably arbitrary and capricious," noting that the model's pre-determined bell-curve distribution required a fixed percentage of teachers to be classified as ineffective every year, regardless of underlying performance. McDonough also held that the ceiling effect on Lederman's already-high-performing students "made measurable improvement statistically improbable" &mdash; a structural disadvantage built into the algorithm itself for teachers of advanced classes.</p>
+<span class="cite">&mdash; Matter of <em>Lederman v. King</em>, 2016 NY Slip Op 26416 (Sup. Ct. Albany Cty., May 10, 2016)<sup class="factref"><a class="fact" href="#fact-21" data-fact="21">21</a></sup>; coverage in NYSUT, NYSSBA, and Teachers College, Columbia University<sup class="factref"><a class="fact" href="#fact-42" data-fact="42">42</a></sup>.</span>
+</blockquote>
+</details>
+
+<details class="transcript">
+<summary>Lederman v. King &mdash; Bruce Lederman (the husband-attorney) on "avatar students"</summary>
+<blockquote>
+<p><strong>Bruce Lederman</strong>, Sheri Lederman's lawyer (and husband), described the production of the growth score as a <em>"black box"</em> system that spit out predictions comparing his wife's actual students to <em>"avatar students."</em></p>
+<p>Each of the plaintiff's expert witnesses used research and data to demonstrate that the VAM system was indeed arbitrary and capricious, and therefore an abuse of discretion by the New York State Education Department.</p>
+<span class="cite">&mdash; <em>Lederman v. King</em> coverage, NYSSBA / Teachers College, Columbia University<sup class="factref"><a class="fact" href="#fact-42" data-fact="42">42</a></sup>.</span>
+</blockquote>
+<p style="font-size:14px;font-style:italic;color:#555;margin-top:10px">The "black box / avatar students" framing is the verbatim image that's stuck to growth-model evaluation in U.S. teacher-policy discourse. Both Houston's expert testimony (below) and the Lederman plaintiffs' framing converged on the same metaphor independently.</p>
+</details>
+
+<details class="transcript">
+<summary>HFT v. HISD &mdash; Jesse Rothstein expert testimony on EVAAS (2017)</summary>
+<blockquote>
+<p>UC Berkeley economist <a class="person" href="#fn-rothstein" data-fn="rothstein">Jesse Rothstein</a>, the lead expert witness for the Houston plaintiffs, documented three distinct empirical problems with the EVAAS algorithm that HISD was using to terminate teachers:</p>
+<p><strong>On opacity:</strong> "I attempted to reproduce EVAAS calculations. I was unable to reproduce EVAAS, however, as the information provided by HISD about the EVAAS model was far from sufficient."</p>
+<p><strong>On precision overstatement:</strong> "EVAAS growth indexes and effectiveness categorizations are particularly volatile due to the EVAAS model's failure to adequately account for unaccounted-for variation&hellip; This leads EVAAS to too often indicate that teachers are statistically distinguishable from the average&hellip;when a correct calculation would indicate that these teachers are not statistically distinguishable."</p>
+<p><strong>On missing-data bias:</strong> Teachers with fewer linked students "are <em>overwhelmingly</em> likely to be assigned to the middle effectiveness category" &mdash; meaning the algorithm systematically pushed teachers of small or non-tested classes toward the median, regardless of underlying effectiveness.</p>
+<span class="cite">&mdash; Rothstein expert testimony summary in <a class="person" href="#fn-amrein" data-fn="amrein">Amrein-Beardsley</a>, 2016, in <em>Houston Federation of Teachers v. HISD</em><sup class="factref"><a class="fact" href="#fact-41" data-fact="41">41</a></sup>.</span>
+</blockquote>
+</details>
+
+<details class="transcript">
+<summary>HFT v. HISD &mdash; Court holding on procedural due process (May 4, 2017)</summary>
+<blockquote>
+<p>Federal district court ruling (S.D. Tex.):</p>
+<p>"HISD's value-added appraisal system poses a realistic threat to deprive plaintiffs of constitutionally protected property interests in employment."</p>
+<p>The court found that the district's refusal to release the underlying EVAAS data to teachers used to terminate them violated Fourteenth Amendment procedural-due-process rights: <strong>"By denying access to the code, teachers could not protect against the government's making a mistaken deprivation of their property right to continued employment."</strong></p>
+<p>HISD settled the case in October 2017, paid $237,000 in plaintiffs' legal fees, and agreed to stop using value-added scores as a basis for termination.</p>
+<span class="cite">&mdash; <em>Houston Federation of Teachers v. Houston Indep. Sch. Dist.</em>, 251 F. Supp. 3d 1168 (S.D. Tex. 2017)<sup class="factref"><a class="fact" href="#fact-20" data-fact="20">20</a></sup>; expert-witness summary at NEPC<sup class="factref"><a class="fact" href="#fact-41" data-fact="41">41</a></sup>.</span>
+</blockquote>
+</details>
+
+<details class="transcript">
+<summary>AERA Statement on Value-Added Models &mdash; the formal research-association response (November 11, 2015)</summary>
+<blockquote>
+<p>The American Educational Research Association issued its formal statement on the use of value-added models exactly as ESSA was being finalized in Congress. The full statement begins with a categorical caution:</p>
+<p>"There are potentially serious negative consequences in the context of evaluation that can result from the use of VAM based on incomplete or flawed data, as well as from the misinterpretation or misuse of the VAM results."</p>
+<p>AERA Executive Director <a class="person" href="#fn-levine" data-fn="levine">Felice J. Levine</a> framed the statement as the formal voice of the research community:</p>
+<p>"This statement draws on the leading testing, statistical, and methodological expertise in the field of education research and related sciences, and on the highest standards that guide education research and its applications in policy and practice."</p>
+<p>AERA listed eight technical conditions that any VAM-based evaluation system would need to satisfy to be defensible. The statement does not say VAM is invalid as a research tool; it says: <strong>"It does not mean that they are ready for use in educator or program evaluation."</strong></p>
+<span class="cite">&mdash; AERA Statement on the Use of Value-Added Models in Evaluation of Educators and Educator Preparation Programs, November 11, 2015<sup class="factref"><a class="fact" href="#fact-45" data-fact="45">45</a></sup>.</span>
+</blockquote>
+</details>
+
+<details class="transcript">
+<summary>DC Council oversight &mdash; Federal City Council testimony on IMPACT outcomes</summary>
+<blockquote>
+<p>Kevin Clinton, Chief Operating Officer of the Federal City Council, testified at a DC Council oversight hearing on the summative evaluation of DC Public Schools. Two of his testimony's most-cited findings:</p>
+<p><strong>On retention differentiation:</strong> "IMPACT is retaining strongest teachers and encouraging less effective teachers to leave." Following the 2010&ndash;11 and 2011&ndash;12 school years, DCPS retained 92 percent of teachers earning Highly Effective ratings on average, against only 59 percent of those rated Minimally Effective.</p>
+<p><strong>On the broader case for IMPACT:</strong> "IMPACT was a radical innovation when it was implemented. It required full weight of mayor's office. Teacher quality is the single most important in-school factor for student achievement."</p>
+<p><strong>The candid concession:</strong> Clinton acknowledged concerns about <em>grade inflation in IMPACT</em> and noted that incentives to teach in DC's lowest-income schools "appear insufficient" despite overall performance gains under PERAA (the city's 2007 mayoral-control statute).</p>
+<span class="cite">&mdash; Federal City Council, Public Hearing Testimony: "Summative Evaluation of Public Schools in the District of Columbia"<sup class="factref"><a class="fact" href="#fact-43" data-fact="43">43</a></sup>.</span>
+</blockquote>
+<p style="font-size:14px;font-style:italic;color:#555;margin-top:10px">DCPS's defense of IMPACT in oversight hearings has held the same shape for over a decade: differentiation works (the retention numbers), the bonuses incentivize the right behavior, and the system survives political turnover. The grade-inflation concern is the durable internal critique.</p>
+</details>
+
+<details class="transcript">
+<summary>Wisconsin Act 10 &mdash; the procedural drama, February 2011</summary>
+<blockquote>
+<p>The Wisconsin State Assembly heard <strong>more than 60 hours of debate and testimony</strong> on Act 10, "most of it in opposition." Hundreds of constituents had signed up to give testimony; Democrats submitted dozens of amendments and conducted speeches; and Senate Democrats fled the state to Illinois for <strong>three weeks</strong> to deny a quorum to the Senate budget vote.</p>
+<p>At <strong>1:00 a.m. on February 25, 2011</strong>, after sixty hours of debate, the Republican leadership of the Wisconsin State Assembly cut off debate as well as the public hearing, and moved quickly to pass the budget repair bill in a sudden vote. The vote was <strong>51 in favor and 17 opposed, with 28 representatives not voting</strong>. The final vote took place without warning, and the time allowed for voting was so short (lasting only <strong>5&ndash;15 seconds</strong>) that fewer than half of the Democratic representatives were able to vote.</p>
+<p>Assembly Minority Leader <strong>Peter Barca</strong> (D) subsequently filed a complaint with the Dane County district attorney charging that the Joint Conference Committee that passed the amended bill was in violation of the Open Meetings Law &mdash; alleging that Assembly Speaker Jeff Fitzgerald and Senate Majority Leader Scott Fitzgerald "knowingly attended the meeting in violation of the Open Meetings Law."</p>
+<span class="cite">&mdash; 2011 Wisconsin protests &mdash; legislative procedural record<sup class="factref"><a class="fact" href="#fact-44" data-fact="44">44</a></sup>; Act 10 contemporaneous coverage<sup class="factref"><a class="fact" href="#fact-36" data-fact="36">36</a></sup>.</span>
+</blockquote>
+<p style="font-size:14px;font-style:italic;color:#555;margin-top:10px">Act 10 didn't go through hearings on its substantive policy in the conventional sense. The Republican majority refused to extend the public hearing window past 60 hours, and the actual vote happened in 5&ndash;15 seconds in the middle of the night. The procedural story <em>is</em> the substantive story: the bill was big enough that it could not survive ordinary legislative deliberation, so it bypassed it.</p>
+</details>
+
 <h2 id="sec-law">Administrative and case law</h2>
 
 <p>The legal architecture under teacher-evaluation contracts has three layers, each of which has been actively litigated.</p>
@@ -932,6 +1091,11 @@
     <li id="fact-38"><span class="src-name">FutureEd &mdash; Legislative Tracker: 2023 Teacher-Pay Bills in the States</span>. <a href="https://www.future-ed.org/legislative-tracker-2023-teacher-pay-bills-in-the-states/" target="_blank" rel="noopener">future-ed.org</a>; companion 2024 tracker at <a href="https://www.future-ed.org/legislative-tracker-2024-teacher-pay-bills-in-the-states/" target="_blank" rel="noopener">future-ed.org/legislative-tracker-2024</a>. <span class="src-note">67 teacher-pay bills introduced in 26 states in 2023; 11 enacted in 9 states. Utah SB 173: $10,000 bonus for top 5% of teachers.</span></li>
     <li id="fact-39"><span class="src-name">Education Week &mdash; "Does Performance-Based Teacher Pay Work? Here's What the Research Says"</span>. <a href="https://www.edweek.org/leadership/does-performance-based-teacher-pay-work-heres-what-the-research-says/2023/06" target="_blank" rel="noopener">edweek.org</a>. <span class="src-note">Republican support for outcome-tied teacher pay (56%) vs. Democratic support (47%).</span></li>
     <li id="fact-40"><span class="src-name">National Center on Performance Incentives, 2011 report</span>. Cited in EdWeek and FutureEd analyses. <span class="src-note">Approximately 3.5% of US school districts reported adopting merit-pay plans (2011 baseline).</span></li>
+    <li id="fact-41"><span class="src-name">NEPC &mdash; "Houston Lawsuit Update, with Summary of Expert Witnesses' Findings about the EVAAS"</span>. <a href="https://nepc.colorado.edu/blog/houston-lawsuit" target="_blank" rel="noopener">nepc.colorado.edu/blog/houston-lawsuit</a>. <span class="src-note">Expert testimony from Jesse Rothstein and Audrey Amrein-Beardsley on EVAAS volatility, opacity, and missing-data bias in the Houston VAM litigation.</span></li>
+    <li id="fact-42"><span class="src-name">NYSUT/NYSSBA &mdash; coverage of <em>Lederman v. King</em></span>. <a href="https://www.nysut.org/news/2016/may/nysut-congratulates-great-neck-teacher-lederman-on-victory-as-judge-tosses-growth-score" target="_blank" rel="noopener">nysut.org</a>; <a href="https://www.nyssba.org/news/2016/05/19/on-board-online-may-23-2016/court-rules-in-favor-of-teacher-who-challenged-appr-score/" target="_blank" rel="noopener">nyssba.org</a>; <a href="https://www.tc.columbia.edu/articles/2016/may/rating-teachers-by-students-test-scores-is-arbitrary-and-capricious-writes-t/" target="_blank" rel="noopener">Teachers College, Columbia University</a>. <span class="src-note">Justice Roger McDonough's "wild, statistically significant swing" language; Bruce Lederman's "black box" / "avatar students" characterization.</span></li>
+    <li id="fact-43"><span class="src-name">Federal City Council &mdash; Public Hearing Testimony: "Summative Evaluation of Public Schools in the District of Columbia"</span>. <a href="https://www.federalcitycouncil.org/resource/public-hearing-testimony-summative-evaluation-of-public-schools-in-the-district-of-columbia/" target="_blank" rel="noopener">federalcitycouncil.org</a>. <span class="src-note">Kevin Clinton testimony on IMPACT retention rates (92% Highly Effective vs. 59% Minimally Effective, 2010-12) and grade inflation concerns.</span></li>
+    <li id="fact-44"><span class="src-name">2011 Wisconsin protests &mdash; legislative procedural record</span>. <a href="https://en.wikipedia.org/wiki/2011_Wisconsin_protests" target="_blank" rel="noopener">Wikipedia</a>; PolitiFact retrospective at <a href="https://www.politifact.com/article/2021/feb/09/look-back-our-act-10-fact-checks/" target="_blank" rel="noopener">politifact.com</a>. <span class="src-note">60 hours of debate; 51-17 Assembly vote at 1:00am Feb. 25 with 28 not voting; Senate Democrats fled to Illinois for three weeks to deny quorum; 5-15-second voting window.</span></li>
+    <li id="fact-45"><span class="src-name">AERA &mdash; full Statement on the Use of Value-Added Models (Nov 11, 2015)</span>. <a href="https://www.aera.net/Newsroom/News-Releases-and-Statements/AERA-Issues-Statement-on-the-Use-of-Value-Added-Models-in-Evaluation-of-Educators-and-Educator-Preparation-Programs" target="_blank" rel="noopener">aera.net</a>. <span class="src-note">Felice Levine framing; "potentially serious negative consequences" language.</span></li>
   </ol>
 </section>
 
@@ -949,6 +1113,9 @@
     <li id="fn-hanushek"><strong>Eric A. Hanushek</strong> &mdash; <span class="role">Paul and Jean Hanna Senior Fellow at the Hoover Institution, Stanford University; one of the most cited education economists in the United States. PhD MIT 1968.</span> His research on teacher-effect heterogeneity and student-outcome stakes is the principal published empirical case for outcome-tied teacher compensation. <a class="more" href="https://hanushek.stanford.edu/" target="_blank" rel="noopener">hanushek.stanford.edu &rarr;</a></li>
     <li id="fn-goldhaber"><strong>Dan Goldhaber</strong> &mdash; <span class="role">Labor economist; Vice President at the American Institutes for Research and Director of CALDER (the National Center for Analysis of Longitudinal Data in Education Research). PhD Cornell.</span> Lead empirical researcher on teacher layoffs, the LIFO question, teacher mobility, and the equity consequences of seniority-based personnel rules. <a class="more" href="https://caldercenter.org/our-team/dan-goldhaber" target="_blank" rel="noopener">CALDER profile &rarr;</a></li>
     <li id="fn-kraft"><strong>Matthew A. Kraft</strong> &mdash; <span class="role">Associate Professor of Education and Economics at Brown University; affiliated with the Annenberg Institute for School Reform; former Brookline (MA) public-school teacher.</span> Principal investigator on the Boston Public Schools mutual-consent hiring-reform study; has published widely on teacher effectiveness, observation-based evaluation, and the design of hiring systems. <a class="more" href="https://scholar.harvard.edu/mkraft" target="_blank" rel="noopener">scholar.harvard.edu/mkraft &rarr;</a></li>
+    <li id="fn-mcdonough"><strong>Roger D. McDonough</strong> &mdash; <span class="role">New York Acting Supreme Court Justice in Albany County.</span> Authored the May 2016 ruling in <em>Lederman v. King</em> vacating Sheri Lederman's growth-component rating &mdash; the first New York court decision to find an APPR score "indisputably arbitrary and capricious."</li>
+    <li id="fn-rothstein"><strong>Jesse Rothstein</strong> &mdash; <span class="role">Professor of Public Policy and Economics at UC Berkeley; Director of the California Policy Lab. Former Chief Economist at the U.S. Department of Labor (2011) and senior economist at the Council of Economic Advisers under President Obama.</span> Lead expert witness for the plaintiffs in <em>Houston Federation of Teachers v. HISD</em>; his testimony documented EVAAS volatility, the opacity of the proprietary algorithm, and the systematic bias against teachers with fewer linked students. <a class="more" href="https://gspp.berkeley.edu/faculty-and-impact/faculty/jesse-rothstein" target="_blank" rel="noopener">UC Berkeley GSPP &rarr;</a></li>
+    <li id="fn-levine"><strong>Felice J. Levine</strong> &mdash; <span class="role">Executive Director of the American Educational Research Association since 2002; one of the most senior research-society leaders in U.S. education research.</span> Public face of AERA's November 2015 Statement on the Use of Value-Added Models in Evaluation of Educators &mdash; the formal research-association response to the high-stakes-VAM era. <a class="more" href="https://www.aera.net/" target="_blank" rel="noopener">aera.net &rarr;</a></li>
   </ol>
 </section>
 
@@ -1018,7 +1185,10 @@ const PEOPLE = {
   "amrein": {n:"Audrey Amrein-Beardsley", r:"ASU professor; lead empirical critic of VAM-based teacher evaluation; expert witness in HFT v. HISD.", u:"https://education.asu.edu/about/people/audrey-beardsley"},
   "hanushek": {n:"Eric A. Hanushek", r:"Hoover Institution / Stanford education economist; principal empirical case for outcome-tied teacher compensation.", u:"https://hanushek.stanford.edu/"},
   "goldhaber": {n:"Dan Goldhaber", r:"Labor economist at the American Institutes for Research and CALDER; lead empirical researcher on teacher layoffs, mobility, and effectiveness.", u:"https://caldercenter.org/our-team/dan-goldhaber"},
-  "kraft": {n:"Matthew A. Kraft", r:"Associate professor of education and economics at Brown University; PI on the Boston Public Schools hiring-reform research.", u:"https://scholar.harvard.edu/mkraft"}
+  "kraft": {n:"Matthew A. Kraft", r:"Associate professor of education and economics at Brown University; PI on the Boston Public Schools hiring-reform research.", u:"https://scholar.harvard.edu/mkraft"},
+  "mcdonough": {n:"Roger D. McDonough", r:"NY Acting Supreme Court Justice (Albany County); authored the 2016 Lederman v. King ruling vacating a teacher's APPR growth score as 'arbitrary and capricious.'"},
+  "rothstein": {n:"Jesse Rothstein", r:"Professor of Public Policy and Economics, UC Berkeley; expert witness in HFT v. HISD on EVAAS volatility, opacity, and missing-data bias.", u:"https://gspp.berkeley.edu/faculty-and-impact/faculty/jesse-rothstein"},
+  "levine": {n:"Felice J. Levine", r:"Executive Director of the American Educational Research Association (since 2002). Public face of AERA's 2015 Statement on Value-Added Models.", u:"https://www.aera.net/"}
 };
 
 const FACTS = {
@@ -1060,7 +1230,12 @@ const FACTS = {
   "37": {s:"State tenure-elimination chronology", u:"https://universitybusiness.com/tenure-takedown-what-schools-and-states-have-recently-gone-against-it/", n:"FL SB 736 (2011); NC Career Status Law repeal (2013); KS appropriations rider (2014)."},
   "38": {s:"FutureEd — 2023/2024 Teacher-Pay Bills Trackers", u:"https://www.future-ed.org/legislative-tracker-2023-teacher-pay-bills-in-the-states/", n:"67 bills in 26 states in 2023; 11 enacted in 9 states. Utah SB 173: $10K bonuses for top 5% of teachers."},
   "39": {s:"EdWeek — Does Performance-Based Teacher Pay Work?", u:"https://www.edweek.org/leadership/does-performance-based-teacher-pay-work-heres-what-the-research-says/2023/06", n:"Republican support 56% vs. Democratic support 47% for outcome-tied teacher pay."},
-  "40": {s:"National Center on Performance Incentives, 2011 report", u:"", n:"~3.5% of US school districts reported adopting merit-pay plans (2011 baseline)."}
+  "40": {s:"National Center on Performance Incentives, 2011 report", u:"", n:"~3.5% of US school districts reported adopting merit-pay plans (2011 baseline)."},
+  "41": {s:"NEPC — Houston Lawsuit Update: Expert Witnesses' Findings about the EVAAS", u:"https://nepc.colorado.edu/blog/houston-lawsuit", n:"Jesse Rothstein and Audrey Amrein-Beardsley expert testimony on EVAAS volatility and opacity."},
+  "42": {s:"NYSUT/NYSSBA/Columbia coverage of Lederman v. King", u:"https://www.nysut.org/news/2016/may/nysut-congratulates-great-neck-teacher-lederman-on-victory-as-judge-tosses-growth-score", n:"Justice McDonough's 'wild, statistically significant swing' language; Bruce Lederman's 'black box' description."},
+  "43": {s:"Federal City Council — Public Hearing Testimony: Summative Evaluation of DCPS", u:"https://www.federalcitycouncil.org/resource/public-hearing-testimony-summative-evaluation-of-public-schools-in-the-district-of-columbia/", n:"Kevin Clinton testimony on IMPACT retention rates and grade inflation concerns."},
+  "44": {s:"2011 Wisconsin protests — legislative procedural record", u:"https://en.wikipedia.org/wiki/2011_Wisconsin_protests", n:"60 hours of debate; 51-17 Assembly vote at 1am Feb 25; Senate Dems fled to Illinois for 3 weeks."},
+  "45": {s:"AERA Statement on Value-Added Models (Nov 11, 2015) — full text", u:"https://www.aera.net/Newsroom/News-Releases-and-Statements/AERA-Issues-Statement-on-the-Use-of-Value-Added-Models-in-Evaluation-of-Educators-and-Educator-Preparation-Programs", n:"Felice Levine framing; 'potentially serious negative consequences.'"}
 };
 
 document.addEventListener("DOMContentLoaded", function() {
