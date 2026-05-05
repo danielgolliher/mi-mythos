@@ -76,6 +76,15 @@ DELETE /api/comments?path=/examples/...&id=<comment-id>
   → 200 OK, { ok: true }
   → 403 if the requesting IP didn't post this comment
   → 404 if no comment with that id exists
+
+POST /api/user
+  Content-Type: application/json
+  Body: { path: "/examples/...", name: "Daniel" | null }
+  → 200 OK, { ok: true, user: <updated record> }
+  Sets the requesting IP's custom display name on this page and rewrites
+  author labels on all of that user's existing comments. Pass `null` (or an
+  empty string) to clear the custom name and revert to the assigned
+  "Commenter N" sequential label.
 ```
 
 The server **overrides** any client-claimed `author` field with the IP-derived

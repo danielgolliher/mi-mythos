@@ -15,6 +15,10 @@
  *   POST   /api/comments                             → body { path, comment } → 200 { ok: true }
  *   DELETE /api/comments?path=<pagepath>&id=<cid>    → 200 { ok: true }
  *                                                      403 if requesting IP didn't post the comment
+ *   POST   /api/user                                 → body { path, name } → 200 { ok: true, user }
+ *                                                      Sets the user's custom display name and
+ *                                                      rewrites author labels on all of their
+ *                                                      existing comments on this page.
  *
  * The Worker reads CF-Connecting-IP (set by Cloudflare's edge), hashes it with
  * SHA-256, and uses the hash as the per-user key. Raw IPs are never stored.
@@ -54,17 +58,27 @@ function colorFromHash(hash) {
 
 // Get-or-create a per-page user record. The first IP to comment on a page is
 // "Commenter 1" on that page; the second new IP is "Commenter 2"; and so on.
+// `defaultLabel` is the assigned sequential label; `name` is an optional custom
+// override; `label` is what's displayed (= name || defaultLabel).
 async function getOrCreateUser(env, page, ipHash) {
   const userKey = `users:${page}:${ipHash}`;
   const existing = await env.COMMENTS.get(userKey, 'json');
-  if (existing) return existing;
+  if (existing) {
+    if (!existing.defaultLabel) existing.defaultLabel = existing.label || `Commenter ?`;
+    if (existing.name === undefined) existing.name = null;
+    existing.label = existing.name || existing.defaultLabel;
+    return existing;
+  }
   const counterKey = `counter:${page}`;
   const cur = parseInt((await env.COMMENTS.get(counterKey)) || '0', 10);
   const next = cur + 1;
   const { color, bgColor } = colorFromHash(ipHash);
+  const defaultLabel = `Commenter ${next}`;
   const user = {
     id: ipHash,
-    label: `Commenter ${next}`,
+    defaultLabel,
+    name: null,
+    label: defaultLabel,
     color,
     bgColor,
   };
@@ -89,6 +103,38 @@ export default {
     const url = new URL(request.url);
     const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
     const ipHash = await hashIP(ip, env.IP_SALT || 'mi-mythos-default-salt');
+
+    if (url.pathname === '/api/user') {
+      if (request.method === 'POST') {
+        let body;
+        try { body = await request.json(); }
+        catch { return jsonResponse({ error: 'invalid JSON' }, 400); }
+        const page = body.path;
+        if (!page) return jsonResponse({ error: 'missing path' }, 400);
+
+        // Load (or create) the user record
+        const user = await getOrCreateUser(env, page, ipHash);
+        const newName = body.name == null ? null : String(body.name).slice(0, 40).trim() || null;
+        user.name = newName;
+        user.label = user.name || user.defaultLabel;
+        await env.COMMENTS.put(`users:${page}:${ipHash}`, JSON.stringify(user));
+
+        // Rewrite author labels on this user's existing comments on this page
+        const comments = (await env.COMMENTS.get(`comments:${page}`, 'json')) || [];
+        let changed = false;
+        for (const c of comments) {
+          if (c.author && c.author.id === ipHash) {
+            c.author.name = user.name;
+            c.author.label = user.label;
+            changed = true;
+          }
+        }
+        if (changed) await env.COMMENTS.put(`comments:${page}`, JSON.stringify(comments));
+
+        return jsonResponse({ ok: true, user });
+      }
+      return jsonResponse({ error: 'method not allowed' }, 405);
+    }
 
     if (url.pathname === '/api/comments') {
       const page = url.searchParams.get('path') || '';
