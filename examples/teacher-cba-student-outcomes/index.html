@@ -138,6 +138,55 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 12px;
   }
+  /* === BRIEF NAVIGATION STRIP === */
+  .brief-nav {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 8px 0 12px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+    line-height: 1.5;
+  }
+  .brief-nav .home-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  .brief-nav .home-link:hover { text-decoration: underline; }
+  .brief-nav .nav-divider { color: var(--rule); }
+  .brief-nav .nav-label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+  }
+  .brief-nav a.example-link {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent);
+    padding-bottom: 1px;
+  }
+  .brief-nav a.example-link:hover {
+    color: var(--accent);
+    background: rgba(107, 52, 16, 0.06);
+  }
+  .brief-nav .example-current {
+    font-weight: 600;
+    color: var(--ink);
+    border-bottom: none;
+    cursor: default;
+  }
+  @media (max-width: 600px) {
+    .brief-nav { font-size: 12px; gap: 4px 10px; }
+    .brief-nav .home-link, .brief-nav .nav-label { font-size: 10px; }
+  }
   /* Floating TOC sidebar */
   nav.toc {
     position: fixed; top: 56px; left: 24px; width: 210px;
@@ -965,6 +1014,27 @@
 <a class="toc-fab" href="#top-anchor" aria-label="Back to top" title="Back to top">&uarr;</a>
 
 <div class="wrap">
+
+<nav class="brief-nav" aria-label="Other example briefs">
+  <a href="../../" class="home-link">&larr; MI Mythos</a>
+  <span class="nav-divider">&middot;</span>
+  <span class="nav-label">Briefs:</span>
+  <a class="example-link" href="../electronic-rent-payments/" data-slug="electronic-rent-payments">Electronic rent payments</a>
+  <span class="nav-divider">·</span>
+  <a class="example-link" href="../teacher-cba-student-outcomes/" data-slug="teacher-cba-student-outcomes">Teacher contracts &amp; student outcomes</a>
+</nav>
+<script>
+(function() {
+  var m = location.pathname.match(/\/examples\/([^/]+)\//);
+  if (!m) return;
+  document.querySelectorAll('.brief-nav a.example-link').forEach(function(a) {
+    if (a.dataset.slug === m[1]) {
+      a.classList.add('example-current');
+      a.removeAttribute('href');
+    }
+  });
+})();
+</script>
 
 <div class="print-row">
   <button class="print-btn" onclick="window.print()" type="button" aria-label="Print this brief">Print this brief</button>

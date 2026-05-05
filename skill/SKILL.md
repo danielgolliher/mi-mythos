@@ -139,6 +139,43 @@ The output `index.html` is a single self-contained file. CSS embedded in `<head>
 - **Expandable transcripts**: `<details class="transcript">` for each verbatim quote block. The first one has `open` so readers see at least one example without clicking.
 - **Print button**: `<button class="print-btn" onclick="window.print()">Print this brief</button>` at the top right of the page.
 
+### Required cross-brief navigation
+
+Every brief in the `mi-mythos/examples/` directory must carry a small navigation strip at the top of `.wrap` (above the print-row) that lists every other example brief and links back to the MI Mythos home page. This is what lets readers browse the portfolio.
+
+The pattern is **a single `EXAMPLES` list maintained by a Python inject script**, not by manual editing of each brief. To add a new brief:
+
+1. Edit `mi-mythos/tools/inject_brief_nav.py`
+2. Append `(slug, title)` to the `EXAMPLES` list
+3. Run the script over every existing brief in `mi-mythos/examples/*/index.html`
+4. Add the new brief itself, then run the script over it too
+
+The HTML structure each brief carries is:
+
+```html
+<nav class="brief-nav" aria-label="Other example briefs">
+  <a href="../../" class="home-link">← MI Mythos</a>
+  <span class="nav-divider">·</span>
+  <span class="nav-label">Briefs:</span>
+  <a class="example-link" href="../<slug>/" data-slug="<slug>">Title</a>
+  ...
+</nav>
+<script>
+(function() {
+  var m = location.pathname.match(/\/examples\/([^/]+)\//);
+  if (!m) return;
+  document.querySelectorAll('.brief-nav a.example-link').forEach(function(a) {
+    if (a.dataset.slug === m[1]) {
+      a.classList.add('example-current');
+      a.removeAttribute('href');
+    }
+  });
+})();
+</script>
+```
+
+Plus matching `.brief-nav` CSS in the head. The inline `<script>` runs synchronously — by the time it executes the nav links are already in the DOM, so no `DOMContentLoaded` is needed.
+
 ### Required mobile behavior
 
 **Briefs must work on phones.** Test by resizing the browser to ~375px wide before declaring done. The following are non-negotiable:
