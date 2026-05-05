@@ -71,10 +71,20 @@ POST /api/comments
   Content-Type: application/json
   Body: { path: "/examples/...", comment: { anchor, body, ... } }
   → 200 OK, { ok: true, comment: <stored> }
+
+DELETE /api/comments?path=/examples/...&id=<comment-id>
+  → 200 OK, { ok: true }
+  → 403 if the requesting IP didn't post this comment
+  → 404 if no comment with that id exists
 ```
 
 The server **overrides** any client-claimed `author` field with the IP-derived
-identity, so a visitor cannot impersonate another commenter.
+identity on POST, so a visitor cannot impersonate another commenter.
+
+DELETE is **author-only**: the server verifies that the requesting IP's hash
+matches the comment's stored `author.id`. A visitor cannot delete someone
+else's comments. (The frontend hides the delete button for non-author
+comments, but the server enforces this independently.)
 
 ## Limits
 

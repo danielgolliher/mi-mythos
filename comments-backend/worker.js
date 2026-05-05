@@ -11,8 +11,10 @@
  *   - "counter:<page>"   →  number  (used to assign Commenter 1, 2, 3...)
  *
  * Endpoints:
- *   GET  /api/comments?path=<pagepath>   → 200 JSON array
- *   POST /api/comments                   → body { path, comment } → 200 { ok: true }
+ *   GET    /api/comments?path=<pagepath>             → 200 JSON array
+ *   POST   /api/comments                             → body { path, comment } → 200 { ok: true }
+ *   DELETE /api/comments?path=<pagepath>&id=<cid>    → 200 { ok: true }
+ *                                                      403 if requesting IP didn't post the comment
  *
  * The Worker reads CF-Connecting-IP (set by Cloudflare's edge), hashes it with
  * SHA-256, and uses the hash as the per-user key. Raw IPs are never stored.
@@ -28,7 +30,7 @@
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
   'Access-Control-Max-Age': '86400',
 };
@@ -124,6 +126,21 @@ export default {
         list.push(sanitized);
         await env.COMMENTS.put(`comments:${page}`, JSON.stringify(list));
         return jsonResponse({ ok: true, comment: sanitized });
+      }
+
+      if (request.method === 'DELETE') {
+        const id = url.searchParams.get('id');
+        if (!id) return jsonResponse({ error: 'missing id' }, 400);
+        const list = (await env.COMMENTS.get(`comments:${page}`, 'json')) || [];
+        const target = list.find((c) => c.id === id);
+        if (!target) return jsonResponse({ error: 'comment not found' }, 404);
+        // Authorize: requesting IP hash must match the comment's author.id
+        if (target.author && target.author.id !== ipHash) {
+          return jsonResponse({ error: 'forbidden — not the author' }, 403);
+        }
+        const filtered = list.filter((c) => c.id !== id);
+        await env.COMMENTS.put(`comments:${page}`, JSON.stringify(filtered));
+        return jsonResponse({ ok: true });
       }
 
       return jsonResponse({ error: 'method not allowed' }, 405);
