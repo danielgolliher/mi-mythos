@@ -747,6 +747,29 @@
     font-size: 13px;
     white-space: pre-wrap;
   }
+  .comments-name-prompt {
+    padding: 12px 14px;
+    background: #fff7e0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 12px;
+    color: #5a4500;
+    line-height: 1.5;
+  }
+  .comments-name-prompt[hidden] { display: none; }
+  .comments-name-prompt p { margin: 0; }
+  .comments-name-prompt strong { font-weight: 600; color: var(--ink); }
+  .comments-name-prompt .name-prompt-trigger {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-weight: 600;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .comments-name-prompt .name-prompt-trigger:hover { color: #8c4f25; }
   .comments-empty {
     text-align: center;
     color: var(--muted);
@@ -1808,6 +1831,9 @@ document.addEventListener("DOMContentLoaded", function() {
     <button id="save-name-btn" type="submit">Save</button>
     <button id="cancel-name-btn" type="button">Cancel</button>
   </form>
+  <div class="comments-name-prompt" id="name-prompt" hidden>
+    <p>👋 Your comments will show up as <strong id="name-prompt-default">Commenter</strong>. <button class="name-prompt-trigger" id="name-prompt-trigger" type="button">Give yourself a name</button> so others can recognize you.</p>
+  </div>
   <div id="comments-list"></div>
   <p class="comments-empty">Select text in the body to leave a comment.</p>
 </aside>
@@ -2243,6 +2269,19 @@ document.addEventListener("DOMContentLoaded", function() {
     renderSidebar(comments);
   }
 
+  function updateNamePrompt() {
+    const u = getUser();
+    const prompt = document.getElementById('name-prompt');
+    const defaultLabel = document.getElementById('name-prompt-default');
+    if (!prompt) return;
+    if (u.name) {
+      prompt.hidden = true;
+    } else {
+      prompt.hidden = false;
+      if (defaultLabel) defaultLabel.textContent = u.defaultLabel;
+    }
+  }
+
   function setupRename() {
     const editBtn = document.getElementById('edit-name-btn');
     const display = document.getElementById('identity-display');
@@ -2270,10 +2309,13 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementById('user-label').textContent = u.label;
       const fresh = await loadComments();
       renderAll(fresh);
+      updateNamePrompt();
     });
     nameInput.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') { e.preventDefault(); closeEdit(); }
     });
+    const trigger = document.getElementById('name-prompt-trigger');
+    if (trigger) trigger.addEventListener('click', openEdit);
   }
 
   // === Init ===
@@ -2281,6 +2323,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setupSelectionToolbar();
     setupMobileTOC();
     setupRename();
+    updateNamePrompt();
     const user = getUser();
     document.getElementById('user-label').textContent = user.label;
     document.querySelector('#comments-sidebar .user-dot').style.background = user.color;
