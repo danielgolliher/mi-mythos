@@ -139,6 +139,22 @@ The output `index.html` is a single self-contained file. CSS embedded in `<head>
 - **Expandable transcripts**: `<details class="transcript">` for each verbatim quote block. The first one has `open` so readers see at least one example without clicking.
 - **Print button**: `<button class="print-btn" onclick="window.print()">Print this brief</button>` at the top right of the page.
 
+### Required mobile behavior
+
+**Briefs must work on phones.** Test by resizing the browser to ~375px wide before declaring done. The following are non-negotiable:
+
+- `html, body { max-width: 100%; overflow-x: hidden; }` — kills any chance of horizontal scrolling, regardless of inline content.
+- The floating TOC sidebar is hidden below 1180px on its own; **add a mobile entry point**: a small `📑 Contents` button (`#toc-mobile-btn`) fixed to bottom-left that converts the TOC into a left-edge slide-in drawer. Add a `×` close button inside the drawer. Tapping a TOC link or the dimmed backdrop closes the drawer. Esc also closes.
+- The comments FAB (right) and the TOC FAB (left) must not collide. The two-FAB layout (`right: 16px` and `left: 16px` on phones) is the standard.
+- Tables (`table.timeline` and similar) must `display: block; overflow-x: auto;` on screens ≤ 600px so they scroll horizontally inside their container instead of breaking the page.
+- Stat grids (`.stat-grid`) collapse to `grid-template-columns: 1fr` on screens ≤ 600px.
+- Long URLs in the citations / sources / footnotes sections must `word-break: break-word; overflow-wrap: anywhere;` so they wrap rather than push the layout.
+- Tooltips (`a.fact .tip`, `a.person .tip`) clamp to `width: min(260px, calc(100vw - 32px))` on screens ≤ 540px and lose their pointing arrows.
+- Body font drops to 16px on screens ≤ 600px; `h1` from 32px to 26px (and 23px on ≤ 540px); `h2` from 22px to 19px.
+- The print stylesheet hides the mobile TOC button, the close button, and the backdrop.
+
+The canonical implementation lives in the `/* === MOBILE FRIENDLINESS === */` CSS block in any of the example briefs and in the `setupMobileTOC()` JS function. Copy that block whenever building a new brief — don't reinvent it.
+
 ### Required print stylesheet
 
 `@media print` must:

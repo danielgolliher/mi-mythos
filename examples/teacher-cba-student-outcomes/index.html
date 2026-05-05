@@ -802,12 +802,122 @@
       border-bottom: 1px solid #999;
     }
   }
+  /* === MOBILE FRIENDLINESS === */
+  /* Lock horizontal overflow at the root */
+  html, body { max-width: 100%; overflow-x: hidden; }
+  /* Long URLs in citations / sources / footnotes wrap on any boundary */
+  .sources a, .citations a, .footnotes a, code {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  /* Long content that would overflow gets a horizontal scroll inside its container */
+  .stat-grid, .exchange, blockquote, .pull { max-width: 100%; }
+  /* Mobile TOC drawer trigger (left side; comments FAB stays on right) */
+  #toc-mobile-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px; left: 20px;
+    background: var(--accent); color: #fff;
+    border: none; border-radius: 22px;
+    height: 44px; padding: 0 14px;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px; font-weight: 600;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+    z-index: 60;
+    align-items: center; gap: 6px;
+  }
+  nav.toc .toc-close {
+    display: none;
+    position: absolute;
+    top: 8px; right: 10px;
+    background: transparent; border: none;
+    font-size: 22px; color: var(--muted);
+    cursor: pointer;
+    padding: 4px 8px;
+    line-height: 1;
+  }
+  /* Below 1180px: TOC becomes a left-edge slide-in drawer with a backdrop */
+  @media (max-width: 1180px) {
+    #toc-mobile-btn { display: inline-flex; }
+    nav.toc {
+      display: block !important;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: min(290px, calc(100vw - 80px));
+      max-height: 100vh;
+      height: 100vh;
+      border: none;
+      border-right: 1px solid var(--rule);
+      border-radius: 0;
+      background: rgba(251, 250, 246, 0.98);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transform: translateX(-100%);
+      transition: transform 0.22s ease-out;
+      z-index: 70;
+      overflow-y: auto;
+      padding: 22px 20px 80px;
+      box-shadow: 4px 0 14px rgba(0,0,0,0.08);
+    }
+    nav.toc.open { transform: translateX(0); }
+    nav.toc .toc-close { display: block; }
+    body.toc-open::before {
+      content: "";
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 65;
+    }
+  }
+  /* Tighten typography and switch tables / stat-grid to mobile shapes */
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .wrap { padding: 36px 18px 80px; }
+    h1 { font-size: 26px; line-height: 1.18; }
+    h2 { font-size: 19px; }
+    h3 { font-size: 15px; }
+    .deck { font-size: 16px; }
+    .meta { font-size: 12px; }
+    blockquote { padding: 12px 14px; font-size: 15px; }
+    .pull { font-size: 18px; padding: 14px 6px; }
+    .exchange { padding: 14px 16px; font-size: 15px; }
+    .stat-grid { grid-template-columns: 1fr; gap: 10px; }
+    .stat .num { font-size: 22px; }
+    table.timeline {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      font-size: 13px;
+    }
+    table.timeline td.date { width: auto; min-width: 90px; padding-right: 4px; }
+    .citations, .sources, .footnotes { padding-left: 8px; padding-right: 8px; }
+    .citations ol, .footnotes ol { padding-left: 22px; }
+  }
+  @media (max-width: 540px) {
+    #toc-mobile-btn { left: 16px; bottom: 16px; }
+    sup.factref a.fact .tip,
+    a.person .tip {
+      width: min(260px, calc(100vw - 32px));
+      max-width: calc(100vw - 32px);
+    }
+    h1 { font-size: 23px; }
+    .pull { font-size: 17px; }
+    /* Comment modal must not overflow on phones */
+    .comment-modal-card { padding: 18px 18px; }
+    .comment-modal-card textarea { min-height: 80px; }
+  }
+  @media print {
+    #toc-mobile-btn { display: none !important; }
+    nav.toc .toc-close { display: none !important; }
+    body.toc-open::before { display: none !important; }
+  }
 </style>
 </head>
 <body>
 <a id="top-anchor"></a>
 
 <nav class="toc" aria-label="Table of contents">
+  <button class="toc-close" type="button" aria-label="Close table of contents">×</button>
   <p class="toc-label">Contents</p>
   <ol>
     <li><a href="#sec-question">The question, made precise</a></li>
@@ -1702,6 +1812,8 @@ document.addEventListener("DOMContentLoaded", function() {
   <p class="comments-empty">Select text in the body to leave a comment.</p>
 </aside>
 
+<button id="toc-mobile-btn" type="button" aria-label="Open table of contents">📑 Contents</button>
+
 <button id="comments-fab" type="button" aria-label="Toggle comments">💬 Comments <span id="fab-count"></span></button>
 
 <script>
@@ -2010,6 +2122,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // === Selection toolbar ===
   let savedRange = null;
+  function setupMobileTOC() {
+    const btn = document.getElementById('toc-mobile-btn');
+    const toc = document.querySelector('nav.toc');
+    const closeBtn = toc ? toc.querySelector('.toc-close') : null;
+    if (!btn || !toc) return;
+    function open() {
+      toc.classList.add('open');
+      document.body.classList.add('toc-open');
+    }
+    function close() {
+      toc.classList.remove('open');
+      document.body.classList.remove('toc-open');
+    }
+    btn.addEventListener('click', function(e) { e.stopPropagation(); open(); });
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    toc.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') close();
+    });
+    document.addEventListener('click', function(e) {
+      if (!document.body.classList.contains('toc-open')) return;
+      if (e.target.closest('nav.toc, #toc-mobile-btn')) return;
+      close();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.body.classList.contains('toc-open')) close();
+    });
+  }
+
   function setupSelectionToolbar() {
     const toolbar = document.getElementById('selection-toolbar');
     document.addEventListener('mouseup', function(e) {
@@ -2139,6 +2279,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // === Init ===
   document.addEventListener('DOMContentLoaded', async function() {
     setupSelectionToolbar();
+    setupMobileTOC();
     setupRename();
     const user = getUser();
     document.getElementById('user-label').textContent = user.label;
