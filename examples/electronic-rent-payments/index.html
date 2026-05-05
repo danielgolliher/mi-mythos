@@ -538,6 +538,303 @@
     nav.toc a::after, .footnotes a::after, a.person::after,
     .toc-top::after, blockquote a::after { content: "" !important; }
   }
+  /* === COMMENTING SYSTEM === */
+  /* Inline annotation highlights */
+  mark.annotation {
+    background: rgba(220, 180, 60, 0.28);
+    border-bottom: 2px solid rgba(180, 140, 40, 0.7);
+    padding: 0 1px;
+    cursor: pointer;
+    border-radius: 1px;
+    transition: background 0.15s;
+  }
+  mark.annotation:hover { background: rgba(220, 180, 60, 0.5); }
+  mark.annotation.flash {
+    animation: flash-highlight 1.4s ease-out;
+  }
+  @keyframes flash-highlight {
+    0%, 100% { background: rgba(220, 180, 60, 0.28); }
+    30% { background: rgba(255, 200, 50, 0.85); box-shadow: 0 0 0 4px rgba(255, 200, 50, 0.4); }
+  }
+  /* Floating selection toolbar */
+  #selection-toolbar {
+    position: absolute;
+    z-index: 1000;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 4px;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  #selection-toolbar[hidden] { display: none; }
+  #selection-toolbar button {
+    background: transparent;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  #selection-toolbar button:hover { background: rgba(255,255,255,0.15); }
+  #selection-toolbar::after {
+    content: "";
+    position: absolute;
+    top: 100%; left: 50%; margin-left: -6px;
+    border: 6px solid transparent;
+    border-top-color: var(--ink);
+  }
+  /* Comment modal */
+  #comment-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(20, 20, 20, 0.4);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  #comment-modal[hidden] { display: none; }
+  .comment-modal-card {
+    background: #fff;
+    border-radius: 6px;
+    padding: 22px 24px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .comment-modal-card .user-strip {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .comment-modal-card .quoted-text {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px;
+    margin: 0 0 14px 0;
+    font-family: "Iowan Old Style", "Charter", Georgia, serif;
+    font-size: 14px;
+    color: var(--ink);
+    font-style: italic;
+    max-height: 80px;
+    overflow-y: auto;
+  }
+  .comment-modal-card textarea {
+    width: 100%;
+    min-height: 90px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--ink);
+    background: var(--bg);
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  .comment-modal-card textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(107, 52, 16, 0.12);
+  }
+  .comment-actions {
+    display: flex; justify-content: flex-end; gap: 8px;
+    margin-top: 14px;
+  }
+  .comment-actions button {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    transition: background 0.12s, color 0.12s;
+  }
+  .comment-actions button#comment-submit {
+    background: var(--accent);
+    color: #fff;
+  }
+  .comment-actions button:hover { background: var(--accent); color: #fff; }
+  .comment-actions button#comment-submit:hover { background: #8c4f25; }
+  .user-dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  /* Comments sidebar */
+  #comments-sidebar {
+    position: fixed;
+    top: 56px;
+    right: 24px;
+    width: 280px;
+    max-height: calc(100vh - 100px);
+    background: rgba(251, 250, 246, 0.96);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(calc(100% + 32px));
+    transition: transform 0.2s ease-out;
+  }
+  #comments-sidebar.open { transform: translateX(0); }
+  .comments-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .comments-header h2 {
+    margin: 0;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    border: none;
+    padding: 0;
+    flex: 1;
+    font-weight: 700;
+  }
+  .comments-header #comments-count {
+    background: var(--accent);
+    color: #fff;
+    padding: 1px 7px;
+    border-radius: 9px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .comments-header #comments-toggle {
+    background: transparent; border: none;
+    color: var(--muted);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+  }
+  .comments-identity {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--bg-deep, #f3efe5);
+  }
+  .comments-identity strong { color: var(--ink); font-weight: 600; }
+  #comments-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0;
+  }
+  .comment-card {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+  .comment-card:hover { background: rgba(107, 52, 16, 0.04); }
+  .comment-card.flash { animation: flash-card 1.4s ease-out; }
+  @keyframes flash-card {
+    0%, 100% { background: transparent; }
+    30% { background: rgba(255, 200, 50, 0.4); }
+  }
+  .comment-head {
+    display: flex; align-items: center; gap: 7px;
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+  .comment-head strong { color: var(--ink); font-weight: 600; }
+  .comment-date {
+    color: var(--muted);
+    margin-left: auto;
+    font-size: 11px;
+  }
+  .comment-anchor {
+    margin: 0 0 8px 0;
+    padding: 4px 0 4px 8px;
+    border-left: 2px solid var(--accent);
+    font-family: "Iowan Old Style", "Charter", Georgia, serif;
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .comment-body {
+    margin: 0;
+    line-height: 1.5;
+    color: var(--ink);
+    font-size: 13px;
+    white-space: pre-wrap;
+  }
+  .comments-empty {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    font-style: italic;
+    padding: 20px 14px;
+    margin: 0;
+  }
+  .comments-empty.hidden { display: none; }
+  /* FAB to open comments on narrow screens */
+  #comments-fab {
+    position: fixed;
+    bottom: 20px; right: 76px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 22px;
+    height: 44px;
+    padding: 0 14px;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #comments-fab:hover { background: #8c4f25; }
+  #comments-fab #fab-count {
+    background: rgba(255,255,255,0.25);
+    border-radius: 9px;
+    padding: 1px 7px;
+    font-size: 11px;
+  }
+  #comments-fab #fab-count:empty { display: none; }
+  @media (max-width: 1499px) {
+    #comments-sidebar {
+      top: auto; bottom: 76px;
+      max-height: calc(100vh - 160px);
+    }
+  }
+  @media (max-width: 540px) {
+    #comments-sidebar { width: calc(100vw - 32px); right: 16px; }
+    #comments-fab { right: 16px; bottom: 16px; }
+    .toc-fab { display: none !important; }
+  }
+  @media print {
+    #selection-toolbar, #comment-modal, #comments-sidebar, #comments-fab { display: none !important; }
+    mark.annotation {
+      background: transparent;
+      border-bottom: 1px solid #999;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1185,6 +1482,372 @@ document.addEventListener("DOMContentLoaded", function() {
     onScroll();
   }
 });
+</script>
+
+<!-- Commenting system: UI elements + logic -->
+<div id="selection-toolbar" hidden>
+  <button id="add-comment-btn" type="button">💬 Comment</button>
+</div>
+
+<div id="comment-modal" hidden role="dialog" aria-labelledby="modal-title">
+  <div class="comment-modal-card">
+    <div class="user-strip">
+      <span class="user-dot"></span>
+      <span>Posting as <strong id="modal-user-label">…</strong></span>
+    </div>
+    <p class="quoted-text" id="quoted-text"></p>
+    <textarea id="comment-body" placeholder="Add a comment…" aria-label="Comment text"></textarea>
+    <div class="comment-actions">
+      <button id="comment-cancel" type="button">Cancel</button>
+      <button id="comment-submit" type="button">Comment</button>
+    </div>
+  </div>
+</div>
+
+<aside id="comments-sidebar" aria-label="Comments">
+  <div class="comments-header">
+    <h2>Comments</h2>
+    <span id="comments-count">0</span>
+    <button id="comments-toggle" type="button" aria-label="Close comments">×</button>
+  </div>
+  <div class="comments-identity">
+    <span class="user-dot"></span>
+    <span>You: <strong id="user-label">…</strong></span>
+  </div>
+  <div id="comments-list"></div>
+  <p class="comments-empty">Select text in the body to leave a comment.</p>
+</aside>
+
+<button id="comments-fab" type="button" aria-label="Toggle comments">💬 Comments <span id="fab-count"></span></button>
+
+<script>
+(function() {
+  // === Configuration ===
+  // Set this to your Cloudflare Worker URL to enable shared, cross-device comments.
+  // Leave null to use device-local storage only (default).
+  const COMMENTS_ENDPOINT = null;
+  const PAGE_KEY = location.pathname.replace(/\/$/, '') || '/';
+  const STORAGE_KEY = 'mi-mythos-comments:' + PAGE_KEY;
+  const USER_KEY = 'mi-mythos-user';
+
+  // === User identity ===
+  function getUser() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(USER_KEY) || 'null');
+      if (stored && stored.id) return stored;
+    } catch (e) {}
+    const uuid = (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2));
+    const id = uuid.replace(/-/g, '').slice(0, 8).toUpperCase();
+    let h = 0;
+    for (let i = 0; i < uuid.length; i++) h = (h * 31 + uuid.charCodeAt(i)) % 360;
+    const u = {
+      id,
+      label: 'Commenter ' + id.slice(0, 4),
+      color: 'hsl(' + h + ', 65%, 45%)',
+      bgColor: 'hsla(' + h + ', 70%, 55%, 0.28)'
+    };
+    localStorage.setItem(USER_KEY, JSON.stringify(u));
+    return u;
+  }
+
+  // === Storage layer ===
+  async function loadComments() {
+    if (COMMENTS_ENDPOINT) {
+      try {
+        const r = await fetch(COMMENTS_ENDPOINT + '?path=' + encodeURIComponent(PAGE_KEY));
+        if (r.ok) return await r.json();
+      } catch (e) { console.warn('comments backend unavailable, using localStorage', e); }
+    }
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    } catch (e) { return []; }
+  }
+
+  async function saveComment(c) {
+    const list = await loadComments();
+    list.push(c);
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (e) {}
+    if (COMMENTS_ENDPOINT) {
+      try {
+        await fetch(COMMENTS_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ path: PAGE_KEY, comment: c })
+        });
+      } catch (e) { console.warn('comments backend POST failed', e); }
+    }
+  }
+
+  // === Anchor capture & resolution ===
+  function captureAnchor(range) {
+    let node = range.startContainer;
+    let section = node.nodeType === 3 ? node.parentElement : node;
+    while (section && !section.id) section = section.parentElement;
+    if (!section || section.tagName === 'HTML' || section.tagName === 'BODY') return null;
+    const exact = (range.toString() || '').replace(/\s+/g, ' ').trim();
+    if (!exact || exact.length < 3) return null;
+    const sectionText = section.textContent.replace(/\s+/g, ' ').trim();
+    const idx = sectionText.indexOf(exact);
+    if (idx === -1) return null;
+    return {
+      sectionId: section.id,
+      prefix: sectionText.slice(Math.max(0, idx - 40), idx),
+      exact: exact,
+      suffix: sectionText.slice(idx + exact.length, idx + exact.length + 40)
+    };
+  }
+
+  function findAndWrap(comment) {
+    const section = document.getElementById(comment.anchor.sectionId);
+    if (!section) return false;
+    const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n) {
+        if (n.parentElement.closest('mark.annotation, script, style, #comments-sidebar, #comment-modal, #selection-toolbar, nav.toc, .toc-fab, #comments-fab')) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes = [];
+    let node;
+    while (node = walker.nextNode()) nodes.push(node);
+    let flat = '';
+    const offsets = [];
+    for (const n of nodes) {
+      offsets.push({ node: n, start: flat.length });
+      flat += n.nodeValue;
+    }
+    // Try strict prefix+exact+suffix match first
+    let needle = comment.anchor.prefix + comment.anchor.exact + comment.anchor.suffix;
+    let match = flat.indexOf(needle);
+    let exactStart, exactEnd;
+    if (match !== -1) {
+      exactStart = match + comment.anchor.prefix.length;
+      exactEnd = exactStart + comment.anchor.exact.length;
+    } else {
+      // Loose match: just the exact text
+      const looseIdx = flat.indexOf(comment.anchor.exact);
+      if (looseIdx === -1) return false;
+      exactStart = looseIdx;
+      exactEnd = looseIdx + comment.anchor.exact.length;
+    }
+    return wrapRange(offsets, exactStart, exactEnd, comment);
+  }
+
+  function wrapRange(offsets, start, end, comment) {
+    let startNode, startOffset, endNode, endOffset;
+    for (let i = 0; i < offsets.length; i++) {
+      const cur = offsets[i];
+      const next = offsets[i+1];
+      const nodeEnd = next ? next.start : cur.start + cur.node.nodeValue.length;
+      if (startNode === undefined && nodeEnd > start) {
+        startNode = cur.node;
+        startOffset = start - cur.start;
+      }
+      if (endNode === undefined && nodeEnd >= end) {
+        endNode = cur.node;
+        endOffset = end - cur.start;
+        break;
+      }
+    }
+    if (!startNode || !endNode) return false;
+    try {
+      const range = document.createRange();
+      range.setStart(startNode, startOffset);
+      range.setEnd(endNode, endOffset);
+      const mark = document.createElement('mark');
+      mark.className = 'annotation';
+      mark.dataset.cid = comment.id;
+      mark.style.background = comment.author.bgColor;
+      mark.style.borderBottomColor = comment.author.color;
+      try {
+        range.surroundContents(mark);
+      } catch (e) {
+        const frag = range.extractContents();
+        mark.appendChild(frag);
+        range.insertNode(mark);
+      }
+      mark.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        focusComment(comment.id);
+      });
+      mark.title = comment.author.label + ': ' + comment.body.slice(0, 80) + (comment.body.length > 80 ? '…' : '');
+      return true;
+    } catch (e) {
+      console.warn('wrap failed for', comment.id, e);
+      return false;
+    }
+  }
+
+  // === Sidebar rendering ===
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function(c) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function renderSidebar(comments) {
+    const list = document.getElementById('comments-list');
+    const empty = document.querySelector('.comments-empty');
+    list.innerHTML = '';
+    document.getElementById('comments-count').textContent = comments.length;
+    document.getElementById('fab-count').textContent = comments.length || '';
+    if (comments.length === 0) { empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
+    comments.slice().reverse().forEach(function(c) {
+      const card = document.createElement('div');
+      card.className = 'comment-card';
+      card.dataset.cid = c.id;
+      const dt = new Date(c.createdAt);
+      const dateStr = dt.toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+      const quoted = c.anchor.exact.length > 100 ? c.anchor.exact.slice(0, 100) + '…' : c.anchor.exact;
+      card.innerHTML =
+        '<div class="comment-head">' +
+          '<span class="user-dot" style="background:' + c.author.color + '"></span>' +
+          '<strong>' + escapeHtml(c.author.label) + '</strong>' +
+          '<span class="comment-date">' + dateStr + '</span>' +
+        '</div>' +
+        '<blockquote class="comment-anchor">' + escapeHtml(quoted) + '</blockquote>' +
+        '<p class="comment-body">' + escapeHtml(c.body) + '</p>';
+      card.addEventListener('click', function() {
+        const mark = document.querySelector('mark.annotation[data-cid="' + c.id + '"]');
+        if (mark) {
+          mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          mark.classList.add('flash');
+          setTimeout(function() { mark.classList.remove('flash'); }, 1400);
+        }
+      });
+      list.appendChild(card);
+    });
+  }
+
+  function focusComment(cid) {
+    const sidebar = document.getElementById('comments-sidebar');
+    sidebar.classList.add('open');
+    const card = document.querySelector('.comment-card[data-cid="' + cid + '"]');
+    if (!card) return;
+    setTimeout(function() {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      card.classList.add('flash');
+      setTimeout(function() { card.classList.remove('flash'); }, 1400);
+    }, 200);
+  }
+
+  // === Selection toolbar ===
+  let savedRange = null;
+  function setupSelectionToolbar() {
+    const toolbar = document.getElementById('selection-toolbar');
+    document.addEventListener('mouseup', function(e) {
+      // Don't react to clicks inside our own UI
+      if (e.target.closest('#comments-sidebar, #comment-modal, #selection-toolbar, #comments-fab')) return;
+      setTimeout(function() {
+        const sel = window.getSelection();
+        if (!sel || sel.rangeCount === 0 || sel.isCollapsed) {
+          toolbar.hidden = true; savedRange = null; return;
+        }
+        const range = sel.getRangeAt(0);
+        const wrap = document.querySelector('.wrap');
+        if (!wrap || !wrap.contains(range.commonAncestorContainer)) {
+          toolbar.hidden = true; savedRange = null; return;
+        }
+        const commonEl = range.commonAncestorContainer.nodeType === 3 ? range.commonAncestorContainer.parentElement : range.commonAncestorContainer;
+        if (commonEl.closest('nav.toc, .footnotes, .citations, .sources, .print-row, footer.report, mark.annotation')) {
+          toolbar.hidden = true; savedRange = null; return;
+        }
+        if (range.toString().trim().length < 3) {
+          toolbar.hidden = true; savedRange = null; return;
+        }
+        const rect = range.getBoundingClientRect();
+        toolbar.style.top = (rect.top + window.scrollY - 42) + 'px';
+        toolbar.style.left = (rect.left + window.scrollX + rect.width/2 - 50) + 'px';
+        toolbar.hidden = false;
+        savedRange = range.cloneRange();
+      }, 10);
+    });
+
+    document.getElementById('add-comment-btn').addEventListener('click', function() {
+      if (savedRange) { showCommentModal(savedRange); toolbar.hidden = true; }
+    });
+  }
+
+  function showCommentModal(range) {
+    const anchor = captureAnchor(range);
+    if (!anchor) {
+      alert('Could not anchor a comment to that selection. Try selecting within a single paragraph or list item.');
+      return;
+    }
+    const user = getUser();
+    const modal = document.getElementById('comment-modal');
+    document.getElementById('quoted-text').textContent = '"' + (anchor.exact.length > 200 ? anchor.exact.slice(0, 200) + '…' : anchor.exact) + '"';
+    document.getElementById('modal-user-label').textContent = user.label;
+    document.querySelector('#comment-modal .user-dot').style.background = user.color;
+    const ta = document.getElementById('comment-body');
+    ta.value = '';
+    modal.hidden = false;
+    setTimeout(function() { ta.focus(); }, 50);
+
+    function close() { modal.hidden = true; }
+    document.getElementById('comment-cancel').onclick = close;
+    document.getElementById('comment-submit').onclick = async function() {
+      const body = ta.value.trim();
+      if (!body) { ta.focus(); return; }
+      const comment = {
+        id: (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2)),
+        anchor: anchor,
+        body: body,
+        author: { id: user.id, label: user.label, color: user.color, bgColor: user.bgColor },
+        createdAt: Date.now()
+      };
+      await saveComment(comment);
+      close();
+      const all = await loadComments();
+      renderAll(all);
+      document.getElementById('comments-sidebar').classList.add('open');
+      setTimeout(function() { focusComment(comment.id); }, 100);
+    };
+
+    // Esc to cancel; Cmd/Ctrl+Enter to submit
+    function keyHandler(e) {
+      if (modal.hidden) { document.removeEventListener('keydown', keyHandler); return; }
+      if (e.key === 'Escape') { close(); }
+      if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') { document.getElementById('comment-submit').click(); }
+    }
+    document.addEventListener('keydown', keyHandler);
+  }
+
+  function renderAll(comments) {
+    // Remove existing annotations
+    document.querySelectorAll('mark.annotation').forEach(function(m) {
+      const parent = m.parentNode;
+      while (m.firstChild) parent.insertBefore(m.firstChild, m);
+      parent.removeChild(m);
+      parent.normalize();
+    });
+    // Render each comment's anchor
+    comments.forEach(function(c) { findAndWrap(c); });
+    renderSidebar(comments);
+  }
+
+  // === Init ===
+  document.addEventListener('DOMContentLoaded', async function() {
+    setupSelectionToolbar();
+    const user = getUser();
+    document.getElementById('user-label').textContent = user.label;
+    document.querySelector('#comments-sidebar .user-dot').style.background = user.color;
+    const comments = await loadComments();
+    renderAll(comments);
+    document.getElementById('comments-toggle').addEventListener('click', function() {
+      document.getElementById('comments-sidebar').classList.remove('open');
+    });
+    document.getElementById('comments-fab').addEventListener('click', function() {
+      document.getElementById('comments-sidebar').classList.toggle('open');
+    });
+    if (window.innerWidth >= 1500 && comments.length > 0) {
+      document.getElementById('comments-sidebar').classList.add('open');
+    }
+  });
+})();
 </script>
 </body>
 </html>
