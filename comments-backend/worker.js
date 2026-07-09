@@ -137,10 +137,12 @@ export default {
     }
 
     if (url.pathname === '/api/comments') {
-      const page = url.searchParams.get('path') || '';
-      if (!page) return jsonResponse({ error: 'missing path' }, 400);
+      // GET/DELETE take ?path=...; POST carries path in the JSON body
+      // (per the documented API), with the query param as a fallback.
+      let page = url.searchParams.get('path') || '';
 
       if (request.method === 'GET') {
+        if (!page) return jsonResponse({ error: 'missing path' }, 400);
         const list = (await env.COMMENTS.get(`comments:${page}`, 'json')) || [];
         return jsonResponse(list);
       }
@@ -149,6 +151,8 @@ export default {
         let body;
         try { body = await request.json(); }
         catch { return jsonResponse({ error: 'invalid JSON' }, 400); }
+        page = page || String(body.path || '');
+        if (!page) return jsonResponse({ error: 'missing path' }, 400);
         if (!body.comment || !body.comment.body || !body.comment.anchor) {
           return jsonResponse({ error: 'invalid comment shape' }, 400);
         }
@@ -175,6 +179,7 @@ export default {
       }
 
       if (request.method === 'DELETE') {
+        if (!page) return jsonResponse({ error: 'missing path' }, 400);
         const id = url.searchParams.get('id');
         if (!id) return jsonResponse({ error: 'missing id' }, 400);
         const list = (await env.COMMENTS.get(`comments:${page}`, 'json')) || [];

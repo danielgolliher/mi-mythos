@@ -6,7 +6,7 @@ compatibility_date = "2026-01-01"
 #   wrangler kv:namespace create COMMENTS
 [[kv_namespaces]]
 binding = "COMMENTS"
-id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+id = "0240060d18734c3f96e9cbde73f3245c"
 
 # Optional: salt used when hashing IP addresses. Set with:
 #   wrangler secret put IP_SALT
