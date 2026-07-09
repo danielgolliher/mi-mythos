@@ -87,6 +87,28 @@ async function getOrCreateUser(env, page, ipHash) {
   return user;
 }
 
+// Fire-and-forget email notification through the notify relay (the
+// met-favorites-email worker), if NOTIFY_URL/NOTIFY_TOKEN are configured.
+// The relay pins the recipient server-side; failures are swallowed so
+// notification problems never break commenting.
+async function notify(env, subject, text) {
+  if (!env.NOTIFY_URL || !env.NOTIFY_TOKEN) return;
+  try {
+    await fetch(env.NOTIFY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: env.NOTIFY_TOKEN, subject, text }),
+    });
+  } catch (e) { /* never let notification failure surface */ }
+}
+
+function backlogSummary(list) {
+  const pending = list.filter((c) => !c.status);
+  const lines = pending.map((c) =>
+    `- [${(c.author && c.author.label) || 'Commenter'}] ${(c.body || '').slice(0, 160)}`);
+  return { count: pending.length, text: lines.join('\n') || '(none)' };
+}
+
 function jsonResponse(body, status = 200, extraHeaders = {}) {
   return new Response(JSON.stringify(body), {
     status,
@@ -95,7 +117,7 @@ function jsonResponse(body, status = 200, extraHeaders = {}) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: CORS_HEADERS });
     }
@@ -173,6 +195,12 @@ export default {
       }
       target.status = 'rollback requested';
       await env.COMMENTS.put(`comments:${body.path}`, JSON.stringify(list));
+      ctx.waitUntil(notify(env,
+        `Rollback requested on ${body.path}`,
+        `A visitor clicked Back on a deployed feature.\n\n`
+        + `Page: ${body.path}\n`
+        + `Comment: [${(target.author && target.author.label) || 'Commenter'}] ${(target.body || '').slice(0, 400)}\n`
+        + `Comment id: ${target.id}\n`));
       return jsonResponse({ ok: true, comment: target });
     }
 
@@ -215,6 +243,13 @@ export default {
         if (list.length >= 500) return jsonResponse({ error: 'comment cap reached' }, 429);
         list.push(sanitized);
         await env.COMMENTS.put(`comments:${page}`, JSON.stringify(list));
+        const backlog = backlogSummary(list);
+        ctx.waitUntil(notify(env,
+          `New suggestion on ${page} (${backlog.count} pending)`,
+          `New comment from ${user.label}:\n\n${sanitized.body.slice(0, 1000)}\n\n`
+          + `Pending backlog (${backlog.count}):\n${backlog.text}\n\n`
+          + `Board: https://danielgolliher.github.io${page}/\n`
+          + `Comment id: ${sanitized.id}\n`));
         return jsonResponse({ ok: true, comment: sanitized });
       }
 

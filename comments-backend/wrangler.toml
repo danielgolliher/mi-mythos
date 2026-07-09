@@ -11,3 +11,6 @@ id = "0240060d18734c3f96e9cbde73f3245c"
 # Optional: salt used when hashing IP addresses. Set with:
 #   wrangler secret put IP_SALT
 # (any random string is fine; without it a default is used)
+
+[vars]
+NOTIFY_URL = "https://met-favorites-email.danielgolliher.workers.dev/notify"
