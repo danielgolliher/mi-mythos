@@ -136,6 +136,46 @@ export default {
       return jsonResponse({ error: 'method not allowed' }, 405);
     }
 
+    // Admin-only: set a lifecycle status on a comment ("deployed", "rolled back",
+    // or null to clear). Requires the ADMIN_TOKEN secret.
+    if (url.pathname === '/api/status') {
+      if (request.method !== 'POST') return jsonResponse({ error: 'method not allowed' }, 405);
+      let body;
+      try { body = await request.json(); }
+      catch { return jsonResponse({ error: 'invalid JSON' }, 400); }
+      if (!env.ADMIN_TOKEN || body.token !== env.ADMIN_TOKEN) {
+        return jsonResponse({ error: 'forbidden' }, 403);
+      }
+      const ALLOWED = ['deployed', 'rolled back', 'rollback requested', null];
+      if (!ALLOWED.includes(body.status)) return jsonResponse({ error: 'bad status' }, 400);
+      if (!body.path || !body.id) return jsonResponse({ error: 'missing path/id' }, 400);
+      const list = (await env.COMMENTS.get(`comments:${body.path}`, 'json')) || [];
+      const target = list.find((c) => c.id === body.id);
+      if (!target) return jsonResponse({ error: 'comment not found' }, 404);
+      target.status = body.status;
+      await env.COMMENTS.put(`comments:${body.path}`, JSON.stringify(list));
+      return jsonResponse({ ok: true, comment: target });
+    }
+
+    // Public: request rollback of a deployed feature. Only transitions
+    // "deployed" -> "rollback requested"; every other state is rejected.
+    if (url.pathname === '/api/rollback-request') {
+      if (request.method !== 'POST') return jsonResponse({ error: 'method not allowed' }, 405);
+      let body;
+      try { body = await request.json(); }
+      catch { return jsonResponse({ error: 'invalid JSON' }, 400); }
+      if (!body.path || !body.id) return jsonResponse({ error: 'missing path/id' }, 400);
+      const list = (await env.COMMENTS.get(`comments:${body.path}`, 'json')) || [];
+      const target = list.find((c) => c.id === body.id);
+      if (!target) return jsonResponse({ error: 'comment not found' }, 404);
+      if (target.status !== 'deployed') {
+        return jsonResponse({ error: 'only deployed features can be rolled back' }, 409);
+      }
+      target.status = 'rollback requested';
+      await env.COMMENTS.put(`comments:${body.path}`, JSON.stringify(list));
+      return jsonResponse({ ok: true, comment: target });
+    }
+
     if (url.pathname === '/api/comments') {
       // GET/DELETE take ?path=...; POST carries path in the JSON body
       // (per the documented API), with the query param as a fallback.
